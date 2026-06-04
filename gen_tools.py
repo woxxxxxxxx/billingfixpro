@@ -1,4 +1,4 @@
-import os
+﻿import os
 
 tools = [
     ("invoice-generator","Free Invoice Generator","invoice","Create professional invoices instantly. Add line items, taxes, and discounts.","invoice-calculator,freelance-invoice,tax-invoice,quote-generator,receipt-generator"),
@@ -123,7 +123,7 @@ cat_labels = {
 
 # Tool descriptions for SEO sections
 seo_descriptions = {
-    "invoice-generator": "Our free invoice generator lets freelancers and small businesses create professional invoices in seconds. Simply enter your business details, client information, and line items — the tool automatically calculates subtotals, taxes, and the total amount due. Download your invoice as a PDF or copy it for use in Word or Excel. No account required. Whether you bill hourly, per project, or by deliverable, InvoiceFixPro's invoice generator adapts to your workflow. Perfect for consultants, designers, developers, photographers, and any independent professional who needs fast, professional billing.",
+    "invoice-generator": "Our free invoice generator lets freelancers and small businesses create professional invoices in seconds. Simply enter your business details, client information, and line items — the tool automatically calculates subtotals, taxes, and the total amount due. Download your invoice as a PDF or copy it for use in Word or Excel. No account required. Whether you bill hourly, per project, or by deliverable, BillingFixPro's invoice generator adapts to your workflow. Perfect for consultants, designers, developers, photographers, and any independent professional who needs fast, professional billing.",
     "quote-generator": "Generate professional price quotes for any service or product with our free quote builder. Enter your client's details, add line items with quantities and rates, apply discounts and taxes, and produce a polished quote document instantly. Our quote generator is designed for freelancers, contractors, and small businesses who need to win clients with clear, professional proposals. Set quote validity dates, add terms and conditions, and download the finished quote as a PDF. No signup needed.",
     "receipt-generator": "Create professional payment receipts for any transaction with our free receipt generator. Perfect for freelancers, landlords, retailers, and service providers who need to document payments quickly. Enter payer details, payment method, amount, and description — the tool generates a clean receipt you can download or print. Supports cash, bank transfer, credit card, and check payments. Use it for business transactions, rent payments, service fees, or any other payment you need to document.",
     "invoice-calculator": "Calculate invoice totals accurately with our free invoice calculator. Add multiple line items, apply percentage or fixed discounts, set tax rates (sales tax, VAT, or GST), and see the final amount due in real time. Supports multiple tax rates on different line items. Great for double-checking invoices before sending or estimating project costs. Our calculator handles complex invoices with ease, including partial payments, deposits already paid, and late fees.",
@@ -142,7 +142,7 @@ seo_descriptions = {
 def get_seo_text(slug, title):
     if slug in seo_descriptions:
         return seo_descriptions[slug]
-    return f"Use our free {title} tool to create professional billing documents in seconds. No registration required — simply fill in your details and generate a professional document instantly. InvoiceFixPro provides freelancers and small businesses with the tools they need to bill professionally, get paid faster, and maintain accurate financial records. Our {title} tool is designed to be simple, fast, and completely free. Download your document as a PDF, copy the text, or print directly from your browser. Join thousands of freelancers and small business owners who rely on InvoiceFixPro for their billing needs."
+    return f"Use our free {title} tool to create professional billing documents in seconds. No registration required — simply fill in your details and generate a professional document instantly. BillingFixPro provides freelancers and small businesses with the tools they need to bill professionally, get paid faster, and maintain accurate financial records. Our {title} tool is designed to be simple, fast, and completely free. Download your document as a PDF, copy the text, or print directly from your browser. Join thousands of freelancers and small business owners who rely on BillingFixPro for their billing needs."
 
 def get_related_links(related_str):
     links = []
@@ -773,7 +773,7 @@ def build_page(slug, title, cat, related_str):
         for s, n in related_links
     ])
 
-    meta_desc = f"Free {title} tool. Create professional {title.lower()} documents online in seconds. No signup required. | InvoiceFixPro"[:160]
+    meta_desc = f"Free {title} tool. Create professional {title.lower()} documents online in seconds. No signup required. | BillingFixPro"[:160]
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -782,9 +782,9 @@ def build_page(slug, title, cat, related_str):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<title>{title} - Free Online Tool | InvoiceFixPro</title>
+<title>{title} - Free Online Tool | BillingFixPro</title>
 <meta name="description" content="{meta_desc}">
-<link rel="canonical" href="https://invoicefixpro.com/tools/{slug}.html">
+<link rel="canonical" href="https://BillingFixPro.com/tools/{slug}.html">
 <style>{CSS}</style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1638874323475457" crossorigin="anonymous"></script>
 </head>
@@ -818,16 +818,16 @@ def build_page(slug, title, cat, related_str):
     <div class="footer-links">
       <a href="/about.html">About</a>
       <a href="/privacy.html">Privacy Policy</a>
-      <a href="mailto:contact@invoicefixpro.com">Contact</a>
+      <a href="mailto:contact@BillingFixPro.com">Contact</a>
     </div>
-    <div class="footer-copy">&copy; 2025 InvoiceFixPro. All rights reserved.</div>
+    <div class="footer-copy">&copy; 2025 BillingFixPro. All rights reserved.</div>
   </div>
 </footer>
 <script>{js}</script>
 </body>
 </html>"""
 
-out_dir = "C:/Users/Administrator/invoicefixpro/tools"
+out_dir = "C:/Users/Administrator/BillingFixPro/tools"
 os.makedirs(out_dir, exist_ok=True)
 count = 0
 for item in tools:
