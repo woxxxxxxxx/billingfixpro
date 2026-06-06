@@ -163,6 +163,8 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
   </div>
 </footer>
 <script>
+const _TOOL_SIGNATURE = {"id":"vat-calculator","taxType":"VAT","defaultRate":20,"region":"EU"};
+
 function calc(){
   const amt=parseFloat(document.getElementById('amount').value)||0;
   const rate=(parseFloat(document.getElementById('rate').value)||0)/100;
