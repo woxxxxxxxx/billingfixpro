@@ -111,6 +111,7 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
     <div style="font-size:16px;font-weight:800;color:var(--primary)">Total Due: <strong id="totalAmt">$0.00</strong></div>
   </div>
   <div class="field full" style="margin-top:16px"><label>Notes / Payment Terms</label><textarea id="notes" placeholder="Payment due within 30 days. Thank you for your business."></textarea></div>
+  <div class="field"><label>Your ABN</label><input id="taxNum" type="text" placeholder="12 345 678 901"></div>
   <button class="btn-primary" onclick="generateInvoice()">Generate Invoice</button>
 </div>
 <div id="output" class="preview-card" style="display:none">
@@ -183,6 +184,7 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
   </div>
 </footer>
 <script>
+
 function addRow(){
   const tb=document.getElementById('lineItems');
   const tr=document.createElement('tr');
@@ -191,75 +193,79 @@ function addRow(){
     <td><input type="number" value="0" min="0" step="0.01" oninput="calcTotals()" style="width:90px;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px"></td>
     <td id="rt" style="text-align:right;padding:6px;font-size:13px">$0.00</td>
     <td><button onclick="this.closest('tr').remove();calcTotals()" style="background:#fee2e2;color:#dc2626;border:none;border-radius:4px;padding:4px 8px;cursor:pointer">✕</button></td>`;
-  tb.appendChild(tr);
-  calcTotals();
+  tb.appendChild(tr);calcTotals();
 }
 function calcTotals(){
   let sub=0;
   document.querySelectorAll('#lineItems tr').forEach(tr=>{
-    const inputs=tr.querySelectorAll('input');
-    if(inputs.length<3)return;
-    const qty=parseFloat(inputs[1].value)||0;
-    const rate=parseFloat(inputs[2].value)||0;
+    const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;
+    const qty=parseFloat(inputs[1].value)||0,rate=parseFloat(inputs[2].value)||0;
     const tot=qty*rate;
-    const td=tr.querySelector('#rt')||tr.cells[3];
-    if(td)td.textContent='$'+tot.toFixed(2);
-    sub+=tot;
+    const td=tr.cells[3];if(td)td.textContent='$'+tot.toFixed(2);sub+=tot;
   });
-  const disc=(parseFloat(document.getElementById('discount').value)||0)/100;
-  const tax=(parseFloat(document.getElementById('taxRate').value)||0)/100;
-  const discAmt=sub*disc;
-  const taxAmt=(sub-discAmt)*tax;
-  const total=sub-discAmt+taxAmt;
-  document.getElementById('subtotal').textContent='$'+sub.toFixed(2);
-  document.getElementById('discountAmt').textContent='-$'+discAmt.toFixed(2);
-  document.getElementById('taxAmt').textContent='$'+taxAmt.toFixed(2);
-  document.getElementById('totalAmt').textContent='$'+total.toFixed(2);
+  const discPct=(parseFloat(document.getElementById('discount')?.value)||0)/100;
+  const taxPct=(parseFloat(document.getElementById('taxRate')?.value)||0)/100;
+  const discAmt=sub*discPct;const taxAmt=(sub-discAmt)*taxPct;const total=sub-discAmt+taxAmt;
+  const el=id=>document.getElementById(id);
+  if(el('subtotal'))el('subtotal').textContent='$'+sub.toFixed(2);
+  if(el('discountAmt'))el('discountAmt').textContent='-$'+discAmt.toFixed(2);
+  if(el('taxAmt'))el('taxAmt').textContent='$'+taxAmt.toFixed(2);
+  if(el('totalAmt'))el('totalAmt').textContent='$'+total.toFixed(2);
+  
 }
-function generateInvoice(){
-  const from=document.getElementById('from').value||'Your Business';
-  const to=document.getElementById('to').value||'Client Name';
-  const invNum=document.getElementById('invNum').value||'INV-001';
-  const date=document.getElementById('invDate').value||new Date().toISOString().split('T')[0];
-  const due=document.getElementById('dueDate').value||'';
+function copyText(){navigator.clipboard.writeText(document.getElementById('preview').textContent);}
+document.addEventListener('DOMContentLoaded',function(){addRow();addRow();calcTotals();});
+window.addEventListener('scroll',function(){var b=document.getElementById('btt');if(b)b.classList.toggle('show',window.scrollY>300);});
+document.querySelectorAll('.faq-item h3').forEach(function(q){q.addEventListener('click',function(){this.parentElement.classList.toggle('open');});});
+
+
+function generateInvoice(){generateDoc();}
+function generateDoc(){
+  const from_=document.getElementById('from')?.value||'Your Business';
+  const to_=document.getElementById('to')?.value||'Client';
+  const num_=document.getElementById('invNum')?.value||'INV-001';
+  const date_=document.getElementById('invDate')?.value||new Date().toISOString().split('T')[0];
+  const due_=document.getElementById('dueDate')?.value||'';
+  const taxNum=document.getElementById('taxNum')?.value||'';
+  const taxRate=parseFloat(document.getElementById('taxRate')?.value)||10;
+  let sub=0;
+  document.querySelectorAll('#lineItems tr').forEach(tr=>{
+    const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;
+    sub+=(parseFloat(inputs[1].value)||0)*(parseFloat(inputs[2].value)||0);
+  });
+  const discPct=(parseFloat(document.getElementById('discount')?.value)||0)/100;
+  const discAmt=sub*discPct;const netSub=sub-discAmt;
+  const taxAmt=netSub*taxRate/100;const total=netSub+taxAmt;
+  const notes=document.getElementById('notes')?.value||'';
   let lines='';
   document.querySelectorAll('#lineItems tr').forEach(tr=>{
-    const inputs=tr.querySelectorAll('input');
-    if(inputs.length<3)return;
-    const desc=inputs[0].value||'Item';
-    const qty=parseFloat(inputs[1].value)||0;
-    const rate=parseFloat(inputs[2].value)||0;
-    lines+=desc.padEnd(30)+' x'+qty+'  $'+rate.toFixed(2)+'  $'+(qty*rate).toFixed(2)+'\n';
+    const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;
+    const d=inputs[0].value||'Service';const q=parseFloat(inputs[1].value)||0;const r=parseFloat(inputs[2].value)||0;
+    lines+=`  ${d.padEnd(30)} x${q}  A$${r.toFixed(2)}  A$${(q*r).toFixed(2)}\n`;
   });
-  const out=document.getElementById('output');
-  out.style.display='block';
-  document.getElementById('preview').textContent=
-`INVOICE
-${'='.repeat(50)}
-From: ${from}
-To:   ${to}
-
-Invoice #: ${invNum}
-Date:      ${date}${due?'\nDue:       '+due:''}
-
-${'─'.repeat(50)}
-DESCRIPTION                    QTY   RATE    AMOUNT
-${'─'.repeat(50)}
-${lines}${'─'.repeat(50)}
-Subtotal:  ${document.getElementById('subtotal').textContent}
-Discount:  ${document.getElementById('discountAmt').textContent}
-Tax:       ${document.getElementById('taxAmt').textContent}
-${'─'.repeat(50)}
-TOTAL DUE: ${document.getElementById('totalAmt').textContent}
-${'='.repeat(50)}
-${document.getElementById('notes').value?'Notes: '+document.getElementById('notes').value:''}`;
+  const txt=`AUSTRALIA INVOICE
+$========================================================
+Invoice #: ${num_}    Date: ${date_}${due_?'   Due: '+due_:''}
+${'-'*56}
+From: ${from_}${taxNum?' | ABN: '+taxNum:''}
+To:   ${to_}
+Currency: AUD
+${'-'*56}
+DESCRIPTION                        QTY     UNIT     TOTAL
+${'-'*56}
+${lines}${'-'*56}
+  Net Amount:  A$${netSub.toFixed(2)}
+  Discount:   -A$${discAmt.toFixed(2)}
+  ABN (${taxRate}%): A$${taxAmt.toFixed(2)}
+$========================================================
+  TOTAL DUE (AUD):  A$${total.toFixed(2)}
+$========================================================
+GST rate 10% per Australian tax law.
+${notes?'Notes: '+notes:''}\`;
+  document.getElementById('preview').textContent=txt;
+  document.getElementById('output').style.display='block';
+  document.getElementById('output').scrollIntoView({behavior:'smooth'});
 }
-function copyText(){
-  navigator.clipboard.writeText(document.getElementById('preview').textContent);
-  const b=document.getElementById('copyBtn');b.textContent='Copied!';setTimeout(()=>b.textContent='Copy',2000);
-}
-function printDoc(){window.print()}
-window.onload=()=>{addRow();calcTotals()};
 </script>
 </body>
 </html>

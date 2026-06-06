@@ -166,42 +166,81 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
   </div>
 </footer>
 <script>
-function generate(){
-  const from=document.getElementById('from').value||'Your Business';
-  const to=document.getElementById('to').value||'Client Name';
-  const invNum=document.getElementById('invNum').value||'INV-001';
-  const amount=document.getElementById('amount').value||'0.00';
-  const days=document.getElementById('days').value||'30';
-  const date=new Date().toISOString().split('T')[0];
-  document.getElementById('output').style.display='block';
-  document.getElementById('preview').textContent=
-`${date}
 
-${to}
-
-RE: Outstanding Invoice ${invNum} — Amount Due: $${parseFloat(amount).toFixed(2)}
-
-Dear ${to},
-
-This is a reminder that invoice ${invNum} for $${parseFloat(amount).toFixed(2)} is now ${days} days past due.
-
-Please arrange payment at your earliest convenience. If you have already sent payment, please disregard this notice.
-
-If you have any questions regarding this invoice, please contact us immediately.
-
-Payment details:
-Invoice #: ${invNum}
-Amount Due: $${parseFloat(amount).toFixed(2)}
-Days Overdue: ${days}
-
-Thank you for your prompt attention to this matter.
-
-Sincerely,
-${from}`;
+function addRow(){
+  const tb=document.getElementById('lineItems');
+  const tr=document.createElement('tr');
+  tr.innerHTML=`<td><input type="text" placeholder="Item description" style="width:100%;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px"></td>
+    <td><input type="number" value="1" min="0" oninput="calcTotals()" style="width:60px;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px"></td>
+    <td><input type="number" value="0" min="0" step="0.01" oninput="calcTotals()" style="width:90px;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px"></td>
+    <td id="rt" style="text-align:right;padding:6px;font-size:13px">$0.00</td>
+    <td><button onclick="this.closest('tr').remove();calcTotals()" style="background:#fee2e2;color:#dc2626;border:none;border-radius:4px;padding:4px 8px;cursor:pointer">✕</button></td>`;
+  tb.appendChild(tr);calcTotals();
 }
-function copyText(){
-  navigator.clipboard.writeText(document.getElementById('preview').textContent);
-  const b=document.getElementById('copyBtn');b.textContent='Copied!';setTimeout(()=>b.textContent='Copy',2000);
+function calcTotals(){
+  let sub=0;
+  document.querySelectorAll('#lineItems tr').forEach(tr=>{
+    const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;
+    const qty=parseFloat(inputs[1].value)||0,rate=parseFloat(inputs[2].value)||0;
+    const tot=qty*rate;
+    const td=tr.cells[3];if(td)td.textContent='$'+tot.toFixed(2);sub+=tot;
+  });
+  const discPct=(parseFloat(document.getElementById('discount')?.value)||0)/100;
+  const taxPct=(parseFloat(document.getElementById('taxRate')?.value)||0)/100;
+  const discAmt=sub*discPct;const taxAmt=(sub-discAmt)*taxPct;const total=sub-discAmt+taxAmt;
+  const el=id=>document.getElementById(id);
+  if(el('subtotal'))el('subtotal').textContent='$'+sub.toFixed(2);
+  if(el('discountAmt'))el('discountAmt').textContent='-$'+discAmt.toFixed(2);
+  if(el('taxAmt'))el('taxAmt').textContent='$'+taxAmt.toFixed(2);
+  if(el('totalAmt'))el('totalAmt').textContent='$'+total.toFixed(2);
+  
+}
+function copyText(){navigator.clipboard.writeText(document.getElementById('preview').textContent);}
+document.addEventListener('DOMContentLoaded',function(){addRow();addRow();calcTotals();});
+window.addEventListener('scroll',function(){var b=document.getElementById('btt');if(b)b.classList.toggle('show',window.scrollY>300);});
+document.querySelectorAll('.faq-item h3').forEach(function(q){q.addEventListener('click',function(){this.parentElement.classList.toggle('open');});});
+
+
+function generateInvoice(){generateDoc();}
+function generateQuote(){generateDoc();}
+function generateDoc(){
+  const from_=document.getElementById('from')?.value||'Your Business';
+  const to_=document.getElementById('to')?.value||'Client';
+  const num_=document.getElementById('invNum')?.value||document.getElementById('qNum')?.value||'001';
+  const date_=document.getElementById('invDate')?.value||document.getElementById('qDate')?.value||new Date().toISOString().split('T')[0];
+  const due_=document.getElementById('dueDate')?.value||'';
+  const sub=document.getElementById('subtotal')?.textContent||'$0.00';
+  const tax=document.getElementById('taxAmt')?.textContent||'$0.00';
+  const disc=document.getElementById('discountAmt')?.textContent||'-$0.00';
+  const total=document.getElementById('totalAmt')?.textContent||'$0.00';
+  const notes=document.getElementById('notes')?.value||'';
+  const extra=  STATUS: ${document.getElementById('daysOverdue')?.value||30} DAYS PAST DUE\n  Late Fee Applied: $${parseFloat(document.getElementById('lateFeeAmt')?.value||0).toFixed(2)}\n  Immediate payment required to avoid collections action.\n;
+  let lines='';
+  document.querySelectorAll('#lineItems tr').forEach(tr=>{
+    const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;
+    const d=inputs[0].value||'Item';const q=parseFloat(inputs[1].value)||0;const r=parseFloat(inputs[2].value)||0;
+    lines+=`  ${d.padEnd(30)} x${q}  $${r.toFixed(2).padStart(8)}  $${(q*r).toFixed(2).padStart(10)}\n`;
+  });
+  const hdr=`OVERDUE INVOICE NOTICE
+$========================================================
+OVERDUE INVOICE NOTICE #: ${num_}   Date: ${date_}${due_?'   Due: '+due_:''}
+${'-'*56}
+From: ${from_}
+To:   ${to_}
+${extra}${'-'*56}
+DESCRIPTION                        QTY    UNIT        TOTAL
+${'-'*56}
+${lines}${'-'*56}
+  Subtotal:  ${sub}
+  Discount:  ${disc}
+  Tax:       ${tax}
+$========================================================
+  TOTAL DUE: ${total}
+$========================================================
+${notes?'Notes: '+notes:''}\`;
+  document.getElementById('preview').textContent=hdr;
+  document.getElementById('output').style.display='block';
+  document.getElementById('output').scrollIntoView({behavior:'smooth'});
 }
 </script>
 </body>
