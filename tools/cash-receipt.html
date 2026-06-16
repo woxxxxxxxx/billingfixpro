@@ -293,7 +293,7 @@ ${lines}${'-'*56}
 $========================================================
   TOTAL DUE: ${total}
 $========================================================
-${notes?'Notes: '+notes:''}\`;
+${notes?'Notes: '+notes:''}`;
   document.getElementById('preview').textContent=hdr;
   document.getElementById('output').style.display='block';
   document.getElementById('output').scrollIntoView({behavior:'smooth'});

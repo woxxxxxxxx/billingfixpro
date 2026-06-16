@@ -307,7 +307,7 @@ $========================================================
   TOTAL DUE (AUD):  A$${total.toFixed(2)}
 $========================================================
 GST rate 10% per Australian tax law.
-${notes?'Notes: '+notes:''}\`;
+${notes?'Notes: '+notes:''}`;
   document.getElementById('preview').textContent=txt;
   document.getElementById('output').style.display='block';
   document.getElementById('output').scrollIntoView({behavior:'smooth'});

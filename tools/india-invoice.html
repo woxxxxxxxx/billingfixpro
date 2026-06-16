@@ -307,7 +307,7 @@ $========================================================
   TOTAL DUE (INR):  ₹${total.toFixed(2)}
 $========================================================
 CGST 9% + SGST 9% (intra-state) or IGST 18% (inter-state)
-${notes?'Notes: '+notes:''}\`;
+${notes?'Notes: '+notes:''}`;
   document.getElementById('preview').textContent=txt;
   document.getElementById('output').style.display='block';
   document.getElementById('output').scrollIntoView({behavior:'smooth'});

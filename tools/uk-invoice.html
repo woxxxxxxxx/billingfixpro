@@ -307,7 +307,7 @@ $========================================================
   TOTAL DUE (GBP):  £${total.toFixed(2)}
 $========================================================
 Payment subject to UK VAT regulations.
-${notes?'Notes: '+notes:''}\`;
+${notes?'Notes: '+notes:''}`;
   document.getElementById('preview').textContent=txt;
   document.getElementById('output').style.display='block';
   document.getElementById('output').scrollIntoView({behavior:'smooth'});

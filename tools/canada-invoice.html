@@ -309,7 +309,7 @@ $========================================================
   TOTAL DUE (CAD):  C$${total.toFixed(2)}
 $========================================================
 
-${notes?'Notes: '+notes:''}\`;
+${notes?'Notes: '+notes:''}`;
   document.getElementById('preview').textContent=txt;
   document.getElementById('output').style.display='block';
   document.getElementById('output').scrollIntoView({behavior:'smooth'});
