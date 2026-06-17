@@ -287,10 +287,10 @@ function calcTotals(){
   const totalNum=parseFloat(document.getElementById('totalAmt')?.textContent?.replace(/[^0-9.]/g,'')||0);
   const change=Math.max(0,tendered-totalNum);
   const cd=document.getElementById('changeDue');if(cd)cd.value='$'+change.toFixed(2);
-  const tendered=parseFloat(document.getElementById('tendered')?.value)||0;
-  const totalNum=parseFloat(document.getElementById('totalAmt')?.textContent?.replace(/[^0-9.]/g,'')||0);
-  const change=Math.max(0,tendered-totalNum);
-  const cd=document.getElementById('changeDue');if(cd)cd.value='$'+change.toFixed(2);
+  tendered=parseFloat(document.getElementById('tendered')?.value)||0;
+  totalNum=parseFloat(document.getElementById('totalAmt')?.textContent?.replace(/[^0-9.]/g,'')||0);
+  change=Math.max(0,tendered-totalNum);
+  cd=document.getElementById('changeDue');if(cd)cd.value='$'+change.toFixed(2);
 }
 function copyText(){
   navigator.clipboard.writeText(document.getElementById('preview-txt')?.textContent||document.getElementById('preview')?.innerText||'').then(()=>{
@@ -315,16 +315,16 @@ function generateDoc(){
   const sub=document.getElementById('subtotal')?.textContent||'$0.00';
   const tax=document.getElementById('taxAmt')?.textContent||'$0.00';
   const disc=document.getElementById('discountAmt')?.textContent||'-$0.00';
-  const total=document.getElementById('totalAmt')?.textContent||'$0.00';
+  total=document.getElementById('totalAmt')?.textContent||'$0.00';
   const notes=document.getElementById('notes')?.value||'';
   const extra=`Tendered: $${document.getElementById('tendered')?.value||'0.00'}  Change: ${document.getElementById('changeDue')?.value||'$0.00'}\n;`
   let linesHTML='',linesTxt='';
   document.querySelectorAll('#lineItems tr').forEach(tr=>{
-    const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;
+    inputs=tr.querySelectorAll('input');if(inputs.length<3)return;
     const d=inputs[0].value||'Service';
     const q=parseFloat(inputs[1].value)||0;
     const r=parseFloat(inputs[2].value)||0;
-    const tot=q*r;
+    tot=q*r;
     linesHTML+=`<tr style="border-bottom:1px solid #f1f5f9"><td style="padding:10px 14px">${d}</td><td style="padding:10px 14px;text-align:right">${q}</td><td style="padding:10px 14px;text-align:right">$${r.toFixed(2)}</td><td style="padding:10px 14px;text-align:right;font-weight:600">$${tot.toFixed(2)}</td></tr>`;
     linesTxt+=`  ${d}  x${q}  $${r.toFixed(2)}  $${tot.toFixed(2)}
 `;

@@ -332,25 +332,25 @@ function generateDoc(){
   const due_=document.getElementById('dueDate')?.value||'';
   const vatFrom=document.getElementById('vatFrom')?.value||'';
   const vatTo=document.getElementById('vatTo')?.value||'';
-  const cur=document.getElementById('currency')?.value||'EUR';
+  cur=document.getElementById('currency')?.value||'EUR';
   const vatRate=parseFloat(document.getElementById('vatRate')?.value)||20;
-  const rc=document.getElementById('reverseCharge')?.value==='yes';
+  rc=document.getElementById('reverseCharge')?.value==='yes';
   let sub=0;
   document.querySelectorAll('#lineItems tr').forEach(tr=>{
-    const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;
+    inputs=tr.querySelectorAll('input');if(inputs.length<3)return;
     sub+=(parseFloat(inputs[1].value)||0)*(parseFloat(inputs[2].value)||0);
   });
-  const discPct=(parseFloat(document.getElementById('discount')?.value)||0)/100;
-  const discAmt=sub*discPct;const netSub=sub-discAmt;
-  const vatAmt=rc?0:netSub*vatRate/100;const total=netSub+vatAmt;
+  discPct=(parseFloat(document.getElementById('discount')?.value)||0)/100;
+  discAmt=sub*discPct;const netSub=sub-discAmt;
+  vatAmt=rc?0:netSub*vatRate/100;total=netSub+vatAmt;
   const notes=document.getElementById('notes')?.value||'';
   let linesHTML='',linesTxt='';
   document.querySelectorAll('#lineItems tr').forEach(tr=>{
-    const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;
+    inputs=tr.querySelectorAll('input');if(inputs.length<3)return;
     const d=inputs[0].value||'Service';
     const q=parseFloat(inputs[1].value)||0;
     const r=parseFloat(inputs[2].value)||0;
-    const tot=q*r;
+    tot=q*r;
     linesHTML+=`<tr style="border-bottom:1px solid #f1f5f9"><td style="padding:10px 14px">${d}</td><td style="padding:10px 14px;text-align:right">${q}</td><td style="padding:10px 14px;text-align:right">$${r.toFixed(2)}</td><td style="padding:10px 14px;text-align:right;font-weight:600">$${tot.toFixed(2)}</td></tr>`;
     linesTxt+=`  ${d}  x${q}  $${r.toFixed(2)}  $${tot.toFixed(2)}
 `;
