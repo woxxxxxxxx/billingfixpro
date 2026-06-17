@@ -320,12 +320,18 @@ function calcTotals(){
 }
 
 function printDoc(){
-  var o=document.getElementById('output');
-  if(!o||o.style.display==='none'||o.style.display===''){
+  var preview=document.getElementById('preview');
+  if(!preview||!preview.innerHTML.trim()){
     alert('Please click Generate Payment History first, then print.');
     return;
   }
-  window.print();
+  var w=window.open('','_blank','width=900,height=700');
+  w.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Payment History</title>'
+    +'<style>body{font-family:Helvetica Neue,Arial,sans-serif;margin:0;padding:20px;background:#fff}'
+    +'@media print{body{padding:0}}</style></head>'
+    +'<body>'+preview.innerHTML+'<script>window.onload=function(){window.print();window.onafterprint=function(){window.close();};}<\/script>'
+    +'</body></html>');
+  w.document.close();
 }
 
 function copyText(){
