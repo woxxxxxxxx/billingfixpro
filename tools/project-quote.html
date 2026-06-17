@@ -296,38 +296,37 @@ function calcTotals(){
   document.getElementById('totalAmt').textContent='$'+(sub+taxAmt).toFixed(2);
 }
 function generateQuote(){
-  const from=document.getElementById('from').value||'Your Business';
-  const to=document.getElementById('to').value||'Client Name';
-  const qNum=document.getElementById('qNum').value||'Q-001';
-  const date=document.getElementById('qDate').value||new Date().toISOString().split('T')[0];
-  const valid=document.getElementById('valid').value||'30';
-  let linesHTML='',linesTxt='';
+  const from_=document.getElementById('from')?.value||document.getElementById('business')?.value||'Your Business';
+  const to_=document.getElementById('to')?.value||document.getElementById('client')?.value||'Client';
+  const num_=document.getElementById('qNum')?.value||document.getElementById('invNum')?.value||document.getElementById('quoteNum')?.value||'Q-001';
+  const date_=document.getElementById('qDate')?.value||document.getElementById('invDate')?.value||new Date().toISOString().split('T')[0];
+  const due_=document.getElementById('validDays')?.value?'Valid '+document.getElementById('validDays').value+' days':'';
+  const notes=document.getElementById('notes')?.value||'';
+  const taxRate=parseFloat(document.getElementById('taxRate')?.value)||0;
+  const extra=(()=>{
+    const ids=['validDays','projectName','projectType','jobType','estimateType','serviceType','siteAddress','location'];
+    const vals=ids.map(i=>document.getElementById(i)?.value||'').filter(Boolean);
+    return vals.join('  ');
+  })();
+  let sub=0,linesHTML='',linesTxt='';
   document.querySelectorAll('#lineItems tr').forEach(tr=>{
     const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;
     const d=inputs[0].value||'Service';
     const q=parseFloat(inputs[1].value)||0;
     const r=parseFloat(inputs[2].value)||0;
-    const tot=q*r;
+    const tot=q*r;sub+=tot;
     linesHTML+=`<tr style="border-bottom:1px solid #f1f5f9"><td style="padding:10px 14px">${d}</td><td style="padding:10px 14px;text-align:right">${q}</td><td style="padding:10px 14px;text-align:right">$${r.toFixed(2)}</td><td style="padding:10px 14px;text-align:right;font-weight:600">$${tot.toFixed(2)}</td></tr>`;
     linesTxt+=`  ${d}  x${q}  $${r.toFixed(2)}  $${tot.toFixed(2)}
 `;
   });
+  const discPct=(parseFloat(document.getElementById('discount')?.value)||0)/100;
+  const discAmt=sub*discPct;
+  const taxAmt=(sub-discAmt)*(taxRate/100);
+  const total=sub-discAmt+taxAmt;
+  document.getElementById('preview').innerHTML=generateInvoiceHTML(from_,to_,num_,date_,due_,linesHTML,sub,discAmt,taxAmt,total,notes,taxRate,extra);
+  document.getElementById('preview-txt').textContent=linesTxt;
   document.getElementById('output').style.display='block';
-  document.getElementById('preview').textContent=
-`QUOTE / ESTIMATE
-${'='.repeat(50)}
-From: ${from}
-To:   ${to}
-Quote #: ${qNum}   Date: ${date}   Valid: ${valid} days
-${'─'.repeat(50)}
-DESCRIPTION                  QTY   RATE    AMOUNT
-${'─'.repeat(50)}
-${linesTxt}${'─'.repeat(50)}
-Subtotal: ${document.getElementById('subtotal').textContent}
-Tax:      ${document.getElementById('taxAmt').textContent}
-${'─'.repeat(50)}
-TOTAL:    ${document.getElementById('totalAmt').textContent}
-${'='.repeat(50)}`;
+  document.getElementById('output').scrollIntoView({behavior:'smooth'});
 }
 function printDoc(){
   var o=document.getElementById('output');

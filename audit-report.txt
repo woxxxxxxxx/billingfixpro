@@ -1,0 +1,163 @@
+======================================================================
+BILLINGFIXPRO AUDIT REPORT
+======================================================================
+
+  ASSET                        2 issues
+  ASSET:LOGO                   2 issues
+  FORM:MISMATCH                1 issues
+  JS                           1 issues
+  JS:UNDEF_VAR               144 issues
+
+  TOTAL ISSUES: 150
+
+======================================================================
+[JS] Scanning 100 tool files...
+[JS:UNDEF_VAR] IT-services-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] IT-services-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] account-summary.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] account-summary.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] accounting-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] accounting-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] agency-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] agency-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] australia-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] australia-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] billing-statement.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] billing-statement.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] blank-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] blank-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] blanket-purchase-order.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] blanket-purchase-order.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] business-receipt.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] business-receipt.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] canada-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] canada-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] cash-receipt.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] cash-receipt.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] catering-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] catering-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] change-order.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] change-order.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] cleaning-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] cleaning-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] collection-letter.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] collection-letter.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] commercial-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] commercial-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] consulting-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] consulting-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] contractor-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] contractor-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] credit-memo.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] credit-memo.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] credit-note.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] credit-note.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] debit-note.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] debit-note.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] deposit-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] deposit-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] donation-receipt.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] donation-receipt.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] electrical-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] electrical-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] eu-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] eu-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] event-planning-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] event-planning-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] expense-receipt.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] expense-receipt.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] final-notice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] final-notice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] freelance-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] freelance-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] graphic-design-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] graphic-design-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] hotel-receipt.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] hotel-receipt.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] india-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] india-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] invoice-generator.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] invoice-generator.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] landscaping-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] landscaping-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] legal-services-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] legal-services-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] marketing-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] marketing-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] milestone-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] milestone-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] net30-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] net30-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] net60-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] net60-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] outstanding-invoices.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] outstanding-invoices.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] overdue-invoice-notice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] overdue-invoice-notice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] payment-agreement.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] payment-agreement.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] payment-plan-agreement.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] payment-plan-agreement.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] payment-receipt.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] payment-receipt.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] payment-reminder.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] payment-reminder.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] payment-terms-generator.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] payment-terms-generator.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] photography-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] photography-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] plumbing-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] plumbing-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] pro-forma-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] pro-forma-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] progress-billing.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] progress-billing.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] purchase-order.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] purchase-order.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] recurring-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] recurring-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] refund-receipt.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] refund-receipt.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] rent-receipt.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] rent-receipt.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] retainer-agreement.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] retainer-agreement.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] return-merchandise.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] return-merchandise.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] rush-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] rush-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] sales-receipt.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] sales-receipt.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] self-employed-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] self-employed-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] service-order.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] service-order.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] simple-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] simple-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] small-business-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] small-business-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] sole-trader-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] sole-trader-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] startup-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] startup-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] statement-of-account.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] statement-of-account.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] tax-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] tax-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] taxi-receipt.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] taxi-receipt.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] tutoring-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] tutoring-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] uk-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] uk-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] web-design-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] web-design-invoice.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] work-order.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] work-order.html — generateDoc uses "linesTxt" without declaring it
+[JS:UNDEF_VAR] writing-invoice.html — generateDoc uses "linesHTML" without declaring it
+[JS:UNDEF_VAR] writing-invoice.html — generateDoc uses "linesTxt" without declaring it
+[FORM:MISMATCH] payment-history.html — payment history calls generateInvoiceHTML (wrong function)
+[ASSET] logo.svg exists: True
+[ASSET] favicon.svg exists: True
+[ASSET:LOGO] about.html — no logo.svg reference found
+[ASSET:LOGO] privacy.html — no logo.svg reference found
