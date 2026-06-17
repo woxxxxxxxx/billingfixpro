@@ -110,7 +110,7 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 .footer-copy{font-size:13px;width:100%}
 @media(max-width:640px){.form-grid{grid-template-columns:1fr}.related-grid{grid-template-columns:1fr}.tool-hero h1{font-size:1.5rem}}
 .faq-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px}.faq-section h2{font-size:1.1rem;font-weight:700;margin-bottom:20px}.faq-item{border-bottom:1px solid var(--border);padding:16px 0}.faq-item:last-child{border-bottom:none;padding-bottom:0}.faq-item h3{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px}.faq-item p{font-size:14px;color:var(--text2);line-height:1.7}
-@media print{header,footer,.ad-slot,.ad-top,.ad-middle,.ad-bottom,.form-card,.tool-hero,.breadcrumb,.seo-section,.faq-section,.related-section,.download-row,#btt{display:none!important}body{background:#fff!important}main{padding:0!important}#output{display:block!important;box-shadow:none!important;border:none!important;padding:0!important}}</style>
+@media print{header,footer,.ad-slot,.ad-top,.ad-middle,.ad-bottom,.form-card,.tool-hero,.breadcrumb,.seo-section,.faq-section,.related-section,.affiliate-section,.download-row,#btt{display:none!important}body{background:#fff!important}main{padding:0!important}#output{display:block!important;box-shadow:none!important;border:none!important;padding:0!important}}</style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1638874323475457" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -158,7 +158,7 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
   <div id="preview"></div><pre id="preview-txt" style="display:none"></pre>
   <div class="download-row">
     <button id="copyBtn" class="btn-dl btn-dl-doc" onclick="copyText()">Copy Text</button>
-    <button class="btn-dl btn-dl-pdf" onclick="window.print()">Print / Save PDF</button>
+    <button class="btn-dl btn-dl-pdf" onclick="printDoc()">Print / Save PDF</button>
   </div>
 </div>
   <div class="ad-slot ad-middle"><div class="adsense-placeholder" data-pub="ca-pub-1638874323475457"></div></div>
@@ -328,6 +328,11 @@ Tax:      ${document.getElementById('taxAmt').textContent}
 ${'─'.repeat(50)}
 TOTAL:    ${document.getElementById('totalAmt').textContent}
 ${'='.repeat(50)}`;
+}
+function printDoc(){
+  var o=document.getElementById('output');
+  if(o)o.style.display='block';
+  window.print();
 }
 function copyText(){
   navigator.clipboard.writeText(document.getElementById('preview-txt')?.textContent||document.getElementById('preview')?.innerText||'');
