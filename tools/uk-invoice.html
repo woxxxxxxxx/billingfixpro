@@ -360,8 +360,7 @@ $========================================================
 $========================================================
 Payment subject to UK VAT regulations.
 ${notes?'Notes: '+notes:''}`;
-  const extra=typeof window._extra!=='undefined'?window._extra:(document.getElementById('extra')?.textContent||'');
-  document.getElementById('preview').innerHTML=generateInvoiceHTML(from_,to_,num_,date_,due_,linesHTML,sub,discAmt,taxAmt,total,notes,taxRate,extra||'');
+  document.getElementById('preview').innerHTML=generateInvoiceHTML(from_,to_,num_,date_,due_,linesHTML,sub,discAmt,taxAmt,total,notes,taxRate,typeof extra!=='undefined'?extra:'');
   document.getElementById('preview-txt').textContent=linesTxt;
   document.getElementById('output').style.display='block';
   document.getElementById('output').scrollIntoView({behavior:'smooth'});
