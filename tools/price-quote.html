@@ -331,7 +331,10 @@ ${'='.repeat(50)}`;
 }
 function printDoc(){
   var o=document.getElementById('output');
-  if(o)o.style.display='block';
+  if(!o||o.style.display==='none'||o.style.display===''){
+    alert('Please click "Generate" first to create your document, then print.');
+    return;
+  }
   window.print();
 }
 function copyText(){
