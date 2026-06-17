@@ -278,7 +278,7 @@ function generateDoc(){
   const disc=document.getElementById('discountAmt')?.textContent||'-$0.00';
   const total=document.getElementById('totalAmt')?.textContent||'$0.00';
   const notes=document.getElementById('notes')?.value||'';
-  const extra=  Applied to Invoice: ${document.getElementById('origInv')?.value||''}\n  Reason: ${document.getElementById('creditReason')?.value||''}\n  * This credit memo reduces your outstanding balance. *\n;
+  const extra=`Applied to Invoice: ${document.getElementById('origInv')?.value||''}\n  Reason: ${document.getElementById('creditReason')?.value||''}\n  * This credit memo reduces your outstanding balance. *\n;`
   let lines='';
   document.querySelectorAll('#lineItems tr').forEach(tr=>{
     const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;

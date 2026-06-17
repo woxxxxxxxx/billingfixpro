@@ -294,7 +294,7 @@ function generateDoc(){
   const disc=document.getElementById('discountAmt')?.textContent||'-$0.00';
   const total=document.getElementById('totalAmt')?.textContent||'$0.00';
   const notes=document.getElementById('notes')?.value||'';
-  const extra=  Original Amount: $${parseFloat(document.getElementById('origAmt')?.value||0).toFixed(2)}\n  Down Payment: $${parseFloat(document.getElementById('downPayment')?.value||0).toFixed(2)}\n  Monthly: ${document.getElementById('monthlyPayment')?.value||''}  × ${document.getElementById('numPayments')?.value||0} months\n;
+  const extra=`Original Amount: $${parseFloat(document.getElementById('origAmt')?.value||0).toFixed(2)}\n  Down Payment: $${parseFloat(document.getElementById('downPayment')?.value||0).toFixed(2)}\n  Monthly: ${document.getElementById('monthlyPayment')?.value||''}  × ${document.getElementById('numPayments')?.value||0} months\n;`
   let lines='';
   document.querySelectorAll('#lineItems tr').forEach(tr=>{
     const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;

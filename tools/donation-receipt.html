@@ -262,7 +262,7 @@ function generateDoc(){
   const disc=document.getElementById('discountAmt')?.textContent||'-$0.00';
   const total=document.getElementById('totalAmt')?.textContent||'$0.00';
   const notes=document.getElementById('notes')?.value||'';
-  const extra=  EIN: ${document.getElementById('ein')?.value||''}  Deductible: ${document.getElementById('taxDed')?.value||''}\n  *No goods or services were provided in exchange for this gift.*\n;
+  const extra=`EIN: ${document.getElementById('ein')?.value||''}  Deductible: ${document.getElementById('taxDed')?.value||''}\n  *No goods or services were provided in exchange for this gift.*\n;`
   let lines='';
   document.querySelectorAll('#lineItems tr').forEach(tr=>{
     const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;

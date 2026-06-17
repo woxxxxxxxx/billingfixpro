@@ -260,7 +260,7 @@ function generateDoc(){
   const disc=document.getElementById('discountAmt')?.textContent||'-$0.00';
   const total=document.getElementById('totalAmt')?.textContent||'$0.00';
   const notes=document.getElementById('notes')?.value||'';
-  const extra=  *** FINAL NOTICE ***\n  Amount: $${parseFloat(document.getElementById('finalAmt')?.value||0).toFixed(2)}\n  Respond by: ${document.getElementById('responseBy')?.value||''}\n  Legal action will be pursued if payment is not received.\n;
+  const extra=`*** FINAL NOTICE ***\n  Amount: $${parseFloat(document.getElementById('finalAmt')?.value||0).toFixed(2)}\n  Respond by: ${document.getElementById('responseBy')?.value||''}\n  Legal action will be pursued if payment is not received.\n;`
   let lines='';
   document.querySelectorAll('#lineItems tr').forEach(tr=>{
     const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;

@@ -286,7 +286,7 @@ function generateDoc(){
   const disc=document.getElementById('discountAmt')?.textContent||'-$0.00';
   const total=document.getElementById('totalAmt')?.textContent||'$0.00';
   const notes=document.getElementById('notes')?.value||'';
-  const extra=  Project Total: $${parseFloat(document.getElementById('projectTotal')?.value||0).toFixed(2)}  Deposit: ${document.getElementById('depositPct')?.value||50}%\n  Balance due on completion.\n;
+  const extra=`Project Total: $${parseFloat(document.getElementById('projectTotal')?.value||0).toFixed(2)}  Deposit: ${document.getElementById('depositPct')?.value||50}%\n  Balance due on completion.\n;`
   let lines='';
   document.querySelectorAll('#lineItems tr').forEach(tr=>{
     const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;

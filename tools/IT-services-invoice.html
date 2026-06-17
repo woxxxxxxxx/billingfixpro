@@ -278,7 +278,7 @@ function generateDoc(){
   const disc=document.getElementById('discountAmt')?.textContent||'-$0.00';
   const total=document.getElementById('totalAmt')?.textContent||'$0.00';
   const notes=document.getElementById('notes')?.value||'';
-  const extra=  Ticket: ${document.getElementById('ticketNum')?.value||''}  Category: ${document.getElementById('svcCat')?.value||''}\n;
+  const extra=`Ticket: ${document.getElementById('ticketNum')?.value||''}  Category: ${document.getElementById('svcCat')?.value||''}\n;`
   let lines='';
   document.querySelectorAll('#lineItems tr').forEach(tr=>{
     const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;

@@ -270,7 +270,7 @@ function generateDoc(){
   const disc=document.getElementById('discountAmt')?.textContent||'-$0.00';
   const total=document.getElementById('totalAmt')?.textContent||'$0.00';
   const notes=document.getElementById('notes')?.value||'';
-  const extra=  Tendered: $${document.getElementById('tendered')?.value||'0.00'}  Change: ${document.getElementById('changeDue')?.value||'$0.00'}\n;
+  const extra=`Tendered: $${document.getElementById('tendered')?.value||'0.00'}  Change: ${document.getElementById('changeDue')?.value||'$0.00'}\n;`
   let lines='';
   document.querySelectorAll('#lineItems tr').forEach(tr=>{
     const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;

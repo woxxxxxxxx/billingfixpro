@@ -278,7 +278,7 @@ function generateDoc(){
   const disc=document.getElementById('discountAmt')?.textContent||'-$0.00';
   const total=document.getElementById('totalAmt')?.textContent||'$0.00';
   const notes=document.getElementById('notes')?.value||'';
-  const extra=  Purpose: ${document.getElementById('purpose')?.value||''}\n  ${document.getElementById('validity')?.value||'Valid 30 days'}\n  * This is a pro-forma invoice, not a demand for payment. *\n;
+  const extra=`Purpose: ${document.getElementById('purpose')?.value||''}\n  ${document.getElementById('validity')?.value||'Valid 30 days'}\n  * This is a pro-forma invoice, not a demand for payment. *\n;`
   let lines='';
   document.querySelectorAll('#lineItems tr').forEach(tr=>{
     const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;

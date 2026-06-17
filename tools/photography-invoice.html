@@ -277,7 +277,7 @@ function generateDoc(){
   const disc=document.getElementById('discountAmt')?.textContent||'-$0.00';
   const total=document.getElementById('totalAmt')?.textContent||'$0.00';
   const notes=document.getElementById('notes')?.value||'';
-  const extra=  Shoot Type: ${document.getElementById('shootType')?.value||''}  Images: ${document.getElementById('imgCount')?.value||0} delivered\n;
+  const extra=`Shoot Type: ${document.getElementById('shootType')?.value||''}  Images: ${document.getElementById('imgCount')?.value||0} delivered\n;`
   let lines='';
   document.querySelectorAll('#lineItems tr').forEach(tr=>{
     const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;

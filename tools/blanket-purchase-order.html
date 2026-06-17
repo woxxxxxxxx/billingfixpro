@@ -278,7 +278,7 @@ function generateDoc(){
   const disc=document.getElementById('discountAmt')?.textContent||'-$0.00';
   const total=document.getElementById('totalAmt')?.textContent||'$0.00';
   const notes=document.getElementById('notes')?.value||'';
-  const extra=  BPO #: ${document.getElementById('bpoNum')?.value||''}  Period: ${document.getElementById('contractPeriod')?.value||''}\n  Maximum Value: $${parseFloat(document.getElementById('maxVal')?.value||0).toFixed(2)}\n  Releases against this BPO are subject to individual delivery orders.\n;
+  const extra=`BPO #: ${document.getElementById('bpoNum')?.value||''}  Period: ${document.getElementById('contractPeriod')?.value||''}\n  Maximum Value: $${parseFloat(document.getElementById('maxVal')?.value||0).toFixed(2)}\n  Releases against this BPO are subject to individual delivery orders.\n;`
   let lines='';
   document.querySelectorAll('#lineItems tr').forEach(tr=>{
     const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;

@@ -278,7 +278,7 @@ function generateDoc(){
   const disc=document.getElementById('discountAmt')?.textContent||'-$0.00';
   const total=document.getElementById('totalAmt')?.textContent||'$0.00';
   const notes=document.getElementById('notes')?.value||'';
-  const extra=  CO #: ${document.getElementById('coNum')?.value||''}  Original: ${document.getElementById('origContract')?.value||''}\n  Reason: ${document.getElementById('coReason')?.value||''}\n  * This change order modifies the original agreement. *\n;
+  const extra=`CO #: ${document.getElementById('coNum')?.value||''}  Original: ${document.getElementById('origContract')?.value||''}\n  Reason: ${document.getElementById('coReason')?.value||''}\n  * This change order modifies the original agreement. *\n;`
   let lines='';
   document.querySelectorAll('#lineItems tr').forEach(tr=>{
     const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;

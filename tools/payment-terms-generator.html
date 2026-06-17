@@ -278,7 +278,7 @@ function generateDoc(){
   const disc=document.getElementById('discountAmt')?.textContent||'-$0.00';
   const total=document.getElementById('totalAmt')?.textContent||'$0.00';
   const notes=document.getElementById('notes')?.value||'';
-  const extra=  Terms: ${document.getElementById('termsType')?.value||''}\n  Late Fee: ${document.getElementById('lateFeeRate')?.value||1.5}% per month\n  Disputes: ${document.getElementById('disputes')?.value||''}\n;
+  const extra=`Terms: ${document.getElementById('termsType')?.value||''}\n  Late Fee: ${document.getElementById('lateFeeRate')?.value||1.5}% per month\n  Disputes: ${document.getElementById('disputes')?.value||''}\n;`
   let lines='';
   document.querySelectorAll('#lineItems tr').forEach(tr=>{
     const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;

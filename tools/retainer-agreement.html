@@ -278,7 +278,7 @@ function generateDoc(){
   const disc=document.getElementById('discountAmt')?.textContent||'-$0.00';
   const total=document.getElementById('totalAmt')?.textContent||'$0.00';
   const notes=document.getElementById('notes')?.value||'';
-  const extra=  Retainer Period: ${document.getElementById('retPeriod')?.value||''}\n  Includes ${document.getElementById('retHours')?.value||0} hrs. Overage: $${document.getElementById('overageRate')?.value||0}/hr\n;
+  const extra=`Retainer Period: ${document.getElementById('retPeriod')?.value||''}\n  Includes ${document.getElementById('retHours')?.value||0} hrs. Overage: $${document.getElementById('overageRate')?.value||0}/hr\n;`
   let lines='';
   document.querySelectorAll('#lineItems tr').forEach(tr=>{
     const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;

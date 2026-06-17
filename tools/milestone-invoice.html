@@ -278,7 +278,7 @@ function generateDoc(){
   const disc=document.getElementById('discountAmt')?.textContent||'-$0.00';
   const total=document.getElementById('totalAmt')?.textContent||'$0.00';
   const notes=document.getElementById('notes')?.value||'';
-  const extra=  Milestone: ${document.getElementById('milestoneName')?.value||''}  (${document.getElementById('milestonePct')?.value||0}% of $${parseFloat(document.getElementById('projectTotal')?.value||0).toFixed(2)} project)\n;
+  const extra=`Milestone: ${document.getElementById('milestoneName')?.value||''}  (${document.getElementById('milestonePct')?.value||0}% of $${parseFloat(document.getElementById('projectTotal')?.value||0).toFixed(2)} project)\n;`
   let lines='';
   document.querySelectorAll('#lineItems tr').forEach(tr=>{
     const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;

@@ -278,7 +278,7 @@ function generateDoc(){
   const disc=document.getElementById('discountAmt')?.textContent||'-$0.00';
   const total=document.getElementById('totalAmt')?.textContent||'$0.00';
   const notes=document.getElementById('notes')?.value||'';
-  const extra=  Original Invoice: ${document.getElementById('origInv')?.value||''}  Reason: ${document.getElementById('dnReason')?.value||''}\n  * Amount represents additional charges due. *\n;
+  const extra=`Original Invoice: ${document.getElementById('origInv')?.value||''}  Reason: ${document.getElementById('dnReason')?.value||''}\n  * Amount represents additional charges due. *\n;`
   let lines='';
   document.querySelectorAll('#lineItems tr').forEach(tr=>{
     const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;
