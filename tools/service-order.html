@@ -110,7 +110,7 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 .footer-copy{font-size:13px;width:100%}
 @media(max-width:640px){.form-grid{grid-template-columns:1fr}.related-grid{grid-template-columns:1fr}.tool-hero h1{font-size:1.5rem}}
 .faq-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px}.faq-section h2{font-size:1.1rem;font-weight:700;margin-bottom:20px}.faq-item{border-bottom:1px solid var(--border);padding:16px 0}.faq-item:last-child{border-bottom:none;padding-bottom:0}.faq-item h3{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px}.faq-item p{font-size:14px;color:var(--text2);line-height:1.7}
-@media print{body>*{display:none!important}main{display:block!important}main>*{display:none!important}#output{display:block!important;margin:0!important;padding:0!important;border:none!important;box-shadow:none!important}.download-row{display:none!important}}</style>
+@media print{header,footer,.ad-slot,.ad-top,.ad-middle,.ad-bottom,.form-card,.tool-hero,.breadcrumb,.seo-section,.faq-section,.related-section,.download-row,#btt{display:none!important}body{background:#fff!important}main{padding:0!important}#output{display:block!important;box-shadow:none!important;border:none!important;padding:0!important}}</style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1638874323475457" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -322,41 +322,29 @@ function generateDoc(){
   const num_=document.getElementById('invNum')?.value||document.getElementById('qNum')?.value||'001';
   const date_=document.getElementById('invDate')?.value||document.getElementById('qDate')?.value||new Date().toISOString().split('T')[0];
   const due_=document.getElementById('dueDate')?.value||'';
-  const sub=document.getElementById('subtotal')?.textContent||'$0.00';
-  const tax=document.getElementById('taxAmt')?.textContent||'$0.00';
-  const disc=document.getElementById('discountAmt')?.textContent||'-$0.00';
-  total=document.getElementById('totalAmt')?.textContent||'$0.00';
   const notes=document.getElementById('notes')?.value||'';
-  const extra=`SO #: ${document.getElementById('soNum')?.value||''}  Priority: ${document.getElementById('priority')?.value||'normal'}\n;`
-  let linesHTML='',linesTxt='';
+  const taxRate=parseFloat(document.getElementById('taxRate')?.value)||0;
+  const extra=(()=>{
+    const ch=document.getElementById('channel')?.value||document.getElementById('clientAcct')?.value||document.getElementById('company')?.value||'';
+    const pr=document.getElementById('period')?.value||document.getElementById('histPeriod')?.value||document.getElementById('project')?.value||'';
+    return ch||pr?`${ch?'Channel: '+ch:''} ${pr?'Period: '+pr:''}`.trim():'';
+  })();
+  let sub=0,linesHTML='',linesTxt='';
   document.querySelectorAll('#lineItems tr').forEach(tr=>{
-    inputs=tr.querySelectorAll('input');if(inputs.length<3)return;
+    const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;
     const d=inputs[0].value||'Service';
     const q=parseFloat(inputs[1].value)||0;
     const r=parseFloat(inputs[2].value)||0;
-    tot=q*r;
+    const tot=q*r;sub+=tot;
     linesHTML+=`<tr style="border-bottom:1px solid #f1f5f9"><td style="padding:10px 14px">${d}</td><td style="padding:10px 14px;text-align:right">${q}</td><td style="padding:10px 14px;text-align:right">$${r.toFixed(2)}</td><td style="padding:10px 14px;text-align:right;font-weight:600">$${tot.toFixed(2)}</td></tr>`;
     linesTxt+=`  ${d}  x${q}  $${r.toFixed(2)}  $${tot.toFixed(2)}
 `;
   });
-  const hdr=`SERVICE ORDER
-$========================================================
-SERVICE ORDER #: ${num_}   Date: ${date_}${due_?'   Due: '+due_:''}
-${'-'.repeat(56)}
-From: ${from_}
-To:   ${to_}
-${extra}${'-'.repeat(56)}
-DESCRIPTION                        QTY    UNIT        TOTAL
-${'-'.repeat(56)}
-${linesTxt}${'-'.repeat(56)}
-  Subtotal:  ${sub}
-  Discount:  ${disc}
-  Tax:       ${tax}
-$========================================================
-  TOTAL DUE: ${total}
-$========================================================
-${notes?'Notes: '+notes:''}`;
-  document.getElementById('preview').innerHTML=generateInvoiceHTML(from_,to_,num_,date_,due_,linesHTML,sub,discAmt,taxAmt,total,notes,taxRate,typeof extra!=='undefined'?extra:'');
+  const discPct=(parseFloat(document.getElementById('discount')?.value)||0)/100;
+  const discAmt=sub*discPct;
+  const taxAmt=(sub-discAmt)*(taxRate/100);
+  const total=sub-discAmt+taxAmt;
+  document.getElementById('preview').innerHTML=generateInvoiceHTML(from_,to_,num_,date_,due_,linesHTML,sub,discAmt,taxAmt,total,notes,taxRate,extra);
   document.getElementById('preview-txt').textContent=linesTxt;
   document.getElementById('output').style.display='block';
   document.getElementById('output').scrollIntoView({behavior:'smooth'});
