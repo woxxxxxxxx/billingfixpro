@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-TPVMTCEC3E">
+</script>
+<script>
 function generateInvoiceHTML(from_,to_,num_,date_,due_,linesHTML,sub,discAmt,taxAmt,total,notes,taxRate,extra){
   const title=(document.querySelector('h1')||{textContent:'Invoice'}).textContent.replace(' Generator','').replace(' Tool','').replace(' Maker','');
   return `<div style="font-family:'Helvetica Neue',Arial,sans-serif;max-width:680px;padding:40px;background:#fff;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,0.08)">
