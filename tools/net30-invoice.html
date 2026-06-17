@@ -42,6 +42,42 @@ function generateInvoiceHTML(from_,to_,num_,date_,due_,linesHTML,sub,discAmt,tax
   </div>`;
 }
 
+
+function generateInvoice(){generateDoc();}
+function generateDoc(){
+  const from_=(document.getElementById('from')?.value||'').replace(/\n/g,'<br>');
+  const to_=(document.getElementById('to')?.value||'').replace(/\n/g,'<br>');
+  const num_=document.getElementById('invoiceNum')?.value||'001';
+  const date_=document.getElementById('invoiceDate')?.value||'';
+  const due_=document.getElementById('dueDate')?.value||'';
+  const taxRate=parseFloat(document.getElementById('taxRate')?.value)||0;
+  const discPct=(parseFloat(document.getElementById('discount')?.value)||0)/100;
+  const notes=document.getElementById('notes')?.value||'';
+  let linesHTML='',linesTxt='',sub=0;
+  document.querySelectorAll('#lineItems tr').forEach(tr=>{
+    const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;
+    const d=inputs[0].value||'Service';
+    const q=parseFloat(inputs[1].value)||0;
+    const r=parseFloat(inputs[2].value)||0;
+    const tot=q*r; sub+=tot;
+    linesHTML+=`<tr style="border-bottom:1px solid #f1f5f9"><td style="padding:10px 14px">${d}</td><td style="padding:10px 14px;text-align:right">${q}</td><td style="padding:10px 14px;text-align:right">$${r.toFixed(2)}</td><td style="padding:10px 14px;text-align:right;font-weight:600">$${tot.toFixed(2)}</td></tr>`;
+    linesTxt+=`  ${d}  x${q}  $${r.toFixed(2)}  $${tot.toFixed(2)}\n`;
+  });
+  const discAmt=sub*discPct;
+  const taxAmt=(sub-discAmt)*taxRate/100;
+  const total=sub-discAmt+taxAmt;
+  document.getElementById('preview').innerHTML=generateInvoiceHTML(from_,to_,num_,date_,due_,linesHTML,sub,discAmt,taxAmt,total,notes,taxRate,typeof extra!=='undefined'?extra:'');
+  document.getElementById('preview-txt').textContent=linesTxt;
+  document.getElementById('output').style.display='block';
+}
+function printDoc(){window.print();}
+function copyText(){
+  navigator.clipboard.writeText(document.getElementById('preview-txt')?.textContent||document.getElementById('preview')?.innerText||'').then(()=>{
+    const btn=document.getElementById('copyBtn');
+    if(btn){const orig=btn.textContent;btn.textContent='✓ Copied!';btn.style.background='#059669';
+    setTimeout(()=>{btn.textContent=orig;btn.style.background='';},2000);}
+  });
+}
 </script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());  gtag('config', 'G-TPVMTCEC3E');</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
