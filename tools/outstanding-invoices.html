@@ -259,7 +259,13 @@ function calcTotals(){
   if(el('totalAmt'))el('totalAmt').textContent='$'+total.toFixed(2);
   
 }
-function copyText(){navigator.clipboard.writeText(document.getElementById('preview').textContent);}
+function copyText(){
+  navigator.clipboard.writeText(document.getElementById('preview').textContent).then(()=>{
+    const btn=document.getElementById('copyBtn');
+    if(btn){const orig=btn.textContent;btn.textContent='✓ Copied!';btn.style.background='#059669';
+    setTimeout(()=>{btn.textContent=orig;btn.style.background='';},2000);}
+  });
+}
 document.addEventListener('DOMContentLoaded',function(){addRow();addRow();calcTotals();});
 window.addEventListener('scroll',function(){var b=document.getElementById('btt');if(b)b.classList.toggle('show',window.scrollY>300);});
 document.querySelectorAll('.faq-item h3').forEach(function(q){q.addEventListener('click',function(){this.parentElement.classList.toggle('open');});});
@@ -288,13 +294,13 @@ function generateDoc(){
   const hdr=`OUTSTANDING INVOICES SUMMARY
 $========================================================
 OUTSTANDING INVOICES SUMMARY #: ${num_}   Date: ${date_}${due_?'   Due: '+due_:''}
-${'-'*56}
+${'-'.repeat(56)}
 From: ${from_}
 To:   ${to_}
-${extra}${'-'*56}
+${extra}${'-'.repeat(56)}
 DESCRIPTION                        QTY    UNIT        TOTAL
-${'-'*56}
-${lines}${'-'*56}
+${'-'.repeat(56)}
+${lines}${'-'.repeat(56)}
   Subtotal:  ${sub}
   Discount:  ${disc}
   Tax:       ${tax}

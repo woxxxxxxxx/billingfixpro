@@ -261,7 +261,13 @@ function calcTotals(){
   const provRate=(parseFloat(document.getElementById('province')?.value)||13);
   document.getElementById('taxRate').value=provRate;
 }
-function copyText(){navigator.clipboard.writeText(document.getElementById('preview').textContent);}
+function copyText(){
+  navigator.clipboard.writeText(document.getElementById('preview').textContent).then(()=>{
+    const btn=document.getElementById('copyBtn');
+    if(btn){const orig=btn.textContent;btn.textContent='✓ Copied!';btn.style.background='#059669';
+    setTimeout(()=>{btn.textContent=orig;btn.style.background='';},2000);}
+  });
+}
 document.addEventListener('DOMContentLoaded',function(){addRow();addRow();calcTotals();});
 window.addEventListener('scroll',function(){var b=document.getElementById('btt');if(b)b.classList.toggle('show',window.scrollY>300);});
 document.querySelectorAll('.faq-item h3').forEach(function(q){q.addEventListener('click',function(){this.parentElement.classList.toggle('open');});});
@@ -294,14 +300,14 @@ function generateDoc(){
   const txt=`CANADA INVOICE
 $========================================================
 Invoice #: ${num_}    Date: ${date_}${due_?'   Due: '+due_:''}
-${'-'*56}
+${'-'.repeat(56)}
 From: ${from_}${taxNum?' | GST/HST: '+taxNum:''}
 To:   ${to_}
 Currency: CAD
-${'-'*56}
+${'-'.repeat(56)}
 DESCRIPTION                        QTY     UNIT     TOTAL
-${'-'*56}
-${lines}${'-'*56}
+${'-'.repeat(56)}
+${lines}${'-'.repeat(56)}
   Net Amount:  C$${netSub.toFixed(2)}
   Discount:   -C$${discAmt.toFixed(2)}
   GST/HST (${taxRate}%): C$${taxAmt.toFixed(2)}
