@@ -56,11 +56,16 @@ function generateInvoiceHTML(from_,to_,num_,date_,due_,linesHTML,sub,discAmt,tax
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
 a{text-decoration:none;color:inherit}
 header{background:var(--bg2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
-.header-inner{max-width:860px;margin:0 auto;padding:0 20px;height:60px;display:flex;align-items:center;gap:24px}
+.header-inner{max-width:1100px;margin:0 auto;padding:0 20px;height:60px;display:flex;align-items:center;gap:24px}
 .logo{font-size:20px;font-weight:800;color:var(--text);letter-spacing:-.4px}
 .logo span{color:var(--primary)}
 .nav-all{margin-left:auto;font-size:14px;font-weight:600;color:var(--primary);padding:7px 16px;border:1.5px solid var(--primary);border-radius:var(--radius-sm);transition:all .15s}
 .nav-all:hover{background:var(--primary);color:#fff}
+.site-nav{margin-left:auto;display:flex;align-items:center;gap:8px}
+.site-nav .nav-link{margin-left:0;font-size:14px;font-weight:600;color:var(--text2);padding:7px 12px;border-radius:var(--radius-sm);transition:all .15s}
+.site-nav .nav-link:hover{color:var(--primary);background:var(--primary-dim)}
+.site-nav .nav-link-outline{color:var(--primary);border:1.5px solid var(--primary);padding:7px 16px}
+.site-nav .nav-link-outline:hover{background:var(--primary);color:#fff}
 .breadcrumb{max-width:860px;margin:16px auto 0;padding:0 20px;font-size:13px;color:var(--text3)}
 .breadcrumb a{color:var(--primary)}
 .breadcrumb span{margin:0 6px}
@@ -117,7 +122,10 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 <header>
   <div class="header-inner">
     <a href="/" class="logo"><img src="/logo.svg?v=2" alt="BillingFixPro" height="38"></a>
-    <a href="/blog/" class="nav-all" style="margin-left:0;border:none;color:var(--text2);font-weight:500">Blog</a><a href="/" class="nav-all">All Tools</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/" class="nav-link nav-link-outline">All Tools</a>
+      <a href="/blog/" class="nav-link">Blog</a>
+    </nav>
   </div>
 </header>
 <div class="ad-slot ad-top"><div class="adsense-placeholder" data-pub="ca-pub-1638874323475457"></div></div>
@@ -125,7 +133,7 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 <main>
   <div class="tool-hero">
     <h1>Milestone Invoice Template</h1>
-    <p>Free online milestone invoice template — no signup required. Generate and download professional documents instantly.</p>
+    <p>Free online milestone invoice template &mdash; no signup required. Generate and download professional documents instantly.</p>
   </div>
   
 <div class="form-card">
@@ -166,14 +174,38 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
   </div>
 </div>
   <div class="ad-slot ad-middle"><div class="adsense-placeholder" data-pub="ca-pub-1638874323475457"></div></div>
-  <div class="seo-section">
+  <div class="tool-content-modules">
+  <div class="tool-info-card">
+    <h2 class="tool-info-title">How to Use Milestone Invoice</h2>
+    <ol class="tool-steps">
+    <li>Enter your business name and contact information in the 'From' field.</li>
+    <li>Fill in your client's details in the 'Bill To' section.</li>
+    <li>Add line items with descriptions, quantities, and unit prices.</li>
+    <li>Set your tax rate and any applicable discounts.</li>
+    <li>Click Generate to create your Milestone Invoice document.</li>
+    <li>Download as PDF or copy the formatted text for your records.</li>
+    </ol>
+  </div>
+  <div class="tool-info-card">
+    <h2 class="tool-info-title">Common Use Cases</h2>
+    <ul class="tool-use-cases">
+    <li><strong>Freelance Billing:</strong> Create professional invoices for client projects with itemized services and payment terms.</li>
+    <li><strong>Small Business:</strong> Generate branded invoices for products sold or services rendered to customers.</li>
+    <li><strong>Contractor Work:</strong> Bill clients for hourly or project-based work with detailed line items.</li>
+    <li><strong>Recurring Services:</strong> Produce consistent invoices for ongoing retainer or subscription arrangements.</li>
+    <li><strong>International Clients:</strong> Create invoices with proper tax handling for cross-border transactions.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="seo-section">
 <h2>About Milestone Invoice Template</h2>
-<p>BillingFixPro's Milestone Invoice Template is a free, professional-grade online tool built for freelancers, independent contractors, consultants, and small business owners who need to produce accurate, client-ready invoices without expensive software or monthly subscriptions. Whether you are billing a one-time client or managing recurring work, this tool generates polished invoice documents in under a minute —no account creation, no downloads, and no cost whatsoever.</p>
-<p>Manually assembling invoices in a word processor or spreadsheet wastes time and introduces calculation errors that can damage client relationships. Our Milestone Invoice Template eliminates both problems by automating every calculation —subtotals, tax, discounts, and the final amount due —and formatting the result into a clean, professional layout. You control the content; the tool handles the rest.</p>
+<p>BillingFixPro's Milestone Invoice Template is a free, professional-grade online tool built for freelancers, independent contractors, consultants, and small business owners who need to produce accurate, client-ready invoices without expensive software or monthly subscriptions. Whether you are billing a one-time client or managing recurring work, this tool generates polished invoice documents in under a minute &mdash; no account creation, no downloads, and no cost whatsoever.</p>
+<p>Manually assembling invoices in a word processor or spreadsheet wastes time and introduces calculation errors that can damage client relationships. Our Milestone Invoice Template eliminates both problems by automating every calculation &mdash; subtotals, tax, discounts, and the final amount due &mdash; and formatting the result into a clean, professional layout. You control the content; the tool handles the rest.</p>
 <p>Key features include support for multiple line items with custom descriptions, quantities, and rates; configurable tax rates; optional discount fields; customizable payment terms and due dates; and instant PDF generation. Whether you charge a flat project fee, bill by the hour, or combine services and materials in a single invoice, the tool adapts seamlessly to your billing model.</p>
 <p>The Milestone Invoice Template is particularly valuable for professionals who invoice clients regularly and need a dependable, consistent solution. Graphic designers, web developers, photographers, copywriters, tradespeople, tutors, marketing consultants, and agencies across every industry rely on fast, professional billing tools to maintain cash flow and project a credible image. A well-formatted invoice reduces disputes, speeds up payment, and reinforces your professional brand.</p>
-<p>Getting started takes seconds. Fill in your business name and contact details, add your client's information, enter your line items, set your tax rate if applicable, and click Generate. Your invoice is ready to download as a PDF, print, or copy into another application. BillingFixPro stores none of your data —everything is processed privately in your browser.</p>
-<p>BillingFixPro is dedicated to giving every business owner access to professional billing tools regardless of budget. Our Milestone Invoice Template is part of a full suite of free financial document tools covering quotes, receipts, payment agreements, and more. Bookmark this page and return whenever you need to create a professional invoice —fast, free, and hassle-free every time.</p>  </div>
+<p>Getting started takes seconds. Fill in your business name and contact details, add your client's information, enter your line items, set your tax rate if applicable, and click Generate. Your invoice is ready to download as a PDF, print, or copy into another application. BillingFixPro stores none of your data &mdash; everything is processed privately in your browser.</p>
+<p>BillingFixPro is dedicated to giving every business owner access to professional billing tools regardless of budget. Our Milestone Invoice Template is part of a full suite of free financial document tools covering quotes, receipts, payment agreements, and more. Bookmark this page and return whenever you need to create a professional invoice &mdash; fast, free, and hassle-free every time.</p>  </div>
   <div class="faq-section">
   <h2>Frequently Asked Questions</h2>
   <div class="faq-item">
@@ -182,7 +214,7 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
   </div>
   <div class="faq-item">
     <h3>Q: Do I need to create an account to use the </h3>
-    <p>A: No account or registration is needed. Simply visit the page, enter your details, and generate your invoice immediately. All processing happens in your browser —your data is never stored on our servers.</p>
+    <p>A: No account or registration is needed. Simply visit the page, enter your details, and generate your invoice immediately. All processing happens in your browser &mdash; your data is never stored on our servers.</p>
   </div>
   <div class="faq-item">
     <h3>Q: What formats can I download my invoice in?</h3>
@@ -260,29 +292,7 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
   </div>
 </section>
 
-<div class="tool-content-modules">
-  <div class="tool-info-card">
-    <h2 class="tool-info-title">How to Use Milestone Invoice</h2>
-    <ol class="tool-steps">
-    <li>Enter your business name and contact information in the 'From' field.</li>
-    <li>Fill in your client's details in the 'Bill To' section.</li>
-    <li>Add line items with descriptions, quantities, and unit prices.</li>
-    <li>Set your tax rate and any applicable discounts.</li>
-    <li>Click Generate to create your Milestone Invoice document.</li>
-    <li>Download as PDF or copy the formatted text for your records.</li>
-    </ol>
-  </div>
-  <div class="tool-info-card">
-    <h2 class="tool-info-title">Common Use Cases</h2>
-    <ul class="tool-use-cases">
-    <li><strong>Freelance Billing:</strong> Create professional invoices for client projects with itemized services and payment terms.</li>
-    <li><strong>Small Business:</strong> Generate branded invoices for products sold or services rendered to customers.</li>
-    <li><strong>Contractor Work:</strong> Bill clients for hourly or project-based work with detailed line items.</li>
-    <li><strong>Recurring Services:</strong> Produce consistent invoices for ongoing retainer or subscription arrangements.</li>
-    <li><strong>International Clients:</strong> Create invoices with proper tax handling for cross-border transactions.</li>
-    </ul>
-  </div>
-</div>
+
 </main>
 <div class="ad-slot ad-bottom"><div class="adsense-placeholder" data-pub="ca-pub-1638874323475457"></div></div>
 <footer>

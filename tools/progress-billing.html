@@ -56,11 +56,16 @@ function generateInvoiceHTML(from_,to_,num_,date_,due_,linesHTML,sub,discAmt,tax
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
 a{text-decoration:none;color:inherit}
 header{background:var(--bg2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
-.header-inner{max-width:860px;margin:0 auto;padding:0 20px;height:60px;display:flex;align-items:center;gap:24px}
+.header-inner{max-width:1100px;margin:0 auto;padding:0 20px;height:60px;display:flex;align-items:center;gap:24px}
 .logo{font-size:20px;font-weight:800;color:var(--text);letter-spacing:-.4px}
 .logo span{color:var(--primary)}
 .nav-all{margin-left:auto;font-size:14px;font-weight:600;color:var(--primary);padding:7px 16px;border:1.5px solid var(--primary);border-radius:var(--radius-sm);transition:all .15s}
 .nav-all:hover{background:var(--primary);color:#fff}
+.site-nav{margin-left:auto;display:flex;align-items:center;gap:8px}
+.site-nav .nav-link{margin-left:0;font-size:14px;font-weight:600;color:var(--text2);padding:7px 12px;border-radius:var(--radius-sm);transition:all .15s}
+.site-nav .nav-link:hover{color:var(--primary);background:var(--primary-dim)}
+.site-nav .nav-link-outline{color:var(--primary);border:1.5px solid var(--primary);padding:7px 16px}
+.site-nav .nav-link-outline:hover{background:var(--primary);color:#fff}
 .breadcrumb{max-width:860px;margin:16px auto 0;padding:0 20px;font-size:13px;color:var(--text3)}
 .breadcrumb a{color:var(--primary)}
 .breadcrumb span{margin:0 6px}
@@ -117,7 +122,10 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 <header>
   <div class="header-inner">
     <a href="/" class="logo"><img src="/logo.svg?v=2" alt="BillingFixPro" height="38"></a>
-    <a href="/blog/" class="nav-all" style="margin-left:0;border:none;color:var(--text2);font-weight:500">Blog</a><a href="/" class="nav-all">All Tools</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/" class="nav-link nav-link-outline">All Tools</a>
+      <a href="/blog/" class="nav-link">Blog</a>
+    </nav>
   </div>
 </header>
 <div class="ad-slot ad-top"><div class="adsense-placeholder" data-pub="ca-pub-1638874323475457"></div></div>
@@ -125,7 +133,7 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 <main>
   <div class="tool-hero">
     <h1>Progress Billing Invoice</h1>
-    <p>Free online progress billing invoice — no signup required. Generate and download professional documents instantly.</p>
+    <p>Free online progress billing invoice &mdash; no signup required. Generate and download professional documents instantly.</p>
   </div>
   
 <div class="form-card">
@@ -166,14 +174,38 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
   </div>
 </div>
   <div class="ad-slot ad-middle"><div class="adsense-placeholder" data-pub="ca-pub-1638874323475457"></div></div>
-  <div class="seo-section">
+  <div class="tool-content-modules">
+  <div class="tool-info-card">
+    <h2 class="tool-info-title">How to Use Progress Billing</h2>
+    <ol class="tool-steps">
+    <li>Enter your business name and contact information in the 'From' field.</li>
+    <li>Fill in your client's details in the 'Bill To' section.</li>
+    <li>Add line items with descriptions, quantities, and unit prices.</li>
+    <li>Set your tax rate and any applicable discounts.</li>
+    <li>Click Generate to create your Progress Billing document.</li>
+    <li>Download as PDF or copy the formatted text for your records.</li>
+    </ol>
+  </div>
+  <div class="tool-info-card">
+    <h2 class="tool-info-title">Common Use Cases</h2>
+    <ul class="tool-use-cases">
+    <li><strong>Freelance Billing:</strong> Create professional invoices for client projects with itemized services and payment terms.</li>
+    <li><strong>Small Business:</strong> Generate branded invoices for products sold or services rendered to customers.</li>
+    <li><strong>Contractor Work:</strong> Bill clients for hourly or project-based work with detailed line items.</li>
+    <li><strong>Recurring Services:</strong> Produce consistent invoices for ongoing retainer or subscription arrangements.</li>
+    <li><strong>International Clients:</strong> Create invoices with proper tax handling for cross-border transactions.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="seo-section">
 <h2>About Progress Billing Invoice</h2>
-<p>BillingFixPro's Progress Billing Invoice is a free, professional-grade online tool designed to streamline your billing and financial document workflow. Whether you are a freelancer, small business owner, or financial professional, this tool provides everything you need to produce accurate, polished documents quickly and easily —no account required, no software to install, and completely free to use.</p>
-<p>Our Progress Billing Invoice is designed for real-world business needs. The interface is clean and intuitive, allowing you to complete your task efficiently without navigating complex menus or reading lengthy instructions. Enter your information, and the tool takes care of formatting, calculations, and layout —delivering a professional result ready for immediate use.</p>
+<p>BillingFixPro's Progress Billing Invoice is a free, professional-grade online tool designed to streamline your billing and financial document workflow. Whether you are a freelancer, small business owner, or financial professional, this tool provides everything you need to produce accurate, polished documents quickly and easily &mdash; no account required, no software to install, and completely free to use.</p>
+<p>Our Progress Billing Invoice is designed for real-world business needs. The interface is clean and intuitive, allowing you to complete your task efficiently without navigating complex menus or reading lengthy instructions. Enter your information, and the tool takes care of formatting, calculations, and layout &mdash; delivering a professional result ready for immediate use.</p>
 <p>Quality billing documentation is essential for every business. It creates clear financial records, communicates professionalism to clients and partners, and provides the paper trail required for accounting, tax filing, and audits. Our Progress Billing Invoice ensures your financial documents meet professional standards every time, regardless of your design or technical background.</p>
 <p>Consistency in documentation saves time and reduces errors. Rather than recreating documents from scratch each time, BillingFixPro gives you a reliable, standardised tool that produces consistent output across every use. This makes it easier to maintain organised records, respond quickly to client requests, and keep your billing process running smoothly even during busy periods.</p>
-<p>The Progress Billing Invoice is part of BillingFixPro's extensive library of free billing and financial tools, covering the complete document lifecycle —from initial quotes and purchase orders through invoices, receipts, payment agreements, and follow-up notices. Each tool is designed to integrate seamlessly into a professional billing workflow, giving you everything you need in one place.</p>
-<p>We are committed to providing small businesses, freelancers, and independent professionals with the same quality of tools that larger companies access through expensive software —at zero cost. BillingFixPro believes professional billing tools should be accessible to everyone. Use this tool as often as you need, on any device, any time —always free.</p>  </div>
+<p>The Progress Billing Invoice is part of BillingFixPro's extensive library of free billing and financial tools, covering the complete document lifecycle &mdash; from initial quotes and purchase orders through invoices, receipts, payment agreements, and follow-up notices. Each tool is designed to integrate seamlessly into a professional billing workflow, giving you everything you need in one place.</p>
+<p>We are committed to providing small businesses, freelancers, and independent professionals with the same quality of tools that larger companies access through expensive software &mdash; at zero cost. BillingFixPro believes professional billing tools should be accessible to everyone. Use this tool as often as you need, on any device, any time &mdash; always free.</p>  </div>
   <div class="faq-section">
   <h2>Frequently Asked Questions</h2>
   <div class="faq-item">
@@ -182,7 +214,7 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
   </div>
   <div class="faq-item">
     <h3>Q: Do I need to install any software?</h3>
-    <p>A: No software installation is required. The Progress Billing Invoice works entirely in your web browser on any device —desktop, laptop, tablet, or smartphone. Simply visit the page and start using it immediately.</p>
+    <p>A: No software installation is required. The Progress Billing Invoice works entirely in your web browser on any device &mdash; desktop, laptop, tablet, or smartphone. Simply visit the page and start using it immediately.</p>
   </div>
   <div class="faq-item">
     <h3>Q: Can I save or download my output?</h3>
@@ -260,29 +292,7 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
   </div>
 </section>
 
-<div class="tool-content-modules">
-  <div class="tool-info-card">
-    <h2 class="tool-info-title">How to Use Progress Billing</h2>
-    <ol class="tool-steps">
-    <li>Enter your business name and contact information in the 'From' field.</li>
-    <li>Fill in your client's details in the 'Bill To' section.</li>
-    <li>Add line items with descriptions, quantities, and unit prices.</li>
-    <li>Set your tax rate and any applicable discounts.</li>
-    <li>Click Generate to create your Progress Billing document.</li>
-    <li>Download as PDF or copy the formatted text for your records.</li>
-    </ol>
-  </div>
-  <div class="tool-info-card">
-    <h2 class="tool-info-title">Common Use Cases</h2>
-    <ul class="tool-use-cases">
-    <li><strong>Freelance Billing:</strong> Create professional invoices for client projects with itemized services and payment terms.</li>
-    <li><strong>Small Business:</strong> Generate branded invoices for products sold or services rendered to customers.</li>
-    <li><strong>Contractor Work:</strong> Bill clients for hourly or project-based work with detailed line items.</li>
-    <li><strong>Recurring Services:</strong> Produce consistent invoices for ongoing retainer or subscription arrangements.</li>
-    <li><strong>International Clients:</strong> Create invoices with proper tax handling for cross-border transactions.</li>
-    </ul>
-  </div>
-</div>
+
 </main>
 <div class="ad-slot ad-bottom"><div class="adsense-placeholder" data-pub="ca-pub-1638874323475457"></div></div>
 <footer>

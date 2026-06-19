@@ -56,11 +56,16 @@ function generateInvoiceHTML(from_,to_,num_,date_,due_,linesHTML,sub,discAmt,tax
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
 a{text-decoration:none;color:inherit}
 header{background:var(--bg2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
-.header-inner{max-width:860px;margin:0 auto;padding:0 20px;height:60px;display:flex;align-items:center;gap:24px}
+.header-inner{max-width:1100px;margin:0 auto;padding:0 20px;height:60px;display:flex;align-items:center;gap:24px}
 .logo{font-size:20px;font-weight:800;color:var(--text);letter-spacing:-.4px}
 .logo span{color:var(--primary)}
 .nav-all{margin-left:auto;font-size:14px;font-weight:600;color:var(--primary);padding:7px 16px;border:1.5px solid var(--primary);border-radius:var(--radius-sm);transition:all .15s}
 .nav-all:hover{background:var(--primary);color:#fff}
+.site-nav{margin-left:auto;display:flex;align-items:center;gap:8px}
+.site-nav .nav-link{margin-left:0;font-size:14px;font-weight:600;color:var(--text2);padding:7px 12px;border-radius:var(--radius-sm);transition:all .15s}
+.site-nav .nav-link:hover{color:var(--primary);background:var(--primary-dim)}
+.site-nav .nav-link-outline{color:var(--primary);border:1.5px solid var(--primary);padding:7px 16px}
+.site-nav .nav-link-outline:hover{background:var(--primary);color:#fff}
 .breadcrumb{max-width:860px;margin:16px auto 0;padding:0 20px;font-size:13px;color:var(--text3)}
 .breadcrumb a{color:var(--primary)}
 .breadcrumb span{margin:0 6px}
@@ -117,7 +122,10 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 <header>
   <div class="header-inner">
     <a href="/" class="logo"><img src="/logo.svg?v=2" alt="BillingFixPro" height="38"></a>
-    <a href="/blog/" class="nav-all" style="margin-left:0;border:none;color:var(--text2);font-weight:500">Blog</a><a href="/" class="nav-all">All Tools</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/" class="nav-link nav-link-outline">All Tools</a>
+      <a href="/blog/" class="nav-link">Blog</a>
+    </nav>
   </div>
 </header>
 <div class="ad-slot ad-top"><div class="adsense-placeholder" data-pub="ca-pub-1638874323475457"></div></div>
@@ -125,7 +133,7 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 <main>
   <div class="tool-hero">
     <h1>Invoice Total Calculator</h1>
-    <p>Free online invoice total calculator — no signup required. Generate and download professional documents instantly.</p>
+    <p>Free online invoice total calculator &mdash; no signup required. Generate and download professional documents instantly.</p>
   </div>
   
 <div class="form-card">
@@ -147,14 +155,38 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
   </div>
 </div>
   <div class="ad-slot ad-middle"><div class="adsense-placeholder" data-pub="ca-pub-1638874323475457"></div></div>
-  <div class="seo-section">
+  <div class="tool-content-modules">
+  <div class="tool-info-card">
+    <h2 class="tool-info-title">How to Use Invoice Calculator</h2>
+    <ol class="tool-steps">
+    <li>Enter your business name and contact information in the 'From' field.</li>
+    <li>Fill in your client's details in the 'Bill To' section.</li>
+    <li>Add line items with descriptions, quantities, and unit prices.</li>
+    <li>Set your tax rate and any applicable discounts.</li>
+    <li>Click Generate to create your Invoice Calculator document.</li>
+    <li>Download as PDF or copy the formatted text for your records.</li>
+    </ol>
+  </div>
+  <div class="tool-info-card">
+    <h2 class="tool-info-title">Common Use Cases</h2>
+    <ul class="tool-use-cases">
+    <li><strong>Freelance Billing:</strong> Create professional invoices for client projects with itemized services and payment terms.</li>
+    <li><strong>Small Business:</strong> Generate branded invoices for products sold or services rendered to customers.</li>
+    <li><strong>Contractor Work:</strong> Bill clients for hourly or project-based work with detailed line items.</li>
+    <li><strong>Recurring Services:</strong> Produce consistent invoices for ongoing retainer or subscription arrangements.</li>
+    <li><strong>International Clients:</strong> Create invoices with proper tax handling for cross-border transactions.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="seo-section">
 <h2>About Invoice Total Calculator</h2>
-<p>The Invoice Total Calculator from BillingFixPro is a free, accurate, and easy-to-use online calculation tool designed for freelancers, business owners, accountants, and financial professionals who need instant, reliable billing-related calculations. Manual calculations are prone to errors —even small mistakes in invoices, tax amounts, or rate estimates can affect cash flow, client relationships, and tax compliance. Our tool eliminates those risks with instant, verified results.</p>
+<p>The Invoice Total Calculator from BillingFixPro is a free, accurate, and easy-to-use online calculation tool designed for freelancers, business owners, accountants, and financial professionals who need instant, reliable billing-related calculations. Manual calculations are prone to errors &mdash; even small mistakes in invoices, tax amounts, or rate estimates can affect cash flow, client relationships, and tax compliance. Our tool eliminates those risks with instant, verified results.</p>
 <p>Whether you need to determine the right billing rate, calculate the tax component of an invoice, estimate total project costs, or figure out the cost impact of a discount, the Invoice Total Calculator gives you accurate answers immediately. The interface is intentionally simple: enter your values, see the calculated result with a full breakdown of how each number was derived. No guesswork, no spreadsheets, no manual formulas required.</p>
-<p>Accuracy in financial calculations is fundamental to running a profitable business. Undercharging clients because of a rate calculation error, applying the wrong tax percentage, or underestimating project costs can significantly erode your margins over time. The Invoice Total Calculator gives you the confidence of verified numbers —so every invoice, quote, or financial estimate you produce is based on correct calculations from the start.</p>
-<p>The tool is fully responsive and works on all devices including smartphones, tablets, and desktop computers. This means you can run calculations on-the-spot while meeting clients, preparing proposals, or discussing project scope —without needing to return to the office or open a separate application. Real-time calculation ensures you always have accurate numbers at your fingertips.</p>
+<p>Accuracy in financial calculations is fundamental to running a profitable business. Undercharging clients because of a rate calculation error, applying the wrong tax percentage, or underestimating project costs can significantly erode your margins over time. The Invoice Total Calculator gives you the confidence of verified numbers &mdash; so every invoice, quote, or financial estimate you produce is based on correct calculations from the start.</p>
+<p>The tool is fully responsive and works on all devices including smartphones, tablets, and desktop computers. This means you can run calculations on-the-spot while meeting clients, preparing proposals, or discussing project scope &mdash; without needing to return to the office or open a separate application. Real-time calculation ensures you always have accurate numbers at your fingertips.</p>
 <p>Our Invoice Total Calculator is part of BillingFixPro's comprehensive library of free billing and financial tools, which includes invoice generators, receipt makers, quote builders, payment agreement templates, and additional calculators covering taxes, discounts, rates, and project costs. Every tool in the suite is free, without registration, and without usage limits.</p>
-<p>Spend less time with a calculator and more time doing billable work. The Invoice Total Calculator is here whenever you need quick, accurate financial calculations —free, reliable, and always available.</p>  </div>
+<p>Spend less time with a calculator and more time doing billable work. The Invoice Total Calculator is here whenever you need quick, accurate financial calculations &mdash; free, reliable, and always available.</p>  </div>
   <div class="faq-section">
   <h2>Frequently Asked Questions</h2>
   <div class="faq-item">
@@ -175,7 +207,7 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
   </div>
   <div class="faq-item">
     <h3>Q: What currencies does this calculator support?</h3>
-    <p>A: The Invoice Total Calculator works with any currency. Enter your values in your local currency and the calculations apply standard mathematical operations universally —the tool does not convert currencies but handles any numeric input correctly.</p>
+    <p>A: The Invoice Total Calculator works with any currency. Enter your values in your local currency and the calculations apply standard mathematical operations universally &mdash; the tool does not convert currencies but handles any numeric input correctly.</p>
   </div>
 </div>
   <div class="related-section">
@@ -241,29 +273,7 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
   </div>
 </section>
 
-<div class="tool-content-modules">
-  <div class="tool-info-card">
-    <h2 class="tool-info-title">How to Use Invoice Calculator</h2>
-    <ol class="tool-steps">
-    <li>Enter your business name and contact information in the 'From' field.</li>
-    <li>Fill in your client's details in the 'Bill To' section.</li>
-    <li>Add line items with descriptions, quantities, and unit prices.</li>
-    <li>Set your tax rate and any applicable discounts.</li>
-    <li>Click Generate to create your Invoice Calculator document.</li>
-    <li>Download as PDF or copy the formatted text for your records.</li>
-    </ol>
-  </div>
-  <div class="tool-info-card">
-    <h2 class="tool-info-title">Common Use Cases</h2>
-    <ul class="tool-use-cases">
-    <li><strong>Freelance Billing:</strong> Create professional invoices for client projects with itemized services and payment terms.</li>
-    <li><strong>Small Business:</strong> Generate branded invoices for products sold or services rendered to customers.</li>
-    <li><strong>Contractor Work:</strong> Bill clients for hourly or project-based work with detailed line items.</li>
-    <li><strong>Recurring Services:</strong> Produce consistent invoices for ongoing retainer or subscription arrangements.</li>
-    <li><strong>International Clients:</strong> Create invoices with proper tax handling for cross-border transactions.</li>
-    </ul>
-  </div>
-</div>
+
 </main>
 <div class="ad-slot ad-bottom"><div class="adsense-placeholder" data-pub="ca-pub-1638874323475457"></div></div>
 <footer>

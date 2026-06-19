@@ -59,11 +59,16 @@ function printDoc(){window.print();}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
 a{text-decoration:none;color:inherit}
 header{background:var(--bg2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
-.header-inner{max-width:860px;margin:0 auto;padding:0 20px;height:60px;display:flex;align-items:center;gap:24px}
+.header-inner{max-width:1100px;margin:0 auto;padding:0 20px;height:60px;display:flex;align-items:center;gap:24px}
 .logo{font-size:20px;font-weight:800;color:var(--text);letter-spacing:-.4px}
 .logo span{color:var(--primary)}
 .nav-all{margin-left:auto;font-size:14px;font-weight:600;color:var(--primary);padding:7px 16px;border:1.5px solid var(--primary);border-radius:var(--radius-sm);transition:all .15s}
 .nav-all:hover{background:var(--primary);color:#fff}
+.site-nav{margin-left:auto;display:flex;align-items:center;gap:8px}
+.site-nav .nav-link{margin-left:0;font-size:14px;font-weight:600;color:var(--text2);padding:7px 12px;border-radius:var(--radius-sm);transition:all .15s}
+.site-nav .nav-link:hover{color:var(--primary);background:var(--primary-dim)}
+.site-nav .nav-link-outline{color:var(--primary);border:1.5px solid var(--primary);padding:7px 16px}
+.site-nav .nav-link-outline:hover{background:var(--primary);color:#fff}
 .breadcrumb{max-width:860px;margin:16px auto 0;padding:0 20px;font-size:13px;color:var(--text3)}
 .breadcrumb a{color:var(--primary)}
 .breadcrumb span{margin:0 6px}
@@ -120,7 +125,10 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 <header>
   <div class="header-inner">
     <a href="/" class="logo"><img src="/logo.svg?v=2" alt="BillingFixPro" height="38"></a>
-    <a href="/blog/" class="nav-all" style="margin-left:0;border:none;color:var(--text2);font-weight:500">Blog</a><a href="/" class="nav-all">All Tools</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/" class="nav-link nav-link-outline">All Tools</a>
+      <a href="/blog/" class="nav-link">Blog</a>
+    </nav>
   </div>
 </header>
 <div class="ad-slot ad-top"><div class="adsense-placeholder" data-pub="ca-pub-1638874323475457"></div></div>
@@ -128,7 +136,7 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 <main>
   <div class="tool-hero">
     <h1>Payment Receipt Generator</h1>
-    <p>Free online payment receipt generator — no signup required. Generate and download professional documents instantly.</p>
+    <p>Free online payment receipt generator &mdash; no signup required. Generate and download professional documents instantly.</p>
   </div>
   
 <div class="form-card">
@@ -153,14 +161,38 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
   </div>
 </div>
   <div class="ad-slot ad-middle"><div class="adsense-placeholder" data-pub="ca-pub-1638874323475457"></div></div>
-  <div class="seo-section">
+  <div class="tool-content-modules">
+  <div class="tool-info-card">
+    <h2 class="tool-info-title">How to Use Payment Receipt</h2>
+    <ol class="tool-steps">
+    <li>Enter the seller or business information at the top of the form.</li>
+    <li>Add the buyer or customer details.</li>
+    <li>List each item or service with the amount paid.</li>
+    <li>Include the payment method and transaction date.</li>
+    <li>Click Generate to create your receipt.</li>
+    <li>Download or print the receipt for your records.</li>
+    </ol>
+  </div>
+  <div class="tool-info-card">
+    <h2 class="tool-info-title">Common Use Cases</h2>
+    <ul class="tool-use-cases">
+    <li><strong>Retail Transactions:</strong> Issue receipts to customers confirming purchases of goods or services.</li>
+    <li><strong>Service Payments:</strong> Provide proof of payment for completed professional services.</li>
+    <li><strong>Expense Documentation:</strong> Generate receipts needed for business expense reports and reimbursements.</li>
+    <li><strong>Tax Records:</strong> Create properly formatted receipts for tax filing and audit preparation.</li>
+    <li><strong>Donation Acknowledgment:</strong> Issue receipts for charitable contributions and tax-deductible gifts.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="seo-section">
 <h2>About Payment Receipt Generator</h2>
-<p>The Payment Receipt Generator from BillingFixPro makes it simple to generate accurate, professional receipts for any completed transaction. Whether you are a small business owner confirming payment, a landlord issuing a rent acknowledgment, a freelancer documenting a deposit, or an individual recording a private sale, this free online tool produces a clean, printable receipt document in seconds —no registration, no software, no cost.</p>
+<p>The Payment Receipt Generator from BillingFixPro makes it simple to generate accurate, professional receipts for any completed transaction. Whether you are a small business owner confirming payment, a landlord issuing a rent acknowledgment, a freelancer documenting a deposit, or an individual recording a private sale, this free online tool produces a clean, printable receipt document in seconds &mdash; no registration, no software, no cost.</p>
 <p>Paper receipts are easily lost and handwritten ones look unprofessional. A plain text email receipt lacks structure and credibility. BillingFixPro's Payment Receipt Generator solves these problems by creating well-formatted, professional-looking receipts that include all the essential information: transaction date, payer and payee details, itemised description, amount paid, payment method, and any applicable taxes.</p>
-<p>The tool is designed for speed. Fill in the fields —business name, client name, date, description of goods or services, and amount —click Generate, and you have a professional receipt ready to download, print, or email. The layout is clean and universally readable, suitable for attaching to expense reports, providing to customers, including with shipped goods, or storing in financial records.</p>
-<p>Receipts are essential business documents. They provide proof of payment, support expense claims, satisfy tax record-keeping requirements, and build customer trust. Having a reliable Payment Receipt Generator means you are always prepared to issue professional documentation the moment a transaction is complete —whether in the office, at a client site, or on the go from a mobile device.</p>
+<p>The tool is designed for speed. Fill in the fields &mdash; business name, client name, date, description of goods or services, and amount &mdash; click Generate, and you have a professional receipt ready to download, print, or email. The layout is clean and universally readable, suitable for attaching to expense reports, providing to customers, including with shipped goods, or storing in financial records.</p>
+<p>Receipts are essential business documents. They provide proof of payment, support expense claims, satisfy tax record-keeping requirements, and build customer trust. Having a reliable Payment Receipt Generator means you are always prepared to issue professional documentation the moment a transaction is complete &mdash; whether in the office, at a client site, or on the go from a mobile device.</p>
 <p>The Payment Receipt Generator is used by retail businesses, service providers, freelancers, landlords, charities collecting donations, event organisers, and countless other professionals who transact regularly and need reliable receipt documentation. All generated documents are formatted to a professional standard appropriate for business use.</p>
-<p>BillingFixPro provides this Payment Receipt Generator along with dozens of other free billing and financial tools —invoices, quotes, calculators, payment agreements, and more. There are no usage limits, no subscription tiers, and no hidden fees. Create as many receipts as your business requires, any time of day, on any device.</p>  </div>
+<p>BillingFixPro provides this Payment Receipt Generator along with dozens of other free billing and financial tools &mdash; invoices, quotes, calculators, payment agreements, and more. There are no usage limits, no subscription tiers, and no hidden fees. Create as many receipts as your business requires, any time of day, on any device.</p>  </div>
   <div class="faq-section">
   <h2>Frequently Asked Questions</h2>
   <div class="faq-item">
@@ -169,7 +201,7 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
   </div>
   <div class="faq-item">
     <h3>Q: Are receipts created with this tool legally valid?</h3>
-    <p>A: Receipts generated by our tool include all standard information found in a valid business receipt —transaction details, parties, amounts, and date. Specific legal requirements vary by jurisdiction, so check local regulations for your use case.</p>
+    <p>A: Receipts generated by our tool include all standard information found in a valid business receipt &mdash; transaction details, parties, amounts, and date. Specific legal requirements vary by jurisdiction, so check local regulations for your use case.</p>
   </div>
   <div class="faq-item">
     <h3>Q: Can I customise the receipt with my business details?</h3>
@@ -247,29 +279,7 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
   </div>
 </section>
 
-<div class="tool-content-modules">
-  <div class="tool-info-card">
-    <h2 class="tool-info-title">How to Use Payment Receipt</h2>
-    <ol class="tool-steps">
-    <li>Enter the seller or business information at the top of the form.</li>
-    <li>Add the buyer or customer details.</li>
-    <li>List each item or service with the amount paid.</li>
-    <li>Include the payment method and transaction date.</li>
-    <li>Click Generate to create your receipt.</li>
-    <li>Download or print the receipt for your records.</li>
-    </ol>
-  </div>
-  <div class="tool-info-card">
-    <h2 class="tool-info-title">Common Use Cases</h2>
-    <ul class="tool-use-cases">
-    <li><strong>Retail Transactions:</strong> Issue receipts to customers confirming purchases of goods or services.</li>
-    <li><strong>Service Payments:</strong> Provide proof of payment for completed professional services.</li>
-    <li><strong>Expense Documentation:</strong> Generate receipts needed for business expense reports and reimbursements.</li>
-    <li><strong>Tax Records:</strong> Create properly formatted receipts for tax filing and audit preparation.</li>
-    <li><strong>Donation Acknowledgment:</strong> Issue receipts for charitable contributions and tax-deductible gifts.</li>
-    </ul>
-  </div>
-</div>
+
 </main>
 <div class="ad-slot ad-bottom"><div class="adsense-placeholder" data-pub="ca-pub-1638874323475457"></div></div>
 <footer>

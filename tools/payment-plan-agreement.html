@@ -56,11 +56,16 @@ function generateInvoiceHTML(from_,to_,num_,date_,due_,linesHTML,sub,discAmt,tax
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
 a{text-decoration:none;color:inherit}
 header{background:var(--bg2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
-.header-inner{max-width:860px;margin:0 auto;padding:0 20px;height:60px;display:flex;align-items:center;gap:24px}
+.header-inner{max-width:1100px;margin:0 auto;padding:0 20px;height:60px;display:flex;align-items:center;gap:24px}
 .logo{font-size:20px;font-weight:800;color:var(--text);letter-spacing:-.4px}
 .logo span{color:var(--primary)}
 .nav-all{margin-left:auto;font-size:14px;font-weight:600;color:var(--primary);padding:7px 16px;border:1.5px solid var(--primary);border-radius:var(--radius-sm);transition:all .15s}
 .nav-all:hover{background:var(--primary);color:#fff}
+.site-nav{margin-left:auto;display:flex;align-items:center;gap:8px}
+.site-nav .nav-link{margin-left:0;font-size:14px;font-weight:600;color:var(--text2);padding:7px 12px;border-radius:var(--radius-sm);transition:all .15s}
+.site-nav .nav-link:hover{color:var(--primary);background:var(--primary-dim)}
+.site-nav .nav-link-outline{color:var(--primary);border:1.5px solid var(--primary);padding:7px 16px}
+.site-nav .nav-link-outline:hover{background:var(--primary);color:#fff}
 .breadcrumb{max-width:860px;margin:16px auto 0;padding:0 20px;font-size:13px;color:var(--text3)}
 .breadcrumb a{color:var(--primary)}
 .breadcrumb span{margin:0 6px}
@@ -117,7 +122,10 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 <header>
   <div class="header-inner">
     <a href="/" class="logo"><img src="/logo.svg?v=2" alt="BillingFixPro" height="38"></a>
-    <a href="/blog/" class="nav-all" style="margin-left:0;border:none;color:var(--text2);font-weight:500">Blog</a><a href="/" class="nav-all">All Tools</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/" class="nav-link nav-link-outline">All Tools</a>
+      <a href="/blog/" class="nav-link">Blog</a>
+    </nav>
   </div>
 </header>
 <div class="ad-slot ad-top"><div class="adsense-placeholder" data-pub="ca-pub-1638874323475457"></div></div>
@@ -125,7 +133,7 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 <main>
   <div class="tool-hero">
     <h1>Payment Plan Agreement Generator</h1>
-    <p>Free online payment plan agreement generator — no signup required. Generate and download professional documents instantly.</p>
+    <p>Free online payment plan agreement generator &mdash; no signup required. Generate and download professional documents instantly.</p>
   </div>
   
 <div class="form-card">
@@ -166,14 +174,38 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
   </div>
 </div>
   <div class="ad-slot ad-middle"><div class="adsense-placeholder" data-pub="ca-pub-1638874323475457"></div></div>
-  <div class="seo-section">
+  <div class="tool-content-modules">
+  <div class="tool-info-card">
+    <h2 class="tool-info-title">How to Use Payment Plan Agreement</h2>
+    <ol class="tool-steps">
+    <li>Enter the payer and payee information.</li>
+    <li>Specify the payment amount and currency.</li>
+    <li>Add the payment date and reference number.</li>
+    <li>Include any relevant terms or conditions.</li>
+    <li>Generate your Payment Plan Agreement document.</li>
+    <li>Download or print for your financial records.</li>
+    </ol>
+  </div>
+  <div class="tool-info-card">
+    <h2 class="tool-info-title">Common Use Cases</h2>
+    <ul class="tool-use-cases">
+    <li><strong>Business Operations:</strong> Streamline your document creation workflow with professional templates.</li>
+    <li><strong>Client Communication:</strong> Maintain clear, professional records of all business transactions.</li>
+    <li><strong>Financial Tracking:</strong> Keep organized records for bookkeeping and tax preparation.</li>
+    <li><strong>Legal Compliance:</strong> Ensure your documents meet standard business and legal requirements.</li>
+    <li><strong>Professional Image:</strong> Present a polished, credible brand with well-formatted documents.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="seo-section">
 <h2>About Payment Plan Agreement Generator</h2>
 <p>BillingFixPro's Payment Plan Agreement Generator makes it straightforward to create formal, professional documents that govern purchasing, service delivery, and payment arrangements between businesses and their clients or suppliers. Properly documented agreements protect both parties, establish clear expectations, and provide an essential paper trail for accounting, auditing, and dispute resolution. Our free online tool makes creating these documents fast and easy.</p>
 <p>Creating formal business documents from scratch can be daunting, especially without a legal or administrative background. Our Payment Plan Agreement Generator guides you through the process with a structured form that covers all the essential fields: party information, scope of work or goods, pricing, delivery timelines, payment terms, and any special conditions. The tool generates a professional, complete document ready for review and signature in minutes.</p>
 <p>Key features include customisable terms and conditions fields, detailed line-item support for complex orders or service arrangements, automatic total calculation, and instant PDF download. The clean, professional layout is appropriate for formal business use and meets the standard expectations of suppliers, clients, and financial record-keepers.</p>
 <p>Whether you are purchasing goods from a supplier, engaging a contractor for project work, establishing a payment plan with a client, or formalising an ongoing service relationship, having the right documentation in place from the start is critical. Formal documents reduce misunderstandings, provide legal clarity, and ensure all parties are aligned on terms before money changes hands or work begins.</p>
 <p>The Payment Plan Agreement Generator is used by small businesses, procurement teams, project managers, freelancers, and finance professionals across every industry. It is particularly valuable for businesses that need professional document templates without the cost of hiring a lawyer or purchasing enterprise software. You get a complete, professional document in minutes at no charge.</p>
-<p>BillingFixPro offers this Payment Plan Agreement Generator as part of a comprehensive suite of free billing and financial tools covering the full document lifecycle —from initial quotes and orders through invoices, receipts, and payment follow-ups. No registration required, no usage limits, and no cost —ever.</p>  </div>
+<p>BillingFixPro offers this Payment Plan Agreement Generator as part of a comprehensive suite of free billing and financial tools covering the full document lifecycle &mdash; from initial quotes and orders through invoices, receipts, and payment follow-ups. No registration required, no usage limits, and no cost &mdash; ever.</p>  </div>
   <div class="faq-section">
   <h2>Frequently Asked Questions</h2>
   <div class="faq-item">
@@ -260,29 +292,7 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
   </div>
 </section>
 
-<div class="tool-content-modules">
-  <div class="tool-info-card">
-    <h2 class="tool-info-title">How to Use Payment Plan Agreement</h2>
-    <ol class="tool-steps">
-    <li>Enter the payer and payee information.</li>
-    <li>Specify the payment amount and currency.</li>
-    <li>Add the payment date and reference number.</li>
-    <li>Include any relevant terms or conditions.</li>
-    <li>Generate your Payment Plan Agreement document.</li>
-    <li>Download or print for your financial records.</li>
-    </ol>
-  </div>
-  <div class="tool-info-card">
-    <h2 class="tool-info-title">Common Use Cases</h2>
-    <ul class="tool-use-cases">
-    <li><strong>Business Operations:</strong> Streamline your document creation workflow with professional templates.</li>
-    <li><strong>Client Communication:</strong> Maintain clear, professional records of all business transactions.</li>
-    <li><strong>Financial Tracking:</strong> Keep organized records for bookkeeping and tax preparation.</li>
-    <li><strong>Legal Compliance:</strong> Ensure your documents meet standard business and legal requirements.</li>
-    <li><strong>Professional Image:</strong> Present a polished, credible brand with well-formatted documents.</li>
-    </ul>
-  </div>
-</div>
+
 </main>
 <div class="ad-slot ad-bottom"><div class="adsense-placeholder" data-pub="ca-pub-1638874323475457"></div></div>
 <footer>
