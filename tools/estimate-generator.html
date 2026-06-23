@@ -117,7 +117,37 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 .faq-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px}.faq-section h2{font-size:1.1rem;font-weight:700;margin-bottom:20px}.faq-item{border-bottom:1px solid var(--border);padding:16px 0}.faq-item:last-child{border-bottom:none;padding-bottom:0}.faq-item h3{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px}.faq-item p{font-size:14px;color:var(--text2);line-height:1.7}
 @media print{header,footer,.ad-slot,.ad-top,.ad-middle,.ad-bottom,.form-card,.tool-hero,.breadcrumb,.seo-section,.faq-section,.related-section,.affiliate-section,.download-row,#btt{display:none!important}body{background:#fff!important}main{padding:0!important}#output{display:block!important;box-shadow:none!important;border:none!important;padding:0!important}}</style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1638874323475457" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="/assets/css/tool-modules.css"></head>
+<link rel="stylesheet" href="/assets/css/tool-modules.css"><!-- DIFFERENTIATED-LOGIC-BEGIN -->
+<script>
+// === Generic Estimate Generator (line aggregation + tiered confidence band) ===
+window.buildEstimate = function (lines, contingencyPct, validDays) {
+  if (!Array.isArray(lines)) lines = [];
+  contingencyPct = +contingencyPct || 10;
+  validDays = +validDays || 30;
+  var raw = 0, weighted = 0, riskWeight = 0;
+  for (var i = 0; i < lines.length; i++) {
+    var L = lines[i] || {};
+    var qty = +L.qty || 0, rate = +L.rate || 0, risk = +L.risk || 1;
+    var amt = qty * rate; raw += amt;
+    weighted += amt * risk; riskWeight += risk;
+  }
+  var avgRisk = riskWeight ? weighted / raw : 1;
+  var contingency = raw * (contingencyPct / 100);
+  var low = (raw + contingency) * 0.92;
+  var high = (raw + contingency) * (1 + 0.08 * avgRisk);
+  return {
+    rawCost: +raw.toFixed(2),
+    contingency: +contingency.toFixed(2),
+    confidenceLow: +low.toFixed(2),
+    expected: +(raw + contingency).toFixed(2),
+    confidenceHigh: +high.toFixed(2),
+    validUntil: new Date(Date.now() + validDays * 86400000).toISOString().split('T')[0]
+  };
+};
+window.estimateRiskLevels = { simple: 0.8, standard: 1.0, complex: 1.4, unknown: 1.8 };
+</script>
+<!-- DIFFERENTIATED-LOGIC-END -->
+</head>
 <body>
 <header>
   <div class="header-inner">

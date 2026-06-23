@@ -120,7 +120,49 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 .faq-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px}.faq-section h2{font-size:1.1rem;font-weight:700;margin-bottom:20px}.faq-item{border-bottom:1px solid var(--border);padding:16px 0}.faq-item:last-child{border-bottom:none;padding-bottom:0}.faq-item h3{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px}.faq-item p{font-size:14px;color:var(--text2);line-height:1.7}
 @media print{header,footer,.ad-slot,.ad-top,.ad-middle,.ad-bottom,.form-card,.tool-hero,.breadcrumb,.seo-section,.faq-section,.related-section,.affiliate-section,.download-row,#btt{display:none!important}body{background:#fff!important}main{padding:0!important}#output{display:block!important;box-shadow:none!important;border:none!important;padding:0!important}}</style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1638874323475457" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="/assets/css/tool-modules.css"></head>
+<link rel="stylesheet" href="/assets/css/tool-modules.css"><!-- DIFFERENTIATED-LOGIC-BEGIN -->
+<script>
+// === Sales Receipt (receipt-specific issuance + verification) ===
+window.salesRcpt_RECEIPT_TYPE = "Sales Receipt";
+window.salesRcpt_REQUIRED = ["customer","items","subtotal","tax","total"];
+window.salesRcpt_issue = function (data) {
+  data = data || {};
+  var ts = new Date();
+  var receiptNo = 'SAL-' + ts.getTime().toString(36).toUpperCase();
+  var amount = +data.amount || 0;
+  var tax = +data.tax || 0;
+  var tip = +data.tip || 0;
+  var total = amount + tax + tip;
+  var hashSource = receiptNo + amount + (data.payer || '');
+  var verifyCode = 0;
+  for (var i = 0; i < hashSource.length; i++) verifyCode = (verifyCode * 31 + hashSource.charCodeAt(i)) & 0xffff;
+  return {
+    receiptType: window.salesRcpt_RECEIPT_TYPE,
+    receiptNumber: receiptNo,
+    issuedAt: ts.toISOString(),
+    payer: data.payer || 'Unknown',
+    payee: data.payee || '',
+    amount: +amount.toFixed(2),
+    tax: +tax.toFixed(2),
+    tip: +tip.toFixed(2),
+    totalPaid: +total.toFixed(2),
+    paymentMethod: data.method || 'Cash',
+    verificationCode: verifyCode.toString(16).toUpperCase().padStart(4, '0')
+  };
+};
+window.salesRcpt_validate = function (rec) {
+  rec = rec || {};
+  var miss = window.salesRcpt_REQUIRED.filter(function (f) { return rec[f] === undefined || rec[f] === ''; });
+  return { valid: miss.length === 0, missing: miss };
+};
+window.salesRcpt_taxNote = function (amount, jurisdiction) {
+  var rates = { US: 0.0875, UK: 0.20, EU: 0.21, AU: 0.10, IN: 0.18, CA: 0.13 };
+  var r = rates[jurisdiction] || 0;
+  return { jurisdiction: jurisdiction, rate: r, taxIncluded: +(amount * r).toFixed(2) };
+};
+</script>
+<!-- DIFFERENTIATED-LOGIC-END -->
+</head>
 <body>
 <header>
   <div class="header-inner">

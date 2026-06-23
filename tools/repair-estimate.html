@@ -117,7 +117,38 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 .faq-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px}.faq-section h2{font-size:1.1rem;font-weight:700;margin-bottom:20px}.faq-item{border-bottom:1px solid var(--border);padding:16px 0}.faq-item:last-child{border-bottom:none;padding-bottom:0}.faq-item h3{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px}.faq-item p{font-size:14px;color:var(--text2);line-height:1.7}
 @media print{header,footer,.ad-slot,.ad-top,.ad-middle,.ad-bottom,.form-card,.tool-hero,.breadcrumb,.seo-section,.faq-section,.related-section,.affiliate-section,.download-row,#btt{display:none!important}body{background:#fff!important}main{padding:0!important}#output{display:block!important;box-shadow:none!important;border:none!important;padding:0!important}}</style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1638874323475457" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="/assets/css/tool-modules.css"></head>
+<link rel="stylesheet" href="/assets/css/tool-modules.css"><!-- DIFFERENTIATED-LOGIC-BEGIN -->
+<script>
+// === Repair Estimate (diagnostic + parts + labor tiers) ===
+window.REPAIR_DIAGNOSTIC_FEE = 85;
+window.estimateRepairCost = function (faultCode, severity, partsList, laborHours, isWarranty) {
+  severity = (severity || 'medium').toLowerCase();
+  var laborTier = { minor: 65, medium: 95, major: 135, critical: 175 }[severity] || 95;
+  var partsTotal = 0;
+  if (Array.isArray(partsList)) {
+    for (var i = 0; i < partsList.length; i++) {
+      var p = partsList[i] || {};
+      partsTotal += (+p.unitCost || 0) * (+p.qty || 1) * 1.25; // 25% markup
+    }
+  }
+  var labor = (+laborHours || 1) * laborTier;
+  var diagnosticFee = isWarranty ? 0 : window.REPAIR_DIAGNOSTIC_FEE;
+  var emergencyFee = severity === 'critical' ? 120 : 0;
+  var disposal = severity === 'major' || severity === 'critical' ? 35 : 0;
+  return {
+    faultCode: faultCode || 'UNKNOWN',
+    diagnosticFee: diagnosticFee,
+    laborRate: laborTier,
+    laborCost: +labor.toFixed(2),
+    partsWithMarkup: +partsTotal.toFixed(2),
+    emergencyFee: emergencyFee,
+    disposalFee: disposal,
+    estimatedTotal: +(diagnosticFee + labor + partsTotal + emergencyFee + disposal).toFixed(2)
+  };
+};
+</script>
+<!-- DIFFERENTIATED-LOGIC-END -->
+</head>
 <body>
 <header>
   <div class="header-inner">

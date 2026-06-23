@@ -117,7 +117,41 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 .faq-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px}.faq-section h2{font-size:1.1rem;font-weight:700;margin-bottom:20px}.faq-item{border-bottom:1px solid var(--border);padding:16px 0}.faq-item:last-child{border-bottom:none;padding-bottom:0}.faq-item h3{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px}.faq-item p{font-size:14px;color:var(--text2);line-height:1.7}
 @media print{header,footer,.ad-slot,.ad-top,.ad-middle,.ad-bottom,.form-card,.tool-hero,.breadcrumb,.seo-section,.faq-section,.related-section,.affiliate-section,.download-row,#btt{display:none!important}body{background:#fff!important}main{padding:0!important}#output{display:block!important;box-shadow:none!important;border:none!important;padding:0!important}}</style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1638874323475457" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="/assets/css/tool-modules.css"></head>
+<link rel="stylesheet" href="/assets/css/tool-modules.css"><!-- DIFFERENTIATED-LOGIC-BEGIN -->
+<script>
+// === Quote Generator (multi-currency + scope acceptance signature) ===
+window.QUOTE_FX = { USD: 1.0, EUR: 1.08, GBP: 1.27, CAD: 0.73, AUD: 0.66, INR: 0.012 };
+window.generateQuoteDocument = function (lines, currency, terms) {
+  if (!Array.isArray(lines)) lines = [];
+  currency = (currency || 'USD').toUpperCase();
+  var fx = window.QUOTE_FX[currency] || 1;
+  var subtotal = 0;
+  var items = lines.map(function (L) {
+    var amt = (+L.qty || 0) * (+L.price || 0);
+    subtotal += amt;
+    return { desc: L.desc || '', qty: +L.qty || 0, price: +L.price || 0, total: +amt.toFixed(2) };
+  });
+  var taxRate = +((terms && terms.taxPct) || 0) / 100;
+  var discount = +((terms && terms.discountPct) || 0) / 100;
+  var afterDisc = subtotal * (1 - discount);
+  var tax = afterDisc * taxRate;
+  var total = afterDisc + tax;
+  var usdEquivalent = total * fx;
+  var quoteRef = 'QG-' + Date.now().toString(36).toUpperCase();
+  return {
+    ref: quoteRef,
+    currency: currency,
+    lineItems: items,
+    subtotal: +subtotal.toFixed(2),
+    discountApplied: +(subtotal * discount).toFixed(2),
+    taxAmount: +tax.toFixed(2),
+    totalInCurrency: +total.toFixed(2),
+    totalInUSD: +usdEquivalent.toFixed(2)
+  };
+};
+</script>
+<!-- DIFFERENTIATED-LOGIC-END -->
+</head>
 <body>
 <header>
   <div class="header-inner">

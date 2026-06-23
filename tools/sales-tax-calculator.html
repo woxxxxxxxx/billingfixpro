@@ -117,7 +117,37 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 .faq-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px}.faq-section h2{font-size:1.1rem;font-weight:700;margin-bottom:20px}.faq-item{border-bottom:1px solid var(--border);padding:16px 0}.faq-item:last-child{border-bottom:none;padding-bottom:0}.faq-item h3{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px}.faq-item p{font-size:14px;color:var(--text2);line-height:1.7}
 @media print{header,footer,.ad-slot,.ad-top,.ad-middle,.ad-bottom,.form-card,.tool-hero,.breadcrumb,.seo-section,.faq-section,.related-section,.affiliate-section,.download-row,#btt{display:none!important}body{background:#fff!important}main{padding:0!important}#output{display:block!important;box-shadow:none!important;border:none!important;padding:0!important}}</style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1638874323475457" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="/assets/css/tool-modules.css"></head>
+<link rel="stylesheet" href="/assets/css/tool-modules.css"><!-- DIFFERENTIATED-LOGIC-BEGIN -->
+<script>
+// === US Sales Tax Calculator (state + local jurisdiction stacking) ===
+window.US_STATE_BASE_RATES = {
+  CA: 7.25, TX: 6.25, NY: 4.00, FL: 6.00, IL: 6.25, PA: 6.00,
+  WA: 6.50, AZ: 5.60, GA: 4.00, NC: 4.75, OH: 5.75, MI: 6.00,
+  OR: 0, MT: 0, NH: 0, DE: 0, AK: 0
+};
+window.calcSalesTaxUS = function (amount, stateCode, localRate, exemptCategory) {
+  amount = +amount || 0;
+  stateCode = (stateCode || '').toUpperCase();
+  localRate = +localRate || 0;
+  var stateRate = window.US_STATE_BASE_RATES[stateCode];
+  if (stateRate === undefined) stateRate = 0;
+  var exemptions = ['groceries','prescription','clothing-low'];
+  var taxable = exemptions.indexOf(exemptCategory) >= 0 && stateRate > 0 ? amount * 0.5 : amount;
+  var combinedRate = stateRate + localRate;
+  var taxAmt = taxable * combinedRate / 100;
+  return {
+    state: stateCode || 'N/A',
+    stateRate: stateRate,
+    localRate: localRate,
+    combinedRate: +combinedRate.toFixed(3),
+    taxableAmount: +taxable.toFixed(2),
+    salesTax: +taxAmt.toFixed(2),
+    total: +(amount + taxAmt).toFixed(2)
+  };
+};
+</script>
+<!-- DIFFERENTIATED-LOGIC-END -->
+</head>
 <body>
 <header>
   <div class="header-inner">

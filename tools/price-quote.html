@@ -117,7 +117,39 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 .faq-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px}.faq-section h2{font-size:1.1rem;font-weight:700;margin-bottom:20px}.faq-item{border-bottom:1px solid var(--border);padding:16px 0}.faq-item:last-child{border-bottom:none;padding-bottom:0}.faq-item h3{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px}.faq-item p{font-size:14px;color:var(--text2);line-height:1.7}
 @media print{header,footer,.ad-slot,.ad-top,.ad-middle,.ad-bottom,.form-card,.tool-hero,.breadcrumb,.seo-section,.faq-section,.related-section,.affiliate-section,.download-row,#btt{display:none!important}body{background:#fff!important}main{padding:0!important}#output{display:block!important;box-shadow:none!important;border:none!important;padding:0!important}}</style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1638874323475457" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="/assets/css/tool-modules.css"></head>
+<link rel="stylesheet" href="/assets/css/tool-modules.css"><!-- DIFFERENTIATED-LOGIC-BEGIN -->
+<script>
+// === Price Quote (volume-tier pricing + early-bird discount) ===
+window.calculatePriceQuote = function (units, unitPrice, customerType, paymentDays) {
+  units = +units || 0; unitPrice = +unitPrice || 0;
+  customerType = (customerType || 'retail').toLowerCase();
+  paymentDays = +paymentDays || 30;
+  var tiers = [
+    { min: 1000, mult: 0.78 },
+    { min: 500,  mult: 0.85 },
+    { min: 100,  mult: 0.92 },
+    { min: 25,   mult: 0.97 },
+    { min: 0,    mult: 1.00 }
+  ];
+  var tierMult = 1;
+  for (var i = 0; i < tiers.length; i++) { if (units >= tiers[i].min) { tierMult = tiers[i].mult; break; } }
+  var custMult = { wholesale: 0.88, distributor: 0.80, retail: 1.0, vip: 0.92 }[customerType] || 1;
+  var gross = units * unitPrice;
+  var afterTier = gross * tierMult;
+  var afterCust = afterTier * custMult;
+  var earlyPayDiscount = paymentDays <= 10 ? afterCust * 0.02 : 0;
+  return {
+    grossAmount: +gross.toFixed(2),
+    tierMultiplier: tierMult,
+    customerMultiplier: custMult,
+    earlyPayDiscount: +earlyPayDiscount.toFixed(2),
+    netPrice: +(afterCust - earlyPayDiscount).toFixed(2),
+    pricePerUnit: units > 0 ? +((afterCust - earlyPayDiscount) / units).toFixed(4) : 0
+  };
+};
+</script>
+<!-- DIFFERENTIATED-LOGIC-END -->
+</head>
 <body>
 <header>
   <div class="header-inner">

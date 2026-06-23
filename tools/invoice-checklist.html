@@ -117,7 +117,29 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 .faq-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px}.faq-section h2{font-size:1.1rem;font-weight:700;margin-bottom:20px}.faq-item{border-bottom:1px solid var(--border);padding:16px 0}.faq-item:last-child{border-bottom:none;padding-bottom:0}.faq-item h3{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px}.faq-item p{font-size:14px;color:var(--text2);line-height:1.7}
 @media print{header,footer,.ad-slot,.ad-top,.ad-middle,.ad-bottom,.form-card,.tool-hero,.breadcrumb,.seo-section,.faq-section,.related-section,.affiliate-section,.download-row,#btt{display:none!important}body{background:#fff!important}main{padding:0!important}#output{display:block!important;box-shadow:none!important;border:none!important;padding:0!important}}</style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1638874323475457" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="/assets/css/tool-modules.css"></head>
+<link rel="stylesheet" href="/assets/css/tool-modules.css"><!-- DIFFERENTIATED-LOGIC-BEGIN -->
+<script>
+// === Invoice Checklist Validator (returns missing required fields) ===
+window.INVOICE_REQUIRED_FIELDS = [
+  'sellerName','sellerAddress','sellerTaxId','buyerName','buyerAddress',
+  'invoiceNumber','issueDate','dueDate','lineItems','subtotal','taxAmount','grandTotal','paymentInstructions'
+];
+window.validateInvoiceCompleteness = function (inv) {
+  inv = inv || {};
+  var missing = [], warnings = [];
+  for (var i = 0; i < window.INVOICE_REQUIRED_FIELDS.length; i++) {
+    var f = window.INVOICE_REQUIRED_FIELDS[i];
+    if (inv[f] === undefined || inv[f] === '' || inv[f] === null) missing.push(f);
+  }
+  if (inv.dueDate && inv.issueDate && new Date(inv.dueDate) < new Date(inv.issueDate)) warnings.push('Due date is before issue date');
+  if (Array.isArray(inv.lineItems) && inv.lineItems.length === 0) warnings.push('No line items');
+  if (inv.taxAmount && inv.subtotal && (inv.taxAmount / inv.subtotal) > 0.35) warnings.push('Tax rate seems unusually high');
+  var score = Math.round(100 * (1 - missing.length / window.INVOICE_REQUIRED_FIELDS.length));
+  return { complete: missing.length === 0, missingFields: missing, warnings: warnings, completenessScore: score };
+};
+</script>
+<!-- DIFFERENTIATED-LOGIC-END -->
+</head>
 <body>
 <header>
   <div class="header-inner">

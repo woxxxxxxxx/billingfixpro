@@ -117,7 +117,40 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 .faq-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px}.faq-section h2{font-size:1.1rem;font-weight:700;margin-bottom:20px}.faq-item{border-bottom:1px solid var(--border);padding:16px 0}.faq-item:last-child{border-bottom:none;padding-bottom:0}.faq-item h3{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px}.faq-item p{font-size:14px;color:var(--text2);line-height:1.7}
 @media print{header,footer,.ad-slot,.ad-top,.ad-middle,.ad-bottom,.form-card,.tool-hero,.breadcrumb,.seo-section,.faq-section,.related-section,.affiliate-section,.download-row,#btt{display:none!important}body{background:#fff!important}main{padding:0!important}#output{display:block!important;box-shadow:none!important;border:none!important;padding:0!important}}</style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1638874323475457" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="/assets/css/tool-modules.css"></head>
+<link rel="stylesheet" href="/assets/css/tool-modules.css"><!-- DIFFERENTIATED-LOGIC-BEGIN -->
+<script>
+// === Service Quote (SLA tier + addons + recurring billing) ===
+window.SERVICE_TIERS = {
+  basic:    { hourly: 65,  responseHours: 24, uptime: 0.97 },
+  standard: { hourly: 95,  responseHours: 8,  uptime: 0.99 },
+  premium:  { hourly: 145, responseHours: 2,  uptime: 0.995 },
+  enterprise:{hourly: 195, responseHours: 1,  uptime: 0.999 }
+};
+window.quoteServiceContract = function (tier, hoursPerMonth, addons, monthsCommitment) {
+  tier = (tier || 'standard').toLowerCase();
+  var spec = window.SERVICE_TIERS[tier] || window.SERVICE_TIERS.standard;
+  hoursPerMonth = +hoursPerMonth || 10;
+  monthsCommitment = +monthsCommitment || 12;
+  var monthlyLabor = spec.hourly * hoursPerMonth;
+  var addonTotal = 0;
+  if (Array.isArray(addons)) for (var i=0;i<addons.length;i++) addonTotal += (+addons[i].monthlyFee || 0);
+  var monthly = monthlyLabor + addonTotal;
+  var loyaltyDiscount = monthsCommitment >= 24 ? 0.12 : (monthsCommitment >= 12 ? 0.06 : 0);
+  var setupFee = tier === 'enterprise' ? 1500 : (tier === 'premium' ? 750 : 250);
+  var monthlyDiscounted = monthly * (1 - loyaltyDiscount);
+  return {
+    tier: tier,
+    SLA: { responseHours: spec.responseHours, uptime: spec.uptime },
+    setupFee: setupFee,
+    monthlyRate: +monthlyDiscounted.toFixed(2),
+    annualValue: +(monthlyDiscounted * 12).toFixed(2),
+    contractValue: +(setupFee + monthlyDiscounted * monthsCommitment).toFixed(2),
+    loyaltyDiscountPct: loyaltyDiscount * 100
+  };
+};
+</script>
+<!-- DIFFERENTIATED-LOGIC-END -->
+</head>
 <body>
 <header>
   <div class="header-inner">

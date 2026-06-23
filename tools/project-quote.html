@@ -117,7 +117,43 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 .faq-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px}.faq-section h2{font-size:1.1rem;font-weight:700;margin-bottom:20px}.faq-item{border-bottom:1px solid var(--border);padding:16px 0}.faq-item:last-child{border-bottom:none;padding-bottom:0}.faq-item h3{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px}.faq-item p{font-size:14px;color:var(--text2);line-height:1.7}
 @media print{header,footer,.ad-slot,.ad-top,.ad-middle,.ad-bottom,.form-card,.tool-hero,.breadcrumb,.seo-section,.faq-section,.related-section,.affiliate-section,.download-row,#btt{display:none!important}body{background:#fff!important}main{padding:0!important}#output{display:block!important;box-shadow:none!important;border:none!important;padding:0!important}}</style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1638874323475457" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="/assets/css/tool-modules.css"></head>
+<link rel="stylesheet" href="/assets/css/tool-modules.css"><!-- DIFFERENTIATED-LOGIC-BEGIN -->
+<script>
+// === Project Quote (phases + dependencies + buffer) ===
+window.buildProjectQuote = function (phases, weeklyRate, bufferWeeks) {
+  if (!Array.isArray(phases)) phases = [];
+  weeklyRate = +weeklyRate || 4500;
+  bufferWeeks = +bufferWeeks || 1;
+  var totalWeeks = 0, totalFixed = 0;
+  var schedule = [];
+  var startWeek = 1;
+  for (var i = 0; i < phases.length; i++) {
+    var p = phases[i] || {};
+    var dur = +p.weeks || 0, fixed = +p.fixedFee || 0;
+    totalWeeks += dur; totalFixed += fixed;
+    schedule.push({
+      phase: p.name || ('Phase ' + (i+1)),
+      startWeek: startWeek,
+      endWeek: startWeek + dur - 1,
+      fee: +((dur * weeklyRate) + fixed).toFixed(2)
+    });
+    startWeek += dur;
+  }
+  var timeAndMaterials = totalWeeks * weeklyRate;
+  var buffer = bufferWeeks * weeklyRate;
+  return {
+    phases: schedule,
+    totalWeeks: totalWeeks,
+    bufferWeeks: bufferWeeks,
+    timeAndMaterials: +timeAndMaterials.toFixed(2),
+    fixedFees: +totalFixed.toFixed(2),
+    riskBuffer: +buffer.toFixed(2),
+    projectTotal: +(timeAndMaterials + totalFixed + buffer).toFixed(2)
+  };
+};
+</script>
+<!-- DIFFERENTIATED-LOGIC-END -->
+</head>
 <body>
 <header>
   <div class="header-inner">

@@ -117,7 +117,47 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 .faq-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px}.faq-section h2{font-size:1.1rem;font-weight:700;margin-bottom:20px}.faq-item{border-bottom:1px solid var(--border);padding:16px 0}.faq-item:last-child{border-bottom:none;padding-bottom:0}.faq-item h3{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px}.faq-item p{font-size:14px;color:var(--text2);line-height:1.7}
 @media print{header,footer,.ad-slot,.ad-top,.ad-middle,.ad-bottom,.form-card,.tool-hero,.breadcrumb,.seo-section,.faq-section,.related-section,.affiliate-section,.download-row,#btt{display:none!important}body{background:#fff!important}main{padding:0!important}#output{display:block!important;box-shadow:none!important;border:none!important;padding:0!important}}</style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1638874323475457" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="/assets/css/tool-modules.css"></head>
+<link rel="stylesheet" href="/assets/css/tool-modules.css"><!-- DIFFERENTIATED-LOGIC-BEGIN -->
+<script>
+// === Invoice Tracker (status state machine + aging buckets) ===
+window.INVOICE_STATUSES = ['draft','sent','viewed','partial','paid','overdue','disputed','written_off'];
+window.INVOICE_TRANSITIONS = {
+  draft:    ['sent','written_off'],
+  sent:     ['viewed','partial','paid','overdue','disputed'],
+  viewed:   ['partial','paid','overdue','disputed'],
+  partial:  ['paid','overdue','disputed'],
+  overdue:  ['partial','paid','disputed','written_off'],
+  disputed: ['paid','written_off'],
+  paid:     [],
+  written_off: []
+};
+window.bucketInvoiceAge = function (issueDate, paidDate) {
+  var ref = paidDate ? new Date(paidDate) : new Date();
+  var days = Math.floor((ref - new Date(issueDate)) / 86400000);
+  if (days <= 0)  return 'current';
+  if (days <= 30) return '1-30 days';
+  if (days <= 60) return '31-60 days';
+  if (days <= 90) return '61-90 days';
+  return '90+ days';
+};
+window.canTransitionInvoice = function (from, to) {
+  var allowed = window.INVOICE_TRANSITIONS[from] || [];
+  return allowed.indexOf(to) >= 0;
+};
+window.summarizeAR = function (invoices) {
+  if (!Array.isArray(invoices)) invoices = [];
+  var sum = { current: 0, '1-30 days': 0, '31-60 days': 0, '61-90 days': 0, '90+ days': 0, totalOutstanding: 0 };
+  invoices.forEach(function (inv) {
+    if (inv.status === 'paid' || inv.status === 'written_off') return;
+    var bucket = window.bucketInvoiceAge(inv.issueDate);
+    sum[bucket] += +inv.amount || 0;
+    sum.totalOutstanding += +inv.amount || 0;
+  });
+  return sum;
+};
+</script>
+<!-- DIFFERENTIATED-LOGIC-END -->
+</head>
 <body>
 <header>
   <div class="header-inner">

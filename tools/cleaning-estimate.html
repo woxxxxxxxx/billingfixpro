@@ -117,7 +117,33 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 .faq-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px}.faq-section h2{font-size:1.1rem;font-weight:700;margin-bottom:20px}.faq-item{border-bottom:1px solid var(--border);padding:16px 0}.faq-item:last-child{border-bottom:none;padding-bottom:0}.faq-item h3{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px}.faq-item p{font-size:14px;color:var(--text2);line-height:1.7}
 @media print{header,footer,.ad-slot,.ad-top,.ad-middle,.ad-bottom,.form-card,.tool-hero,.breadcrumb,.seo-section,.faq-section,.related-section,.affiliate-section,.download-row,#btt{display:none!important}body{background:#fff!important}main{padding:0!important}#output{display:block!important;box-shadow:none!important;border:none!important;padding:0!important}}</style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1638874323475457" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="/assets/css/tool-modules.css"></head>
+<link rel="stylesheet" href="/assets/css/tool-modules.css"><!-- DIFFERENTIATED-LOGIC-BEGIN -->
+<script>
+// === Cleaning Service Estimator (sq-ft + labor + supplies) ===
+window.estimateCleaningJob = function (sqft, hourlyRate, hours, supplies, urgency) {
+  sqft = +sqft || 0; hourlyRate = +hourlyRate || 35; hours = +hours || 2;
+  supplies = +supplies || 15; urgency = (urgency || 'standard').toLowerCase();
+  var areaCharge = Math.max(sqft * 0.12, 25);
+  var laborCharge = hourlyRate * hours;
+  var urgencyMult = { rush: 1.45, sameday: 1.30, standard: 1.0, scheduled: 0.92 }[urgency] || 1;
+  var raw = (areaCharge + laborCharge + supplies) * urgencyMult;
+  var minBookingFee = 75;
+  var subtotal = Math.max(raw, minBookingFee);
+  var taxableSupplies = supplies * 0.0875;
+  return {
+    areaCharge: +areaCharge.toFixed(2),
+    laborCharge: +laborCharge.toFixed(2),
+    supplies: +supplies.toFixed(2),
+    urgencyMultiplier: urgencyMult,
+    salesTaxOnSupplies: +taxableSupplies.toFixed(2),
+    subtotal: +subtotal.toFixed(2),
+    total: +(subtotal + taxableSupplies).toFixed(2)
+  };
+};
+window.cleaningChecklistItems = ['Vacuum & mop floors','Dust all surfaces','Sanitize bathrooms','Kitchen deep clean','Window interiors','Trash removal'];
+</script>
+<!-- DIFFERENTIATED-LOGIC-END -->
+</head>
 <body>
 <header>
   <div class="header-inner">

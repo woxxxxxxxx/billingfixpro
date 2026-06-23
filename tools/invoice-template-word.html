@@ -117,7 +117,35 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 .faq-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px}.faq-section h2{font-size:1.1rem;font-weight:700;margin-bottom:20px}.faq-item{border-bottom:1px solid var(--border);padding:16px 0}.faq-item:last-child{border-bottom:none;padding-bottom:0}.faq-item h3{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px}.faq-item p{font-size:14px;color:var(--text2);line-height:1.7}
 @media print{header,footer,.ad-slot,.ad-top,.ad-middle,.ad-bottom,.form-card,.tool-hero,.breadcrumb,.seo-section,.faq-section,.related-section,.affiliate-section,.download-row,#btt{display:none!important}body{background:#fff!important}main{padding:0!important}#output{display:block!important;box-shadow:none!important;border:none!important;padding:0!important}}</style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1638874323475457" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="/assets/css/tool-modules.css"></head>
+<link rel="stylesheet" href="/assets/css/tool-modules.css"><!-- DIFFERENTIATED-LOGIC-BEGIN -->
+<script>
+// === Invoice DOCX-style HTML Template Builder ===
+window.buildInvoiceWordHTML = function (header, lines) {
+  header = header || {};
+  if (!Array.isArray(lines)) lines = [];
+  var styles = 'font-family:Calibri,Arial,sans-serif;font-size:11pt;color:#222';
+  var sub = 0;
+  var rowsHtml = lines.map(function (L) {
+    var q = +L.qty || 0, p = +L.price || 0, t = q * p; sub += t;
+    return '<tr><td>' + (L.desc||'') + '</td><td align="right">' + q + '</td><td align="right">$' + p.toFixed(2) + '</td><td align="right">$' + t.toFixed(2) + '</td></tr>';
+  }).join('');
+  var taxPct = +header.taxPct || 0;
+  var tax = sub * taxPct / 100;
+  return '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Invoice ' + (header.number||'') + '</title></head>' +
+         '<body style="' + styles + '"><h1 style="border-bottom:2px solid #000;padding-bottom:6px">INVOICE</h1>' +
+         '<table width="100%"><tr><td><b>From:</b><br>' + (header.from||'') + '</td>' +
+         '<td align="right"><b>Invoice #</b> ' + (header.number||'') + '<br><b>Date</b> ' + (header.date||'') + '</td></tr>' +
+         '<tr><td colspan="2"><b>To:</b><br>' + (header.to||'') + '</td></tr></table>' +
+         '<table width="100%" border="1" cellpadding="6" cellspacing="0" style="border-collapse:collapse;margin-top:18px">' +
+         '<thead><tr style="background:#eee"><th align="left">Description</th><th>Qty</th><th>Unit</th><th>Total</th></tr></thead>' +
+         '<tbody>' + rowsHtml + '</tbody></table>' +
+         '<p align="right" style="margin-top:14px">Subtotal: $' + sub.toFixed(2) + '<br>' +
+         'Tax (' + taxPct + '%): $' + tax.toFixed(2) + '<br>' +
+         '<b style="font-size:13pt">Total: $' + (sub+tax).toFixed(2) + '</b></p></body></html>';
+};
+</script>
+<!-- DIFFERENTIATED-LOGIC-END -->
+</head>
 <body>
 <header>
   <div class="header-inner">

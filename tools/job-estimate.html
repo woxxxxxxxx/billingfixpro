@@ -117,7 +117,39 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 .faq-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px}.faq-section h2{font-size:1.1rem;font-weight:700;margin-bottom:20px}.faq-item{border-bottom:1px solid var(--border);padding:16px 0}.faq-item:last-child{border-bottom:none;padding-bottom:0}.faq-item h3{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px}.faq-item p{font-size:14px;color:var(--text2);line-height:1.7}
 @media print{header,footer,.ad-slot,.ad-top,.ad-middle,.ad-bottom,.form-card,.tool-hero,.breadcrumb,.seo-section,.faq-section,.related-section,.affiliate-section,.download-row,#btt{display:none!important}body{background:#fff!important}main{padding:0!important}#output{display:block!important;box-shadow:none!important;border:none!important;padding:0!important}}</style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1638874323475457" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="/assets/css/tool-modules.css"></head>
+<link rel="stylesheet" href="/assets/css/tool-modules.css"><!-- DIFFERENTIATED-LOGIC-BEGIN -->
+<script>
+// === Job Estimate (task list + man-hour rollup + travel) ===
+window.computeJobEstimate = function (tasks, travelMiles, mileageRate, minServiceCharge) {
+  if (!Array.isArray(tasks)) tasks = [];
+  travelMiles = +travelMiles || 0;
+  mileageRate = +mileageRate || 0.67;
+  minServiceCharge = +minServiceCharge || 95;
+  var totalHours = 0, totalLabor = 0, totalParts = 0;
+  var breakdown = [];
+  for (var i = 0; i < tasks.length; i++) {
+    var t = tasks[i] || {};
+    var hrs = +t.hours || 0, rate = +t.rate || 75, parts = +t.parts || 0;
+    var line = hrs * rate + parts;
+    totalHours += hrs; totalLabor += hrs * rate; totalParts += parts;
+    breakdown.push({ task: t.name || ('Task ' + (i+1)), amount: +line.toFixed(2) });
+  }
+  var travel = travelMiles * mileageRate * 2; // round trip
+  var subtotal = totalLabor + totalParts + travel;
+  var billable = Math.max(subtotal, minServiceCharge);
+  return {
+    totalHours: +totalHours.toFixed(2),
+    laborCost: +totalLabor.toFixed(2),
+    partsCost: +totalParts.toFixed(2),
+    travelCost: +travel.toFixed(2),
+    minimumApplied: billable === minServiceCharge,
+    breakdown: breakdown,
+    grandTotal: +billable.toFixed(2)
+  };
+};
+</script>
+<!-- DIFFERENTIATED-LOGIC-END -->
+</head>
 <body>
 <header>
   <div class="header-inner">
