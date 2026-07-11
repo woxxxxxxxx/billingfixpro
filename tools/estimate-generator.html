@@ -147,8 +147,15 @@ window.buildEstimate = function (lines, contingencyPct, validDays) {
 window.estimateRiskLevels = { simple: 0.8, standard: 1.0, complex: 1.4, unknown: 1.8 };
 </script>
 <!-- DIFFERENTIATED-LOGIC-END -->
+<meta property="og:title" content="Free Estimate Generator for Services and Projects | BillingFixPro">
+<meta property="og:description" content="Generate professional estimates with scope, pricing, tax, terms, and approval details before converting a quote to an invoice.">
+<meta property="og:url" content="https://billingfixpro.com/tools/estimate-generator.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<style>.portfolio-skip-link{position:fixed;left:12px;top:12px;z-index:10000;padding:.65rem .9rem;background:#111827;color:#fff;border-radius:4px;transform:translateY(-160%)}.portfolio-skip-link:focus{transform:none}</style>
 </head>
 <body>
+<a class="portfolio-skip-link" href="#main-content">Skip to main content</a>
 <header>
   <div class="header-inner">
     <a href="/" class="logo"><img src="/logo.svg?v=2" alt="BillingFixPro" height="38"></a>
@@ -160,7 +167,7 @@ window.estimateRiskLevels = { simple: 0.8, standard: 1.0, complex: 1.4, unknown:
 </header>
 <div class="ad-slot ad-top"><div class="adsense-placeholder" data-pub="ca-pub-1638874323475457"></div></div>
 <div class="breadcrumb"><a href="/">Home</a><span>?</span><a href="/">Tools</a><span>?</span>Free Estimate Generator</div>
-<main>
+<main id="main-content">
   <div class="tool-hero">
     <h1>Free Estimate Generator</h1>
     <p>Free online free estimate generator &mdash; no signup required. Generate and download professional documents instantly.</p>
@@ -169,12 +176,12 @@ window.estimateRiskLevels = { simple: 0.8, standard: 1.0, complex: 1.4, unknown:
 <div class="form-card">
   <h2>Quote Details</h2>
   <div class="form-grid">
-    <div class="field"><label>Your Business</label><input id="from" type="text" placeholder="Your Business Name"></div>
-    <div class="field"><label>Client Name</label><input id="to" type="text" placeholder="Client / Company"></div>
-    <div class="field"><label>Quote #</label><input id="qNum" type="text" placeholder="Q-001" value="Q-001"></div>
-    <div class="field"><label>Date</label><input id="qDate" type="date"></div>
-    <div class="field"><label>Valid for (days)</label><input id="valid" type="number" value="30"></div>
-    <div class="field"><label>Tax Rate (%)</label><input id="taxRate" type="number" value="0" step="0.1" oninput="calcTotals()"></div>
+    <div class="field"><label>Your Business</label><input id="from" type="text" placeholder="Your Business Name" aria-label="Your Business Name"></div>
+    <div class="field"><label>Client Name</label><input id="to" type="text" placeholder="Client / Company" aria-label="Client / Company"></div>
+    <div class="field"><label>Quote #</label><input id="qNum" type="text" placeholder="Q-001" value="Q-001" aria-label="Q 001"></div>
+    <div class="field"><label>Date</label><input id="qDate" type="date" aria-label="QDate"></div>
+    <div class="field"><label>Valid for (days)</label><input id="valid" type="number" value="30" aria-label="Valid"></div>
+    <div class="field"><label>Tax Rate (%)</label><input id="taxRate" type="number" value="0" step="0.1" oninput="calcTotals()" aria-label="TaxRate"></div>
   </div>
 </div>
 <div class="form-card">
@@ -336,9 +343,9 @@ window.estimateRiskLevels = { simple: 0.8, standard: 1.0, complex: 1.4, unknown:
 function addRow(){
   const tb=document.getElementById('lineItems');
   const tr=document.createElement('tr');
-  tr.innerHTML=`<td><input type="text" placeholder="Description" style="width:100%;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px"></td>
-    <td><input type="number" value="1" min="0" oninput="calcTotals()" style="width:60px;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px"></td>
-    <td><input type="number" value="0" min="0" step="0.01" oninput="calcTotals()" style="width:90px;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px"></td>
+  tr.innerHTML=`<td><input type="text" placeholder="Description" style="width:100%;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px" aria-label="Description"></td>
+    <td><input type="number" value="1" min="0" oninput="calcTotals()" style="width:60px;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px" aria-label="Input Input"></td>
+    <td><input type="number" value="0" min="0" step="0.01" oninput="calcTotals()" style="width:90px;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px" aria-label="Input Input"></td>
     <td id="rt" style="text-align:right;padding:6px;font-size:13px">$0.00</td>
     <td><button onclick="this.closest('tr').remove();calcTotals()" style="background:#fee2e2;color:#dc2626;border:none;border-radius:4px;padding:4px 8px;cursor:pointer">?</button></td>`;
   tb.appendChild(tr);calcTotals();

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="robots" content="noindex, follow">
 <!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-TPVMTCEC3E">
 </script>
 <script>
@@ -119,7 +120,6 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 @media(max-width:640px){.form-grid{grid-template-columns:1fr}.related-grid{grid-template-columns:1fr}.tool-hero h1{font-size:1.5rem}}
 .faq-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px}.faq-section h2{font-size:1.1rem;font-weight:700;margin-bottom:20px}.faq-item{border-bottom:1px solid var(--border);padding:16px 0}.faq-item:last-child{border-bottom:none;padding-bottom:0}.faq-item h3{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px}.faq-item p{font-size:14px;color:var(--text2);line-height:1.7}
 @media print{header,footer,.ad-slot,.ad-top,.ad-middle,.ad-bottom,.form-card,.tool-hero,.breadcrumb,.seo-section,.faq-section,.related-section,.affiliate-section,.download-row,#btt{display:none!important}body{background:#fff!important}main{padding:0!important}#output{display:block!important;box-shadow:none!important;border:none!important;padding:0!important}}</style>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1638874323475457" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/assets/css/tool-modules.css"><!-- DIFFERENTIATED-LOGIC-BEGIN -->
 <script>
 // === Rent Receipt (receipt-specific issuance + verification) ===
@@ -162,8 +162,15 @@ window.rentRcpt_taxNote = function (amount, jurisdiction) {
 };
 </script>
 <!-- DIFFERENTIATED-LOGIC-END -->
+<meta property="og:title" content="Rent Receipt Template - Free Online Tool | BillingFixPro">
+<meta property="og:description" content="Generate a polished Rent Receipt with transaction details, payment confirmation, and proper formatting. Free tool for businesses - instant download, no registration.">
+<meta property="og:url" content="https://billingfixpro.com/tools/rent-receipt.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<style>.portfolio-skip-link{position:fixed;left:12px;top:12px;z-index:10000;padding:.65rem .9rem;background:#111827;color:#fff;border-radius:4px;transform:translateY(-160%)}.portfolio-skip-link:focus{transform:none}</style>
 </head>
 <body>
+<a class="portfolio-skip-link" href="#main-content">Skip to main content</a>
 <header>
   <div class="header-inner">
     <a href="/" class="logo"><img src="/logo.svg?v=2" alt="BillingFixPro" height="38"></a>
@@ -175,7 +182,7 @@ window.rentRcpt_taxNote = function (amount, jurisdiction) {
 </header>
 <div class="ad-slot ad-top"><div class="adsense-placeholder" data-pub="ca-pub-1638874323475457"></div></div>
 <div class="breadcrumb"><a href="/">Home</a><span>?</span><a href="/">Tools</a><span>?</span>Rent Receipt Template</div>
-<main>
+<main id="main-content">
   <div class="tool-hero">
     <h1>Rent Receipt Template</h1>
     <p>Free online rent receipt template &mdash; no signup required. Generate and download professional documents instantly.</p>
@@ -184,13 +191,13 @@ window.rentRcpt_taxNote = function (amount, jurisdiction) {
 <div class="form-card">
   <h2>Receipt Details</h2>
   <div class="form-grid">
-    <div class="field"><label>Business / Received By</label><input id="from" type="text" placeholder="Your Business Name"></div>
-    <div class="field"><label>Customer / Payer</label><input id="to" type="text" placeholder="Customer Name"></div>
-    <div class="field"><label>Receipt #</label><input id="ref" type="text" placeholder="REC-001" value="REC-001"></div>
-    <div class="field"><label>Date</label><input id="rdate" type="date"></div>
-    <div class="field"><label>Amount ($)</label><input id="amount" type="number" placeholder="0.00" step="0.01"></div>
-    <div class="field"><label>Payment Method</label><select id="method"><option>Cash</option><option>Bank Transfer</option><option>Credit Card</option><option>Check</option><option>PayPal</option></select></div>
-    <div class="field full"><label>Description</label><textarea id="desc" placeholder="What is this payment for?"></textarea></div>
+    <div class="field"><label>Business / Received By</label><input id="from" type="text" placeholder="Your Business Name" aria-label="Your Business Name"></div>
+    <div class="field"><label>Customer / Payer</label><input id="to" type="text" placeholder="Customer Name" aria-label="Customer Name"></div>
+    <div class="field"><label>Receipt #</label><input id="ref" type="text" placeholder="REC-001" value="REC-001" aria-label="REC 001"></div>
+    <div class="field"><label>Date</label><input id="rdate" type="date" aria-label="Rdate"></div>
+    <div class="field"><label>Amount ($)</label><input id="amount" type="number" placeholder="0.00" step="0.01" aria-label="0.00"></div>
+    <div class="field"><label>Payment Method</label><select id="method" aria-label="Method"><option>Cash</option><option>Bank Transfer</option><option>Credit Card</option><option>Check</option><option>PayPal</option></select></div>
+    <div class="field full"><label>Description</label><textarea id="desc" placeholder="What is this payment for?" aria-label="What Is This Payment For?"></textarea></div>
   </div>
   <button class="btn-primary" onclick="generateReceipt()">Generate Receipt</button>
 </div>
@@ -340,9 +347,9 @@ window.rentRcpt_taxNote = function (amount, jurisdiction) {
 function addRow(){
   const tb=document.getElementById('lineItems');
   const tr=document.createElement('tr');
-  tr.innerHTML=`<td><input type="text" placeholder="Item description" style="width:100%;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px"></td>
-    <td><input type="number" value="1" min="0" oninput="calcTotals()" style="width:60px;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px"></td>
-    <td><input type="number" value="0" min="0" step="0.01" oninput="calcTotals()" style="width:90px;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px"></td>
+  tr.innerHTML=`<td><input type="text" placeholder="Item description" style="width:100%;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px" aria-label="Item Description"></td>
+    <td><input type="number" value="1" min="0" oninput="calcTotals()" style="width:60px;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px" aria-label="Input Input"></td>
+    <td><input type="number" value="0" min="0" step="0.01" oninput="calcTotals()" style="width:90px;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px" aria-label="Input Input"></td>
     <td id="rt" style="text-align:right;padding:6px;font-size:13px">$0.00</td>
     <td><button onclick="this.closest('tr').remove();calcTotals()" style="background:#fee2e2;color:#dc2626;border:none;border-radius:4px;padding:4px 8px;cursor:pointer">?</button></td>`;
   tb.appendChild(tr);calcTotals();

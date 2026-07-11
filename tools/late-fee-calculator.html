@@ -117,8 +117,15 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 .faq-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px}.faq-section h2{font-size:1.1rem;font-weight:700;margin-bottom:20px}.faq-item{border-bottom:1px solid var(--border);padding:16px 0}.faq-item:last-child{border-bottom:none;padding-bottom:0}.faq-item h3{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px}.faq-item p{font-size:14px;color:var(--text2);line-height:1.7}
 @media print{header,footer,.ad-slot,.ad-top,.ad-middle,.ad-bottom,.form-card,.tool-hero,.breadcrumb,.seo-section,.faq-section,.related-section,.affiliate-section,.download-row,#btt{display:none!important}body{background:#fff!important}main{padding:0!important}#output{display:block!important;box-shadow:none!important;border:none!important;padding:0!important}}</style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1638874323475457" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="/assets/css/tool-modules.css"></head>
+<link rel="stylesheet" href="/assets/css/tool-modules.css"><meta property="og:title" content="Late Payment Fee Calculator - Free Online Tool | BillingFixPro">
+<meta property="og:description" content="Use our free Late Fee Calculator to compute accurate totals, taxes, and fees instantly. Professional online tool for freelancers, accountants, and small businesses.">
+<meta property="og:url" content="https://billingfixpro.com/tools/late-fee-calculator.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<style>.portfolio-skip-link{position:fixed;left:12px;top:12px;z-index:10000;padding:.65rem .9rem;background:#111827;color:#fff;border-radius:4px;transform:translateY(-160%)}.portfolio-skip-link:focus{transform:none}</style>
+</head>
 <body>
+<a class="portfolio-skip-link" href="#main-content">Skip to main content</a>
 <header>
   <div class="header-inner">
     <a href="/" class="logo"><img src="/logo.svg?v=2" alt="BillingFixPro" height="38"></a>
@@ -130,7 +137,7 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 </header>
 <div class="ad-slot ad-top"><div class="adsense-placeholder" data-pub="ca-pub-1638874323475457"></div></div>
 <div class="breadcrumb"><a href="/">Home</a><span>?</span><a href="/">Tools</a><span>?</span>Late Payment Fee Calculator</div>
-<main>
+<main id="main-content">
   <div class="tool-hero">
     <h1>Late Payment Fee Calculator</h1>
     <p>Free online late payment fee calculator &mdash; no signup required. Generate and download professional documents instantly.</p>
@@ -139,10 +146,10 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 <div class="form-card">
   <h2>Calculate Late Fee</h2>
   <div class="form-grid">
-    <div class="field"><label>Original Invoice Amount ($)</label><input id="amount" type="number" value="1000" step="0.01"></div>
-    <div class="field"><label>Days Overdue</label><input id="days" type="number" value="30"></div>
-    <div class="field"><label>Late Fee Rate (%)</label><input id="rate" type="number" value="1.5" step="0.1"></div>
-    <div class="field"><label>Fee Period</label><select id="period"><option value="monthly">Monthly</option><option value="weekly">Weekly</option><option value="daily">Daily</option></select></div>
+    <div class="field"><label>Original Invoice Amount ($)</label><input id="amount" type="number" value="1000" step="0.01" aria-label="Amount"></div>
+    <div class="field"><label>Days Overdue</label><input id="days" type="number" value="30" aria-label="Days"></div>
+    <div class="field"><label>Late Fee Rate (%)</label><input id="rate" type="number" value="1.5" step="0.1" aria-label="Rate"></div>
+    <div class="field"><label>Fee Period</label><select id="period" aria-label="Period"><option value="monthly">Monthly</option><option value="weekly">Weekly</option><option value="daily">Daily</option></select></div>
   </div>
   <button class="btn-primary" onclick="calc()">Calculate Late Fee</button>
 </div>
