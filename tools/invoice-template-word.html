@@ -160,7 +160,7 @@ window.buildInvoiceWordHTML = function (header, lines) {
 <div class="breadcrumb"><a href="/">Home</a><span>?</span><a href="/">Tools</a><span>?</span>Invoice Template for Word</div>
 <main>
   <div class="tool-hero">
-    <h1>Invoice Template for Word</h1>
+    <h2>Invoice Template for Word</h2>
     <p>Free online invoice template for word &mdash; no signup required. Generate and download professional documents instantly.</p>
   </div>
   
@@ -332,7 +332,7 @@ window.buildInvoiceWordHTML = function (header, lines) {
     </div>
     <div class="footer-copy">&copy; 2025 BillingFixPro. All rights reserved.</div>
   </div>
-</footer>
+<p class="editorial-policy-link"><a href="../editorial-policy.html">Editorial Policy</a></p></footer>
 <script>
 const _TOOL_SIGNATURE = {"id":"invoice-template-word","outputFormat":"docx","defaultDue":14};
 
@@ -397,14 +397,14 @@ To:   ${to}
 Invoice #: ${invNum}
 Date:      ${date}${due?'\nDue:       '+due:''}
 
-${'©¤'.repeat(50)}
+${'ï¿½ï¿½'.repeat(50)}
 DESCRIPTION                    QTY   RATE    AMOUNT
-${'©¤'.repeat(50)}
-${linesTxt}${'©¤'.repeat(50)}
+${'ï¿½ï¿½'.repeat(50)}
+${linesTxt}${'ï¿½ï¿½'.repeat(50)}
 Subtotal:  ${document.getElementById('subtotal').textContent}
 Discount:  ${document.getElementById('discountAmt').textContent}
 Tax:       ${document.getElementById('taxAmt').textContent}
-${'©¤'.repeat(50)}
+${'ï¿½ï¿½'.repeat(50)}
 TOTAL DUE: ${document.getElementById('totalAmt').textContent}
 ${'='.repeat(50)}
 ${document.getElementById('notes').value?'Notes: '+document.getElementById('notes').value:''}`;

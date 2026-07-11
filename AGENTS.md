@@ -35,3 +35,7 @@
 - Added 3 search-intent guide hub pages based on recent Search Console exposure.
 - Updated title/meta descriptions for high-impression, low-CTR pages and added a homepage entry block for the new guides.
 - Regenerated sitemap.xml with lastmod=2026-07-01. Goal: improve long-tail relevance, internal link strength, and search-result click clarity.
+
+## 2026-07-11 portfolio AdSense preflight
+- 2026-07-11 preflight: 16 thin batch blog pages and 4 thin guide pages were removed from the index and AdSense inventory. The 100 functional invoice/template pages remain the primary publisher value. Added Editorial Policy, Contact, and Terms pages.
+- Required release check: `node C:\\Users\\Administrator\\pm-worker\\adsense-release-gate.js billingfixpro`. Do not submit or deploy after a failed gate.
