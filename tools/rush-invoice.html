@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="robots" content="noindex, follow">
+  <meta name="robots" content="index, follow">
 <!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-TPVMTCEC3E">
 </script>
 <script>
@@ -49,8 +49,8 @@ function generateInvoiceHTML(from_,to_,num_,date_,due_,linesHTML,sub,discAmt,tax
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<title>Rush Fee Invoice Template - Free Online Tool | BillingFixPro</title>
-<meta name="description" content="Create a professional Rush Invoice with itemized billing, tax calculations, and payment terms. Free online tool for freelancers and small businesses - no signup needed.">
+<title>Rush Invoice Template & Rush Fee Calculator | BillingFixPro</title>
+<meta name="description" content="Calculate a 25%, 50%, or 100% rush fee, add it to an itemized invoice, and print or save the finished rush invoice as a PDF. No signup required.">
 <link rel="canonical" href="https://billingfixpro.com/tools/rush-invoice.html">
 <style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--primary:#0891b2;--primary-dark:#0e7490;--primary-light:#ecfeff;--primary-dim:rgba(8,145,178,.08);--bg:#f8fafc;--bg2:#fff;--text:#1e293b;--text2:#475569;--text3:#94a3b8;--border:#e2e8f0;--radius:12px;--radius-sm:8px;--shadow:0 1px 3px rgba(0,0,0,.08),0 1px 6px rgba(0,0,0,.04)}
@@ -133,7 +133,7 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 <main>
   <div class="tool-hero">
     <h1>Rush Fee Invoice Template</h1>
-    <p>Free online rush fee invoice template &mdash; no signup required. Generate and download professional documents instantly.</p>
+    <p>Calculate a rush surcharge, add it as a separate invoice line, and print or save the finished invoice as a PDF. No signup required.</p>
   </div>
   
 <div class="form-card">
@@ -162,7 +162,8 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
     <div style="font-size:16px;font-weight:800;color:var(--primary)">Total Due: <strong id="totalAmt">$0.00</strong></div>
   </div>
   <div class="field full" style="margin-top:16px"><label>Notes / Payment Terms</label><textarea id="notes" placeholder="Payment due within 30 days. Thank you for your business."></textarea></div>
-  <div class="field"><label>Standard Rate ($)</label><input id="stdRate" type="number" value="0" step="10" oninput="calcRush()"></div><div class="field"><label>Rush Fee (%)</label><select id="rushPct" oninput="calcRush()"><option value="25">25% Rush Fee</option><option value="50">50% Rush Fee</option><option value="100">100% (Double Time)</option></select></div><div class="field"><label>Rush Delivery By</label><input id="rushDue" type="datetime-local"></div>
+  <div class="field"><label>Standard Project Rate ($)</label><input id="stdRate" type="number" value="0" min="0" step="10" oninput="calcRush()"></div><div class="field"><label>Rush Fee (%)</label><select id="rushPct" oninput="calcRush()"><option value="25">25% Rush Fee</option><option value="50">50% Rush Fee</option><option value="100">100% (Double Time)</option></select></div><div class="field"><label>Calculated Rush Fee</label><div id="rushFeeDisplay" style="padding:10px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);font-weight:700">$0.00</div></div><div class="field"><label>Rush Delivery By</label><input id="rushDue" type="datetime-local"></div>
+  <button type="button" onclick="applyRushFee()" style="margin:0 0 14px;padding:9px 16px;background:var(--primary-light);color:var(--primary);border:1.5px solid var(--primary);border-radius:var(--radius-sm);font-weight:700;cursor:pointer">Add Rush Fee as Line Item</button>
   <button class="btn-primary" onclick="generateInvoice()">Generate Invoice</button>
 </div>
 <div id="output" class="preview-card" style="display:none">
@@ -183,7 +184,7 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
     <li>Add line items with descriptions, quantities, and unit prices.</li>
     <li>Set your tax rate and any applicable discounts.</li>
     <li>Click Generate to create your Rush Invoice document.</li>
-    <li>Download as PDF or copy the formatted text for your records.</li>
+    <li>Use your browser's print dialog to print the invoice or save it as a PDF.</li>
     </ol>
   </div>
   <div class="tool-info-card">
@@ -209,16 +210,16 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
   <div class="faq-section">
   <h2>Frequently Asked Questions</h2>
   <div class="faq-item">
-    <h3>Q: What information should I include on my </h3>
+    <h3>Q: What information should I include on a rush invoice?</h3>
     <p>A: A complete Rush Invoice should include your business name and contact details, client information, a unique invoice number, date issued, payment due date, itemized list of services or products with quantities and prices, applicable taxes, payment terms, and the total amount due. Including clear payment instructions helps ensure faster payment.</p>
   </div>
   <div class="faq-item">
-    <h3>Q: Do I need to create an account to use the </h3>
+    <h3>Q: Do I need an account to use the rush invoice template?</h3>
     <p>A: No account or registration is needed. Simply visit the page, enter your details, and generate your invoice immediately. All processing happens in your browser &mdash; your data is never stored on our servers.</p>
   </div>
   <div class="faq-item">
     <h3>Q: What formats can I download my invoice in?</h3>
-    <p>A: You can download your invoice as a PDF for professional sharing or archiving, or copy the formatted text to paste into Microsoft Word, Excel, Google Docs, or any other application.</p>
+    <p>A: You can copy the formatted text or use your browser's Print / Save PDF option. The page does not upload a PDF to a server.</p>
   </div>
   <div class="faq-item">
     <h3>Q: Does the Rush Fee Invoice Template calculate taxes and discounts automatically?</h3>
@@ -246,6 +247,7 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
   </div>
 </div>
 <!-- AFFILIATE_SECTION_START -->
+<template id="pending-affiliate-offers">
 <style>
 .affiliate-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px}
 .affiliate-section h2{font-size:1rem;font-weight:700;margin-bottom:16px;color:var(--text)}
@@ -291,8 +293,7 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
     </a>
   </div>
 </section>
-
-
+</template>
 </main>
 <div class="ad-slot ad-bottom"><div class="adsense-placeholder" data-pub="ca-pub-1638874323475457"></div></div>
 <footer>
@@ -308,15 +309,15 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 <p class="editorial-policy-link"><a href="../editorial-policy.html">Editorial Policy</a></p></footer>
 <script>
 
-function addRow(){
+function addRow(description='',qty=1,rate=0){
   const tb=document.getElementById('lineItems');
   const tr=document.createElement('tr');
-  tr.innerHTML=`<td><input type="text" placeholder="Item description" style="width:100%;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px"></td>
-    <td><input type="number" value="1" min="0" oninput="calcTotals()" style="width:60px;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px"></td>
-    <td><input type="number" value="0" min="0" step="0.01" oninput="calcTotals()" style="width:90px;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px"></td>
+  tr.innerHTML=`<td><input type="text" placeholder="Item description" value="${description}" style="width:100%;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px"></td>
+    <td><input type="number" value="${qty}" min="0" oninput="calcTotals()" style="width:60px;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px"></td>
+    <td><input type="number" value="${rate}" min="0" step="0.01" oninput="calcTotals()" style="width:90px;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px"></td>
     <td id="rt" style="text-align:right;padding:6px;font-size:13px">$0.00</td>
     <td><button onclick="this.closest('tr').remove();calcTotals()" style="background:#fee2e2;color:#dc2626;border:none;border-radius:4px;padding:4px 8px;cursor:pointer">?</button></td>`;
-  tb.appendChild(tr);calcTotals();
+  tb.appendChild(tr);calcTotals();return tr;
 }
 function calcTotals(){
   let sub=0;
@@ -339,10 +340,19 @@ function calcTotals(){
   const stdRate=parseFloat(document.getElementById('stdRate')?.value)||0;
   const rushFee=stdRate*rushPct;
   const rf=document.getElementById('rushFeeDisplay');if(rf)rf.textContent='$'+rushFee.toFixed(2);
-  rushPct=(parseFloat(document.getElementById('rushPct')?.value)||0)/100;
-  stdRate=parseFloat(document.getElementById('stdRate')?.value)||0;
-  rushFee=stdRate*rushPct;
-  rf=document.getElementById('rushFeeDisplay');if(rf)rf.textContent='$'+rushFee.toFixed(2);
+}
+function calcRush(){calcTotals();}
+function applyRushFee(){
+  const pct=parseFloat(document.getElementById('rushPct')?.value)||0;
+  const rate=parseFloat(document.getElementById('stdRate')?.value)||0;
+  const fee=rate*pct/100;
+  if(fee<=0){alert('Enter a standard project rate first.');return;}
+  const existing=document.querySelector('#lineItems tr[data-rush-fee="true"]');
+  const row=existing||addRow('',1,fee);
+  row.dataset.rushFee='true';
+  const inputs=row.querySelectorAll('input');
+  inputs[0].value='Rush fee ('+pct+'%)';inputs[1].value=1;inputs[2].value=fee.toFixed(2);
+  calcTotals();
 }
 function printDoc(){
   var o=document.getElementById('output');
@@ -367,6 +377,7 @@ document.querySelectorAll('.faq-item h3').forEach(function(q){q.addEventListener
 function generateInvoice(){generateDoc();}
 function generateQuote(){generateDoc();}
 function generateDoc(){
+  const esc=value=>String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   const from_=document.getElementById('from')?.value||'Your Business';
   const to_=document.getElementById('to')?.value||'Client';
   const num_=document.getElementById('invNum')?.value||document.getElementById('qNum')?.value||'001';
@@ -382,7 +393,7 @@ function generateDoc(){
   let sub=0,linesHTML='',linesTxt='';
   document.querySelectorAll('#lineItems tr').forEach(tr=>{
     const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;
-    const d=inputs[0].value||'Service';
+    const d=esc(inputs[0].value||'Service');
     const q=parseFloat(inputs[1].value)||0;
     const r=parseFloat(inputs[2].value)||0;
     const tot=q*r;sub+=tot;
@@ -394,10 +405,11 @@ function generateDoc(){
   const discAmt=sub*discPct;
   const taxAmt=(sub-discAmt)*(taxRate/100);
   const total=sub-discAmt+taxAmt;
-  document.getElementById('preview').innerHTML=generateInvoiceHTML(from_,to_,num_,date_,due_,linesHTML,sub,discAmt,taxAmt,total,notes,taxRate,extra);
+  document.getElementById('preview').innerHTML=generateInvoiceHTML(esc(from_),esc(to_),esc(num_),esc(date_),esc(due_),linesHTML,sub,discAmt,taxAmt,total,esc(notes),taxRate,esc(extra));
   document.getElementById('preview-txt').textContent=linesTxt;
   document.getElementById('output').style.display='block';
   document.getElementById('output').scrollIntoView({behavior:'smooth'});
+  if(typeof gtag==='function')gtag('event','document_generated',{document_type:'rush_invoice',rush_fee_percentage:parseFloat(document.getElementById('rushPct')?.value)||0});
 }
 </script>
 </body>

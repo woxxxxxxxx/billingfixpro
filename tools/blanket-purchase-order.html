@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="robots" content="noindex, follow">
+  <meta name="robots" content="index, follow">
 <!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-TPVMTCEC3E">
 </script>
 <script>
 function generateInvoiceHTML(from_,to_,num_,date_,due_,linesHTML,sub,discAmt,taxAmt,total,notes,taxRate,extra){
   const title=(document.querySelector('h1')||{textContent:'Invoice'}).textContent.replace(' Generator','').replace(' Tool','').replace(' Maker','');
+  const isPO=title.toLowerCase().includes('purchase order');
+  const numberLabel=isPO?'BPO #':'Invoice #';
+  const fromLabel=isPO?'Purchaser':'From';
+  const toLabel=isPO?'Vendor':'Bill To';
+  const totalLabel=isPO?'Order Total':'Total Due';
   return `<div style="font-family:'Helvetica Neue',Arial,sans-serif;max-width:680px;padding:40px;background:#fff;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,0.08)">
     <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:32px;padding-bottom:24px;border-bottom:2px solid #0891b2">
       <div>
         <div style="font-size:26px;font-weight:800;color:#0891b2;letter-spacing:-0.5px">${title}</div>
-        <div style="font-size:13px;color:#64748b;margin-top:6px">Invoice #${num_}</div>
-        <div style="font-size:13px;color:#64748b">Date: ${date_}${due_?' &nbsp;|&nbsp; Due: '+due_:''}</div>
+        <div style="font-size:13px;color:#64748b;margin-top:6px">${numberLabel}${num_}</div>
+        <div style="font-size:13px;color:#64748b">Effective: ${date_}${due_?' &nbsp;|&nbsp; Expires: '+due_:''}</div>
       </div>
       <div style="text-align:right;font-size:13px;color:#475569">
-        <div style="font-weight:700;color:#0f172a;margin-bottom:4px">From</div>
+        <div style="font-weight:700;color:#0f172a;margin-bottom:4px">${fromLabel}</div>
         <div>${from_}</div>
       </div>
     </div>
     <div style="background:#f0f9ff;border-left:3px solid #0891b2;padding:14px 18px;border-radius:0 8px 8px 0;margin-bottom:24px;font-size:13px">
-      <div style="font-weight:700;color:#0f172a;margin-bottom:4px">Bill To</div>
+      <div style="font-weight:700;color:#0f172a;margin-bottom:4px">${toLabel}</div>
       <div style="color:#475569">${to_}</div>
       ${extra?'<div style="color:#64748b;margin-top:6px;font-size:12px">'+extra+'</div>':''}
     </div>
@@ -38,7 +43,7 @@ function generateInvoiceHTML(from_,to_,num_,date_,due_,linesHTML,sub,discAmt,tax
         <div style="display:flex;justify-content:space-between;padding:6px 0;color:#475569"><span>Subtotal</span><strong>$${sub.toFixed(2)}</strong></div>
         ${discAmt>0?'<div style="display:flex;justify-content:space-between;padding:6px 0;color:#dc2626"><span>Discount</span><strong>-$'+discAmt.toFixed(2)+'</strong></div>':''}
         ${taxAmt>0?'<div style="display:flex;justify-content:space-between;padding:6px 0;color:#475569"><span>Tax ('+taxRate+'%)</span><strong>$'+taxAmt.toFixed(2)+'</strong></div>':''}
-        <div style="display:flex;justify-content:space-between;padding:10px 0;margin-top:6px;border-top:2px solid #0891b2;font-size:16px;font-weight:800;color:#0891b2"><span>Total Due</span><span>$${total.toFixed(2)}</span></div>
+        <div style="display:flex;justify-content:space-between;padding:10px 0;margin-top:6px;border-top:2px solid #0891b2;font-size:16px;font-weight:800;color:#0891b2"><span>${totalLabel}</span><span>$${total.toFixed(2)}</span></div>
       </div>
     </div>
     ${notes?'<div style="margin-top:20px;padding-top:16px;border-top:1px solid #e2e8f0;font-size:12px;color:#64748b"><strong style="color:#475569">Notes:</strong> '+notes+'</div>':''}
@@ -180,17 +185,17 @@ window.blanketPO_describe = function () {
 <main>
   <div class="tool-hero">
     <h1>Blanket Purchase Order Template</h1>
-    <p>Free online blanket purchase order template &mdash; no signup required. Generate and download professional documents instantly.</p>
+    <p>Create a standing purchase order with a vendor, contract period, maximum value, item limits, and purchasing terms. Print or save it as a PDF.</p>
   </div>
   
 <div class="form-card">
-  <h2>Invoice Details</h2>
+  <h2>Blanket Purchase Order Details</h2>
   <div class="form-grid">
-    <div class="field"><label>From (Your Business)</label><input id="from" type="text" placeholder="Your Name / Business"></div>
-    <div class="field"><label>Bill To (Client)</label><input id="to" type="text" placeholder="Client Name / Company"></div>
-    <div class="field"><label>Invoice #</label><input id="invNum" type="text" placeholder="INV-001" value="INV-001"></div>
-    <div class="field"><label>Invoice Date</label><input id="invDate" type="date"></div>
-    <div class="field"><label>Due Date</label><input id="dueDate" type="date"></div>
+    <div class="field"><label>Purchasing Organization</label><input id="from" type="text" placeholder="Your company or department"></div>
+    <div class="field"><label>Vendor / Supplier</label><input id="to" type="text" placeholder="Supplier company and contact"></div>
+    <div class="field"><label>BPO Number</label><input id="invNum" type="text" placeholder="BPO-2026-001" value="BPO-2026-001"></div>
+    <div class="field"><label>Effective Date</label><input id="invDate" type="date"></div>
+    <div class="field"><label>Expiration Date</label><input id="dueDate" type="date"></div>
     <div class="field"><label>Tax Rate (%)</label><input id="taxRate" type="number" value="0" step="0.1" oninput="calcTotals()"></div>
     <div class="field"><label>Discount (%)</label><input id="discount" type="number" value="0" step="0.1" oninput="calcTotals()"></div>
   </div>
@@ -206,14 +211,14 @@ window.blanketPO_describe = function () {
     <div>Subtotal: <strong id="subtotal">$0.00</strong></div>
     <div>Discount: <strong id="discountAmt">-$0.00</strong></div>
     <div>Tax: <strong id="taxAmt">$0.00</strong></div>
-    <div style="font-size:16px;font-weight:800;color:var(--primary)">Total Due: <strong id="totalAmt">$0.00</strong></div>
+    <div style="font-size:16px;font-weight:800;color:var(--primary)">Estimated Order Total: <strong id="totalAmt">$0.00</strong></div>
   </div>
-  <div class="field full" style="margin-top:16px"><label>Notes / Payment Terms</label><textarea id="notes" placeholder="Payment due within 30 days. Thank you for your business."></textarea></div>
-  <div class="field"><label>BPO Number</label><input id="bpoNum" type="text" placeholder="BPO-2026-001"></div><div class="field"><label>Contract Period</label><input id="contractPeriod" type="text" placeholder="Jan-Dec 2026"></div><div class="field"><label>Maximum BPO Value ($)</label><input id="maxVal" type="number" value="50000" step="1000" min="0"></div>
-  <button class="btn-primary" onclick="generateInvoice()">Generate Invoice</button>
+  <div class="field full" style="margin-top:16px"><label>Release, Delivery, Invoice Matching, and Payment Terms</label><textarea id="notes" placeholder="Only authorized releases apply. Reference the BPO number on invoices. State delivery location, payment terms, and approval contacts."></textarea></div>
+  <div class="field"><label>Contract Period</label><input id="contractPeriod" type="text" placeholder="January 1-December 31, 2026"></div><div class="field"><label>Maximum BPO Value ($)</label><input id="maxVal" type="number" value="50000" step="1000" min="0"></div>
+  <button class="btn-primary" onclick="generateInvoice()">Generate Blanket Purchase Order</button>
 </div>
 <div id="output" class="preview-card" style="display:none">
-  <h2>Invoice Preview</h2>
+  <h2>Blanket Purchase Order Preview</h2>
   <div id="preview"></div><pre id="preview-txt" style="display:none"></pre>
   <div class="download-row">
     <button id="copyBtn" class="btn-dl btn-dl-doc" onclick="copyText()">Copy Text</button>
@@ -269,7 +274,7 @@ window.blanketPO_describe = function () {
   </div>
   <div class="faq-item">
     <h3>Q: Can I download the document as a PDF?</h3>
-    <p>A: Yes. After filling in the form and generating the document, click Download or Print to save it as a PDF. PDFs maintain consistent formatting across all devices and are universally accepted for business correspondence.</p>
+    <p>A: Yes. After generating the document, use Print / Save PDF in your browser. Review the saved PDF before sending it to the supplier.</p>
   </div>
   <div class="faq-item">
     <h3>Q: Is my document data stored by BillingFixPro?</h3>
@@ -293,6 +298,7 @@ window.blanketPO_describe = function () {
   </div>
 </div>
 <!-- AFFILIATE_SECTION_START -->
+<template id="pending-affiliate-offers">
 <style>
 .affiliate-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px}
 .affiliate-section h2{font-size:1rem;font-weight:700;margin-bottom:16px;color:var(--text)}
@@ -338,8 +344,7 @@ window.blanketPO_describe = function () {
     </a>
   </div>
 </section>
-
-
+</template>
 </main>
 <div class="ad-slot ad-bottom"><div class="adsense-placeholder" data-pub="ca-pub-1638874323475457"></div></div>
 <footer>
@@ -406,6 +411,7 @@ document.querySelectorAll('.faq-item h3').forEach(function(q){q.addEventListener
 function generateInvoice(){generateDoc();}
 function generateQuote(){generateDoc();}
 function generateDoc(){
+  const esc=value=>String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   const from_=document.getElementById('from')?.value||'Your Business';
   const to_=document.getElementById('to')?.value||'Client';
   const num_=document.getElementById('invNum')?.value||document.getElementById('qNum')?.value||'001';
@@ -413,15 +419,13 @@ function generateDoc(){
   const due_=document.getElementById('dueDate')?.value||'';
   const notes=document.getElementById('notes')?.value||'';
   const taxRate=parseFloat(document.getElementById('taxRate')?.value)||0;
-  const extra=(()=>{
-    const ids=['channel','clientAcct','company','servicePeriod','engType','project','period','histPeriod','propertyType','leaseType','eventType','mediaType','agencyName'];
-    const vals=ids.map(i=>document.getElementById(i)?.value||'').filter(Boolean);
-    return vals.join('  ');
-  })();
+  const period=document.getElementById('contractPeriod')?.value||'';
+  const maximum=parseFloat(document.getElementById('maxVal')?.value)||0;
+  const extra=[period?'Contract period: '+period:'',maximum?'Maximum authorized value: $'+maximum.toFixed(2):''].filter(Boolean).join(' | ');
   let sub=0,linesHTML='',linesTxt='';
   document.querySelectorAll('#lineItems tr').forEach(tr=>{
     const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;
-    const d=inputs[0].value||'Service';
+    const d=esc(inputs[0].value||'Item or service category');
     const q=parseFloat(inputs[1].value)||0;
     const r=parseFloat(inputs[2].value)||0;
     const tot=q*r;sub+=tot;
@@ -433,10 +437,12 @@ function generateDoc(){
   const discAmt=sub*discPct;
   const taxAmt=(sub-discAmt)*(taxRate/100);
   const total=sub-discAmt+taxAmt;
-  document.getElementById('preview').innerHTML=generateInvoiceHTML(from_,to_,num_,date_,due_,linesHTML,sub,discAmt,taxAmt,total,notes,taxRate,extra);
+  if(maximum>0&&total>maximum){alert('The estimated order total exceeds the maximum BPO value. Adjust the lines or the authorized maximum before generating.');return;}
+  document.getElementById('preview').innerHTML=generateInvoiceHTML(esc(from_),esc(to_),esc(num_),esc(date_),esc(due_),linesHTML,sub,discAmt,taxAmt,total,esc(notes),taxRate,esc(extra));
   document.getElementById('preview-txt').textContent=linesTxt;
   document.getElementById('output').style.display='block';
   document.getElementById('output').scrollIntoView({behavior:'smooth'});
+  if(typeof gtag==='function')gtag('event','document_generated',{document_type:'blanket_purchase_order',estimated_total:total});
 }
 </script>
 </body>
