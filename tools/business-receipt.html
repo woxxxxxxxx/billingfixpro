@@ -1,424 +1,466 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="robots" content="noindex, follow">
-<!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-TPVMTCEC3E">
-</script>
-<script>
-function generateInvoiceHTML(from_,to_,num_,date_,due_,linesHTML,sub,discAmt,taxAmt,total,notes,taxRate,extra){
-  const title=(document.querySelector('h1')||{textContent:'Invoice'}).textContent.replace(' Generator','').replace(' Tool','').replace(' Maker','');
-  return `<div style="font-family:'Helvetica Neue',Arial,sans-serif;max-width:680px;padding:40px;background:#fff;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,0.08)">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:32px;padding-bottom:24px;border-bottom:2px solid #0891b2">
-      <div>
-        <div style="font-size:26px;font-weight:800;color:#0891b2;letter-spacing:-0.5px">${title}</div>
-        <div style="font-size:13px;color:#64748b;margin-top:6px">Invoice #${num_}</div>
-        <div style="font-size:13px;color:#64748b">Date: ${date_}${due_?' &nbsp;|&nbsp; Due: '+due_:''}</div>
-      </div>
-      <div style="text-align:right;font-size:13px;color:#475569">
-        <div style="font-weight:700;color:#0f172a;margin-bottom:4px">From</div>
-        <div>${from_}</div>
-      </div>
-    </div>
-    <div style="background:#f0f9ff;border-left:3px solid #0891b2;padding:14px 18px;border-radius:0 8px 8px 0;margin-bottom:24px;font-size:13px">
-      <div style="font-weight:700;color:#0f172a;margin-bottom:4px">Bill To</div>
-      <div style="color:#475569">${to_}</div>
-      ${extra?'<div style="color:#64748b;margin-top:6px;font-size:12px">'+extra+'</div>':''}
-    </div>
-    <table style="width:100%;border-collapse:collapse;margin-bottom:24px;font-size:13px">
-      <thead><tr style="background:#0891b2">
-        <th style="color:#fff;padding:11px 14px;text-align:left;border-radius:6px 0 0 0">Description</th>
-        <th style="color:#fff;padding:11px 14px;text-align:right">Qty</th>
-        <th style="color:#fff;padding:11px 14px;text-align:right">Unit Price</th>
-        <th style="color:#fff;padding:11px 14px;text-align:right;border-radius:0 6px 0 0">Total</th>
-      </tr></thead>
-      <tbody>${linesHTML}</tbody>
-    </table>
-    <div style="display:flex;justify-content:flex-end">
-      <div style="min-width:240px;font-size:13px">
-        <div style="display:flex;justify-content:space-between;padding:6px 0;color:#475569"><span>Subtotal</span><strong>$${sub.toFixed(2)}</strong></div>
-        ${discAmt>0?'<div style="display:flex;justify-content:space-between;padding:6px 0;color:#dc2626"><span>Discount</span><strong>-$'+discAmt.toFixed(2)+'</strong></div>':''}
-        ${taxAmt>0?'<div style="display:flex;justify-content:space-between;padding:6px 0;color:#475569"><span>Tax ('+taxRate+'%)</span><strong>$'+taxAmt.toFixed(2)+'</strong></div>':''}
-        <div style="display:flex;justify-content:space-between;padding:10px 0;margin-top:6px;border-top:2px solid #0891b2;font-size:16px;font-weight:800;color:#0891b2"><span>Total Due</span><span>$${total.toFixed(2)}</span></div>
-      </div>
-    </div>
-    ${notes?'<div style="margin-top:20px;padding-top:16px;border-top:1px solid #e2e8f0;font-size:12px;color:#64748b"><strong style="color:#475569">Notes:</strong> '+notes+'</div>':''}
-  </div>`;
-}
-
-
-function generateReceipt(){generateDoc();}
-function printDoc(){window.print();}
-</script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());  gtag('config', 'G-TPVMTCEC3E');</script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<title>Business Receipt Generator - Free Online Tool | BillingFixPro</title>
-<meta name="description" content="Generate a polished Business Receipt with transaction details, payment confirmation, and proper formatting. Free tool for businesses - instant download, no registration.">
-<link rel="canonical" href="https://billingfixpro.com/tools/business-receipt.html">
-<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--primary:#0891b2;--primary-dark:#0e7490;--primary-light:#ecfeff;--primary-dim:rgba(8,145,178,.08);--bg:#f8fafc;--bg2:#fff;--text:#1e293b;--text2:#475569;--text3:#94a3b8;--border:#e2e8f0;--radius:12px;--radius-sm:8px;--shadow:0 1px 3px rgba(0,0,0,.08),0 1px 6px rgba(0,0,0,.04)}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
-a{text-decoration:none;color:inherit}
-header{background:var(--bg2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
-.header-inner{max-width:1100px;margin:0 auto;padding:0 20px;height:60px;display:flex;align-items:center;gap:24px}
-.logo{font-size:20px;font-weight:800;color:var(--text);letter-spacing:-.4px}
-.logo span{color:var(--primary)}
-.nav-all{margin-left:auto;font-size:14px;font-weight:600;color:var(--primary);padding:7px 16px;border:1.5px solid var(--primary);border-radius:var(--radius-sm);transition:all .15s}
-.nav-all:hover{background:var(--primary);color:#fff}
-.site-nav{margin-left:auto;display:flex;align-items:center;gap:8px}
-.site-nav .nav-link{margin-left:0;font-size:14px;font-weight:600;color:var(--text2);padding:7px 12px;border-radius:var(--radius-sm);transition:all .15s}
-.site-nav .nav-link:hover{color:var(--primary);background:var(--primary-dim)}
-.site-nav .nav-link-outline{color:var(--primary);border:1.5px solid var(--primary);padding:7px 16px}
-.site-nav .nav-link-outline:hover{background:var(--primary);color:#fff}
-.breadcrumb{max-width:860px;margin:16px auto 0;padding:0 20px;font-size:13px;color:var(--text3)}
-.breadcrumb a{color:var(--primary)}
-.breadcrumb span{margin:0 6px}
-.ad-slot{width:100%;background:#f1f5f9;border:1px dashed #cbd5e1;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;color:var(--text3);font-size:12px;letter-spacing:.5px;text-transform:uppercase}
-.ad-top{height:90px;min-height:90px}.ad-middle{min-height:90px;margin-bottom:24px}.ad-bottom{min-height:90px}
-.adsense-placeholder{width:100%;min-height:90px}
-main{max-width:860px;margin:0 auto;padding:24px 20px 60px;width:100%;flex:1}
-.tool-hero{margin-bottom:28px}
-.tool-hero h1{font-size:1.9rem;font-weight:800;letter-spacing:-.4px;margin-bottom:8px}
-.tool-hero p{font-size:15px;color:var(--text2);max-width:600px}
-.form-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px}
-.form-card h2{font-size:1rem;font-weight:700;margin-bottom:20px;color:var(--text)}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.field{display:flex;flex-direction:column;gap:6px}
-.field.full{grid-column:1/-1}
-.field label{font-size:13px;font-weight:600;color:var(--text2)}
-.field input,.field select,.field textarea{padding:10px 14px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;font-family:inherit;color:var(--text);background:var(--bg2);transition:border-color .15s;outline:none}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(8,145,178,.1)}
-.field textarea{resize:vertical;min-height:80px}
-.btn-primary{margin-top:20px;padding:12px 28px;background:var(--primary);color:#fff;border:none;border-radius:var(--radius-sm);font-size:15px;font-weight:700;cursor:pointer;transition:background .15s;font-family:inherit}
-.btn-primary:hover{background:var(--primary-dark)}
-.preview-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px}
-.preview-card h2{font-size:1rem;font-weight:700;margin-bottom:16px;color:var(--text)}
-.download-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
-.btn-dl{padding:10px 22px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s;border:none}
-.btn-dl-pdf{background:#dc2626;color:#fff}
-.btn-dl-pdf:hover{background:#b91c1c}
-.btn-dl-doc{background:var(--primary);color:#fff}
-.btn-dl-doc:hover{background:var(--primary-dark)}
-.seo-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px}
-.seo-section h2{font-size:1rem;font-weight:700;margin-bottom:12px}
-.seo-section p{font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:8px}
-.related-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px}
-.related-section h2{font-size:1rem;font-weight:700;margin-bottom:16px}
-.related-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.related-card{padding:14px;border:1.5px solid var(--border);border-radius:var(--radius-sm);transition:all .15s}
-.related-card:hover{border-color:var(--primary);background:var(--primary-light)}
-.related-card-name{font-size:13px;font-weight:700;color:var(--primary)}
-.related-card-desc{font-size:12px;color:var(--text3);margin-top:2px}
-footer{background:var(--text);color:#94a3b8;padding:28px 20px}
-.footer-inner{max-width:860px;margin:0 auto;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
-.footer-logo{font-size:16px;font-weight:800;color:#fff}
-.footer-logo span{color:var(--primary)}
-.footer-links{display:flex;gap:16px}
-.footer-links a{color:#94a3b8;font-size:13px;transition:color .15s}
-.footer-links a:hover{color:#fff}
-.footer-copy{font-size:13px;width:100%}
-@media(max-width:640px){.form-grid{grid-template-columns:1fr}.related-grid{grid-template-columns:1fr}.tool-hero h1{font-size:1.5rem}}
-.faq-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px}.faq-section h2{font-size:1.1rem;font-weight:700;margin-bottom:20px}.faq-item{border-bottom:1px solid var(--border);padding:16px 0}.faq-item:last-child{border-bottom:none;padding-bottom:0}.faq-item h3{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px}.faq-item p{font-size:14px;color:var(--text2);line-height:1.7}
-@media print{header,footer,.ad-slot,.ad-top,.ad-middle,.ad-bottom,.form-card,.tool-hero,.breadcrumb,.seo-section,.faq-section,.related-section,.affiliate-section,.download-row,#btt{display:none!important}body{background:#fff!important}main{padding:0!important}#output{display:block!important;box-shadow:none!important;border:none!important;padding:0!important}}</style>
-<link rel="stylesheet" href="/assets/css/tool-modules.css"><!-- DIFFERENTIATED-LOGIC-BEGIN -->
-<script>
-// === Business Receipt (receipt-specific issuance + verification) ===
-window.bizRcpt_RECEIPT_TYPE = "Business Receipt";
-window.bizRcpt_REQUIRED = ["payer","payee","amount","date","method"];
-window.bizRcpt_issue = function (data) {
-  data = data || {};
-  var ts = new Date();
-  var receiptNo = 'BUS-' + ts.getTime().toString(36).toUpperCase();
-  var amount = +data.amount || 0;
-  var tax = +data.tax || 0;
-  var tip = +data.tip || 0;
-  var total = amount + tax + tip;
-  var hashSource = receiptNo + amount + (data.payer || '');
-  var verifyCode = 0;
-  for (var i = 0; i < hashSource.length; i++) verifyCode = (verifyCode * 31 + hashSource.charCodeAt(i)) & 0xffff;
-  return {
-    receiptType: window.bizRcpt_RECEIPT_TYPE,
-    receiptNumber: receiptNo,
-    issuedAt: ts.toISOString(),
-    payer: data.payer || 'Unknown',
-    payee: data.payee || '',
-    amount: +amount.toFixed(2),
-    tax: +tax.toFixed(2),
-    tip: +tip.toFixed(2),
-    totalPaid: +total.toFixed(2),
-    paymentMethod: data.method || 'Cash',
-    verificationCode: verifyCode.toString(16).toUpperCase().padStart(4, '0')
-  };
-};
-window.bizRcpt_validate = function (rec) {
-  rec = rec || {};
-  var miss = window.bizRcpt_REQUIRED.filter(function (f) { return rec[f] === undefined || rec[f] === ''; });
-  return { valid: miss.length === 0, missing: miss };
-};
-window.bizRcpt_taxNote = function (amount, jurisdiction) {
-  var rates = { US: 0.0875, UK: 0.20, EU: 0.21, AU: 0.10, IN: 0.18, CA: 0.13 };
-  var r = rates[jurisdiction] || 0;
-  return { jurisdiction: jurisdiction, rate: r, taxIncluded: +(amount * r).toFixed(2) };
-};
-</script>
-<!-- DIFFERENTIATED-LOGIC-END -->
-<meta property="og:title" content="Business Receipt Generator - Free Online Tool | BillingFixPro">
-<meta property="og:description" content="Generate a polished Business Receipt with transaction details, payment confirmation, and proper formatting. Free tool for businesses - instant download, no registration.">
-<meta property="og:url" content="https://billingfixpro.com/tools/business-receipt.html">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<style>.portfolio-skip-link{position:fixed;left:12px;top:12px;z-index:10000;padding:.65rem .9rem;background:#111827;color:#fff;border-radius:4px;transform:translateY(-160%)}.portfolio-skip-link:focus{transform:none}</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="google-adsense-account" content="ca-pub-1638874323475457">
+  <title>Business Receipt Generator: Create, Print or Save PDF</title>
+  <meta name="description" content="Create an itemized business receipt with seller, customer, payment, tax and reference details. Print, save as PDF or copy the receipt text in your browser.">
+  <link rel="canonical" href="https://billingfixpro.com/tools/business-receipt.html">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TPVMTCEC3E"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TPVMTCEC3E');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1638874323475457" crossorigin="anonymous"></script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"WebApplication",
+        "name":"Business Receipt Generator",
+        "url":"https://billingfixpro.com/tools/business-receipt.html",
+        "description":"Create an itemized business receipt and print it, save it as a PDF or copy its text.",
+        "applicationCategory":"BusinessApplication",
+        "operatingSystem":"Web",
+        "browserRequirements":"Requires JavaScript",
+        "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+        "dateModified":"2026-07-19",
+        "publisher":{"@type":"Organization","name":"BillingFixPro","url":"https://billingfixpro.com/"}
+      },
+      {
+        "@type":"FAQPage",
+        "mainEntity":[
+          {"@type":"Question","name":"What should a business receipt include?","acceptedAnswer":{"@type":"Answer","text":"A useful receipt normally identifies the seller and customer, transaction date, receipt number, items or services, amounts, taxes, payment method and payment reference. Local invoicing and tax rules may require additional information."}},
+          {"@type":"Question","name":"Is a receipt the same as an invoice?","acceptedAnswer":{"@type":"Answer","text":"No. An invoice generally requests payment, while a receipt records that money was received. Keep both when they document different stages of a transaction."}},
+          {"@type":"Question","name":"Can I save the receipt as a PDF?","acceptedAnswer":{"@type":"Answer","text":"Yes. Generate the receipt, choose Print or Save PDF, and select your browser's PDF destination."}},
+          {"@type":"Question","name":"Does the tool store transaction data?","acceptedAnswer":{"@type":"Answer","text":"No transaction fields are sent to BillingFixPro by the receipt generator. The document is assembled in the browser. Analytics records button events without the names, descriptions or payment reference entered."}},
+          {"@type":"Question","name":"Does this receipt prove a tax deduction?","acceptedAnswer":{"@type":"Answer","text":"Not by itself. A receipt can be a supporting record, but tax treatment depends on the transaction, applicable law and the rest of the records supporting the income or expense."}}
+        ]
+      }
+    ]
+  }
+  </script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box}
+    :root{--ink:#13233a;--muted:#5b6b7e;--line:#dce4ed;--soft:#f4f8fb;--cyan:#087f9f;--cyan-dark:#07667f;--cyan-pale:#e9f8fc;--green:#087a55;--amber:#a65d05;--white:#fff;--radius:8px;--shadow:0 8px 24px rgba(20,38,60,.07)}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--soft);line-height:1.6}
+    a{color:var(--cyan-dark)}
+    button,input,select,textarea{font:inherit}
+    button{cursor:pointer}
+    .site-header{background:var(--white);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+    .header-inner{max-width:1180px;height:66px;margin:auto;padding:0 24px;display:flex;align-items:center;gap:24px}
+    .brand img{display:block;height:38px;max-width:220px}
+    .site-nav{margin-left:auto;display:flex;align-items:center;gap:8px}
+    .site-nav a{text-decoration:none;color:var(--muted);font-weight:700;font-size:14px;padding:8px 12px;border-radius:6px}
+    .site-nav a:hover{background:var(--cyan-pale);color:var(--cyan-dark)}
+    .site-nav .primary-link{border:1px solid var(--cyan);color:var(--cyan-dark)}
+    .breadcrumb{max-width:1180px;margin:16px auto 0;padding:0 24px;color:var(--muted);font-size:13px}
+    .breadcrumb a{text-decoration:none;font-weight:700}
+    .page-shell{max-width:1180px;margin:auto;padding:22px 24px 64px}
+    .hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:end;margin-bottom:22px}
+    .eyebrow{margin:0 0 6px;color:var(--cyan-dark);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+    h1{font-size:clamp(2rem,5vw,3.35rem);line-height:1.06;margin:0 0 12px;letter-spacing:0}
+    .hero-copy{margin:0;max-width:760px;color:var(--muted);font-size:17px}
+    .privacy-note{margin:0;padding:10px 14px;border:1px solid #b8e6d3;background:#effbf6;color:#17654d;border-radius:6px;font-size:13px;font-weight:700}
+    .workspace{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(380px,.92fr);gap:22px;align-items:start}
+    .panel{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .editor{padding:24px}
+    .panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:20px}
+    .panel-head h2,.receipt-head h2{margin:0;font-size:20px;letter-spacing:0}
+    .panel-head p{margin:4px 0 0;color:var(--muted);font-size:13px}
+    .section-title{margin:24px 0 12px;font-size:13px;text-transform:uppercase;letter-spacing:.07em;color:var(--cyan-dark)}
+    .field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .field{display:flex;flex-direction:column;gap:6px;min-width:0}
+    .field.full{grid-column:1/-1}
+    .field label{font-size:13px;font-weight:750;color:#34475d}
+    .field small{color:var(--muted);font-size:11px}
+    .field input,.field select,.field textarea{width:100%;border:1px solid #bfcbd8;border-radius:6px;background:#fff;color:var(--ink);padding:10px 11px;outline:none;min-width:0}
+    .field textarea{min-height:78px;resize:vertical}
+    .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(8,127,159,.12)}
+    .items-editor{display:grid;gap:10px}
+    .line-row{display:grid;grid-template-columns:minmax(145px,1fr) 72px 110px 100px 36px;gap:8px;align-items:end;padding:12px;background:var(--soft);border:1px solid var(--line);border-radius:6px}
+    .line-row .field label{font-size:11px}
+    .line-amount{height:42px;display:flex;align-items:center;justify-content:flex-end;font-weight:800;white-space:nowrap}
+    .icon-button{height:42px;width:36px;border:1px solid #f0b9b9;background:#fff5f5;color:#a82828;border-radius:6px;font-size:20px;line-height:1}
+    .add-button{border:1px solid var(--cyan);background:#fff;color:var(--cyan-dark);border-radius:6px;padding:9px 13px;font-weight:800;justify-self:start}
+    .summary-strip{margin-top:16px;padding:14px 16px;background:var(--cyan-pale);border-radius:6px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+    .summary-strip span{display:block;color:var(--muted);font-size:11px;text-transform:uppercase}
+    .summary-strip strong{display:block;font-size:16px;margin-top:2px}
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+    .button{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:6px;padding:11px 16px;font-weight:800}
+    .button.primary{background:var(--cyan);border-color:var(--cyan);color:#fff}
+    .button.primary:hover{background:var(--cyan-dark)}
+    .button:hover{border-color:var(--cyan)}
+    .error{display:none;margin:16px 0 0;padding:11px 13px;border:1px solid #efb1b1;background:#fff5f5;color:#972929;border-radius:6px;font-size:13px;font-weight:700}
+    .error.show{display:block}
+    .preview-panel{position:sticky;top:88px;overflow:hidden}
+    .preview-toolbar{padding:14px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px;background:#f9fbfd}
+    .preview-toolbar strong{font-size:13px}
+    .preview-actions{display:flex;gap:7px}
+    .preview-actions button{border:1px solid var(--line);background:#fff;border-radius:6px;padding:7px 10px;font-size:12px;font-weight:800}
+    .receipt-wrap{padding:22px;background:#eef3f8}
+    .receipt{background:#fff;min-height:650px;padding:30px;border:1px solid #d7e0e9;box-shadow:0 7px 20px rgba(22,42,65,.09)}
+    .receipt-empty{height:590px;display:grid;place-items:center;text-align:center;color:var(--muted);padding:30px}
+    .receipt-empty strong{display:block;color:var(--ink);font-size:18px;margin-bottom:4px}
+    .receipt-document{display:none}
+    .receipt-document.show{display:block}
+    .receipt-head{display:flex;justify-content:space-between;gap:20px;border-bottom:3px solid var(--cyan);padding-bottom:18px;margin-bottom:20px}
+    .receipt-label{font-size:32px;line-height:1;color:var(--cyan-dark);font-weight:900;text-transform:uppercase}
+    .receipt-meta{text-align:right;font-size:12px;color:var(--muted)}
+    .receipt-meta strong{display:block;color:var(--ink);font-size:14px}
+    .party-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:20px}
+    .party{padding:13px;background:var(--soft);border-left:3px solid var(--cyan)}
+    .party span{display:block;color:var(--muted);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+    .party strong{display:block;margin:3px 0 2px;white-space:pre-wrap}
+    .party p{margin:0;color:var(--muted);font-size:12px;white-space:pre-wrap}
+    .receipt-items{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
+    .receipt-items th{background:var(--cyan-dark);color:#fff;text-align:left;padding:9px 8px}
+    .receipt-items th:nth-child(n+2),.receipt-items td:nth-child(n+2){text-align:right}
+    .receipt-items th:first-child{width:48%}
+    .receipt-items td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top;overflow-wrap:anywhere}
+    .receipt-totals{margin:18px 0 0 auto;width:min(100%,290px)}
+    .total-line{display:flex;justify-content:space-between;gap:18px;padding:4px 0;color:var(--muted);font-size:12px}
+    .total-line.final{margin-top:6px;padding-top:9px;border-top:2px solid var(--cyan);font-size:17px;color:var(--ink);font-weight:900}
+    .payment-box{margin-top:20px;border:1px solid #b8e6d3;background:#f0fbf7;padding:13px;border-radius:6px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px;font-size:12px}
+    .payment-box span{display:block;color:var(--muted);font-size:10px;text-transform:uppercase;font-weight:800}
+    .payment-box strong{overflow-wrap:anywhere}
+    .receipt-notes{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);white-space:pre-wrap;color:var(--muted);font-size:12px}
+    .content-band{margin-top:28px;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .content-inner{max-width:1180px;margin:auto;padding:44px 24px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);gap:44px}
+    .content-inner h2{font-size:28px;line-height:1.2;margin:0 0 14px}
+    .content-inner h3{font-size:17px;margin:25px 0 7px}
+    .content-inner p,.content-inner li{color:var(--muted)}
+    .content-inner ul{padding-left:20px}
+    .evidence-card{border:1px solid #bddce6;background:var(--cyan-pale);padding:22px;border-radius:8px;align-self:start}
+    .evidence-card h2{font-size:20px}
+    .evidence-card ol{padding-left:20px;color:var(--muted)}
+    .evidence-card a{font-weight:800}
+    .faq-section,.related-section{max-width:1180px;margin:24px auto 0;padding:0 24px}
+    .faq-panel,.related-panel{background:#fff;border:1px solid var(--line);border-radius:8px;padding:28px}
+    .faq-panel h2,.related-panel h2{margin:0 0 14px;font-size:24px}
+    details{border-top:1px solid var(--line);padding:13px 0}
+    details:first-of-type{border-top:0}
+    summary{font-weight:800;cursor:pointer}
+    details p{margin:8px 0 0;color:var(--muted)}
+    .related-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+    .related-grid a{border:1px solid var(--line);border-radius:6px;padding:14px;text-decoration:none;color:var(--ink)}
+    .related-grid a:hover{border-color:var(--cyan);background:var(--cyan-pale)}
+    .related-grid strong{display:block;font-size:14px}
+    .related-grid span{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+    footer{margin-top:40px;background:var(--ink);color:#c1ccd8}
+    .footer-inner{max-width:1180px;margin:auto;padding:28px 24px;display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px}
+    .footer-logo{color:#fff;font-size:18px;font-weight:900}.footer-logo span{color:#42c8e9}
+    .footer-links{margin-left:auto;display:flex;flex-wrap:wrap;gap:16px}.footer-links a{color:#c1ccd8;text-decoration:none;font-size:13px}
+    .footer-copy{width:100%;padding-top:14px;border-top:1px solid rgba(255,255,255,.14);font-size:12px}
+    @media(max-width:920px){.workspace{grid-template-columns:1fr}.preview-panel{position:static}.hero{grid-template-columns:1fr}.privacy-note{justify-self:start}.content-inner{grid-template-columns:1fr}.related-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:620px){.header-inner{padding:0 16px}.site-nav a:not(.primary-link){display:none}.breadcrumb,.page-shell,.faq-section,.related-section{padding-left:16px;padding-right:16px}.page-shell{padding-top:18px}.editor{padding:18px}.field-grid{grid-template-columns:1fr}.line-row{grid-template-columns:1fr 1fr;padding-right:48px;position:relative}.line-row .description{grid-column:1/-1}.line-row .line-amount{justify-content:flex-start}.line-row .icon-button{position:absolute;right:10px;top:10px}.summary-strip{grid-template-columns:1fr 1fr}.receipt-wrap{padding:10px}.receipt{padding:17px;min-height:560px}.receipt-head{display:block}.receipt-meta{text-align:left;margin-top:12px}.party-grid{grid-template-columns:1fr}.receipt-items{font-size:10.5px}.receipt-items th,.receipt-items td{padding:7px 4px}.payment-box{grid-template-columns:1fr}.content-inner{padding:34px 16px}.faq-panel,.related-panel{padding:20px}.related-grid{grid-template-columns:1fr}.footer-links{margin-left:0;width:100%}}
+    @media print{body{background:#fff}.site-header,.breadcrumb,.hero,.editor,.preview-toolbar,.content-band,.faq-section,.related-section,footer{display:none!important}.page-shell{max-width:none;padding:0}.workspace{display:block}.preview-panel{border:0;box-shadow:none}.receipt-wrap{padding:0;background:#fff}.receipt{border:0;box-shadow:none;min-height:0;padding:20px}.receipt-empty{display:none}.receipt-document.show{display:block}}
+  </style>
 </head>
 <body>
-<a class="portfolio-skip-link" href="#main-content">Skip to main content</a>
-<header>
-  <div class="header-inner">
-    <a href="/" class="logo"><img src="/logo.svg?v=2" alt="BillingFixPro" height="38"></a>
-    <nav class="site-nav" aria-label="Primary">
-      <a href="/" class="nav-link nav-link-outline">All Tools</a>
-      <a href="/blog/" class="nav-link">Blog</a>
-    </nav>
-  </div>
-</header>
-<div class="ad-slot ad-top"><div class="adsense-placeholder" data-pub="ca-pub-1638874323475457"></div></div>
-<div class="breadcrumb"><a href="/">Home</a><span>?</span><a href="/">Tools</a><span>?</span>Business Receipt Generator</div>
-<main id="main-content">
-  <div class="tool-hero">
-    <h1>Business Receipt Generator</h1>
-    <p>Free online business receipt generator &mdash; no signup required. Generate and download professional documents instantly.</p>
-  </div>
-  
-<div class="form-card">
-  <h2>Receipt Details</h2>
-  <div class="form-grid">
-    <div class="field"><label>Business / Received By</label><input id="from" type="text" placeholder="Your Business Name" aria-label="Your Business Name"></div>
-    <div class="field"><label>Customer / Payer</label><input id="to" type="text" placeholder="Customer Name" aria-label="Customer Name"></div>
-    <div class="field"><label>Receipt #</label><input id="ref" type="text" placeholder="REC-001" value="REC-001" aria-label="REC 001"></div>
-    <div class="field"><label>Date</label><input id="rdate" type="date" aria-label="Rdate"></div>
-    <div class="field"><label>Amount ($)</label><input id="amount" type="number" placeholder="0.00" step="0.01" aria-label="0.00"></div>
-    <div class="field"><label>Payment Method</label><select id="method" aria-label="Method"><option>Cash</option><option>Bank Transfer</option><option>Credit Card</option><option>Check</option><option>PayPal</option></select></div>
-    <div class="field full"><label>Description</label><textarea id="desc" placeholder="What is this payment for?" aria-label="What Is This Payment For?"></textarea></div>
-  </div>
-  <button class="btn-primary" onclick="generateReceipt()">Generate Receipt</button>
-</div>
-<div id="output" class="preview-card" style="display:none">
-  <h2>Receipt Preview</h2>
-  <div id="preview"></div><pre id="preview-txt" style="display:none"></pre>
-  <div class="download-row">
-    <button id="copyBtn" class="btn-dl btn-dl-doc" onclick="copyText()">Copy Text</button>
-    <button class="btn-dl btn-dl-pdf" onclick="printDoc()">Print / Save PDF</button>
-  </div>
-</div>
-  <div class="ad-slot ad-middle"><div class="adsense-placeholder" data-pub="ca-pub-1638874323475457"></div></div>
-  <div class="tool-content-modules">
-  <div class="tool-info-card">
-    <h2 class="tool-info-title">How to Use Business Receipt</h2>
-    <ol class="tool-steps">
-    <li>Enter the seller or business information at the top of the form.</li>
-    <li>Add the buyer or customer details.</li>
-    <li>List each item or service with the amount paid.</li>
-    <li>Include the payment method and transaction date.</li>
-    <li>Click Generate to create your receipt.</li>
-    <li>Download or print the receipt for your records.</li>
-    </ol>
-  </div>
-  <div class="tool-info-card">
-    <h2 class="tool-info-title">Common Use Cases</h2>
-    <ul class="tool-use-cases">
-    <li><strong>Retail Transactions:</strong> Issue receipts to customers confirming purchases of goods or services.</li>
-    <li><strong>Service Payments:</strong> Provide proof of payment for completed professional services.</li>
-    <li><strong>Expense Documentation:</strong> Generate receipts needed for business expense reports and reimbursements.</li>
-    <li><strong>Tax Records:</strong> Create properly formatted receipts for tax filing and audit preparation.</li>
-    <li><strong>Donation Acknowledgment:</strong> Issue receipts for charitable contributions and tax-deductible gifts.</li>
-    </ul>
-  </div>
-</div>
-
-<div class="seo-section">
-<h2>About Business Receipt Generator</h2>
-<p>The Business Receipt Generator from BillingFixPro makes it simple to generate accurate, professional receipts for any completed transaction. Whether you are a small business owner confirming payment, a landlord issuing a rent acknowledgment, a freelancer documenting a deposit, or an individual recording a private sale, this free online tool produces a clean, printable receipt document in seconds &mdash; no registration, no software, no cost.</p>
-<p>Paper receipts are easily lost and handwritten ones look unprofessional. A plain text email receipt lacks structure and credibility. BillingFixPro's Business Receipt Generator solves these problems by creating well-formatted, professional-looking receipts that include all the essential information: transaction date, payer and payee details, itemised description, amount paid, payment method, and any applicable taxes.</p>
-<p>The tool is designed for speed. Fill in the fields &mdash; business name, client name, date, description of goods or services, and amount &mdash; click Generate, and you have a professional receipt ready to download, print, or email. The layout is clean and universally readable, suitable for attaching to expense reports, providing to customers, including with shipped goods, or storing in financial records.</p>
-<p>Receipts are essential business documents. They provide proof of payment, support expense claims, satisfy tax record-keeping requirements, and build customer trust. Having a reliable Business Receipt Generator means you are always prepared to issue professional documentation the moment a transaction is complete &mdash; whether in the office, at a client site, or on the go from a mobile device.</p>
-<p>The Business Receipt Generator is used by retail businesses, service providers, freelancers, landlords, charities collecting donations, event organisers, and countless other professionals who transact regularly and need reliable receipt documentation. All generated documents are formatted to a professional standard appropriate for business use.</p>
-<p>BillingFixPro provides this Business Receipt Generator along with dozens of other free billing and financial tools &mdash; invoices, quotes, calculators, payment agreements, and more. There are no usage limits, no subscription tiers, and no hidden fees. Create as many receipts as your business requires, any time of day, on any device.</p>  </div>
-  <div class="faq-section">
-  <h2>Frequently Asked Questions</h2>
-  <div class="faq-item">
-    <h3>Q: What makes a Business Receipt legally valid?</h3>
-    <p>A: A legally valid Business Receipt should contain the business name and address, date of transaction, items or services purchased with amounts, total paid, payment method used, and a unique receipt number. For tax purposes, including the tax amount separately and the seller's tax ID number strengthens the document's validity.</p>
-  </div>
-  <div class="faq-item">
-    <h3>Q: Are receipts created with this tool legally valid?</h3>
-    <p>A: Receipts generated by our tool include all standard information found in a valid business receipt &mdash; transaction details, parties, amounts, and date. Specific legal requirements vary by jurisdiction, so check local regulations for your use case.</p>
-  </div>
-  <div class="faq-item">
-    <h3>Q: Can I customise the receipt with my business details?</h3>
-    <p>A: Yes. Enter your business name, address, and contact information in the provided fields. The generated receipt will display your details in a professional layout suitable for customer-facing use.</p>
-  </div>
-  <div class="faq-item">
-    <h3>Q: Can I print the receipt directly from my browser?</h3>
-    <p>A: Yes. After generating your receipt, click the Print or Download PDF button to open your browser's print dialogue. You can print to a physical printer or save directly as a PDF file.</p>
-  </div>
-  <div class="faq-item">
-    <h3>Q: Is my transaction data stored by BillingFixPro?</h3>
-    <p>A: No. All data you enter is processed in your browser only and is never transmitted to or stored on our servers. Your financial and personal information stays completely private.</p>
-  </div>
-</div>
-  <div class="related-section">
-    <h2>Related Tools</h2>
-    <div class="related-grid"><a href="/tools/receipt-generator.html" class="related-card"><div class="related-card-name">Free Receipt Generator</div><div class="related-card-desc">Free online tool</div></a>
-<a href="/tools/cash-receipt.html" class="related-card"><div class="related-card-name">Cash Receipt Template</div><div class="related-card-desc">Free online tool</div></a>
-<a href="/tools/sales-receipt.html" class="related-card"><div class="related-card-name">Sales Receipt Generator</div><div class="related-card-desc">Free online tool</div></a>
-<a href="/tools/payment-receipt.html" class="related-card"><div class="related-card-name">Payment Receipt Generator</div><div class="related-card-desc">Free online tool</div></a>
-<a href="/tools/invoice-generator.html" class="related-card"><div class="related-card-name">Free Invoice Generator</div><div class="related-card-desc">Free online tool</div></a></div>
-  </div>
-<div class="related-section">
-  <h2>More Tools You May Like</h2>
-  <div class="related-grid">
-<a href="/tools/receipt-generator.html" class="related-card"><div class="related-card-name">Receipt Generator</div><div class="related-card-desc">Free online tool</div></a>
-<a href="/tools/sales-receipt.html" class="related-card"><div class="related-card-name">Sales Receipt Generator</div><div class="related-card-desc">Free online tool</div></a>
-<a href="/tools/invoice-generator.html" class="related-card"><div class="related-card-name">Invoice Generator</div><div class="related-card-desc">Free online tool</div></a>
-  </div>
-</div>
-<!-- AFFILIATE_SECTION_START -->
-<style>
-.affiliate-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px}
-.affiliate-section h2{font-size:1rem;font-weight:700;margin-bottom:16px;color:var(--text)}
-.affiliate-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
-.affiliate-card{display:flex;align-items:center;gap:14px;padding:16px;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:var(--bg2);transition:all .15s;color:var(--text);text-decoration:none}
-.affiliate-card:hover{border-color:var(--primary);background:var(--primary-light);transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.08)}
-.affiliate-logo{width:42px;height:42px;border-radius:var(--radius-sm);background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0}
-.affiliate-content{flex:1;min-width:0}
-.affiliate-name{font-size:14px;font-weight:700;color:var(--text)}
-.affiliate-desc{font-size:12px;color:var(--text3);margin-top:2px;line-height:1.4}
-.affiliate-cta{font-size:12px;font-weight:700;color:var(--primary);white-space:nowrap;padding:6px 12px;border:1.5px solid var(--primary);border-radius:var(--radius-sm);transition:all .15s;flex-shrink:0}
-.affiliate-card:hover .affiliate-cta{background:var(--primary);color:#fff}
-</style>
-<section class="affiliate-section">
-  <h2>Recommended Accounting Tools</h2>
-  <div class="affiliate-grid">
-    <!-- AFFILIATE_LINK: replace with actual affiliate URL -->
-    <a href="https://freshbooks.com" rel="sponsored nofollow noopener" target="_blank" class="affiliate-card">
-      <div class="affiliate-logo">FB</div>
-      <div class="affiliate-content">
-        <div class="affiliate-name">FreshBooks</div>
-        <div class="affiliate-desc">Simple invoicing &amp; accounting for small business</div>
-      </div>
-      <span class="affiliate-cta">Try Free &#8594;</span>
-    </a>
-<!-- AFFILIATE_LINK: replace with actual affiliate URL -->
-    <a href="https://monday.com" rel="sponsored nofollow noopener" target="_blank" class="affiliate-card">
-      <div class="affiliate-logo">Mo</div>
-      <div class="affiliate-content">
-        <div class="affiliate-name">Monday.com</div>
-        <div class="affiliate-desc">Track projects and billing in one place</div>
-      </div>
-      <span class="affiliate-cta">Try Free &#8594;</span>
-    </a>
-<!-- AFFILIATE_LINK: replace with actual affiliate URL -->
-    <a href="https://deel.com" rel="sponsored nofollow noopener" target="_blank" class="affiliate-card">
-      <div class="affiliate-logo">De</div>
-      <div class="affiliate-content">
-        <div class="affiliate-name">Deel</div>
-        <div class="affiliate-desc">Pay contractors &amp; remote teams globally</div>
-      </div>
-      <span class="affiliate-cta">Try Free &#8594;</span>
-    </a>
-  </div>
-</section>
-
-
-</main>
-<div class="ad-slot ad-bottom"><div class="adsense-placeholder" data-pub="ca-pub-1638874323475457"></div></div>
-<footer>
-  <div class="footer-inner">
-    <div class="footer-logo">Billing<span>Fix</span>Pro</div>
-    <div class="footer-links">
-      <a href="/about.html">About</a>
-      <a href="/privacy.html">Privacy Policy</a>
-      <a href="mailto:contact@BillingFixPro.com">Contact</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="/"><img src="/logo.svg" alt="BillingFixPro"></a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/blog/">Guides</a>
+        <a class="primary-link" href="/">All tools</a>
+      </nav>
     </div>
-    <div class="footer-copy">&copy; 2025 BillingFixPro. All rights reserved.</div>
-  </div>
-<p class="editorial-policy-link"><a href="../editorial-policy.html">Editorial Policy</a></p></footer>
-<script>
+  </header>
+  <div class="breadcrumb"><a href="/">Home</a> / Tools / Business Receipt Generator</div>
+  <main class="page-shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Browser-based receipt builder</p>
+        <h1>Business Receipt Generator</h1>
+        <p class="hero-copy">Record money received with itemized charges, tax, payment method and a transaction reference. Print the finished receipt, save it as a PDF or copy the text.</p>
+      </div>
+      <p class="privacy-note">Transaction fields stay in this browser.</p>
+    </section>
 
-function addRow(){
-  const tb=document.getElementById('lineItems');
-  const tr=document.createElement('tr');
-  tr.innerHTML=`<td><input type="text" placeholder="Item description" style="width:100%;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px" aria-label="Item Description"></td>
-    <td><input type="number" value="1" min="0" oninput="calcTotals()" style="width:60px;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px" aria-label="Input Input"></td>
-    <td><input type="number" value="0" min="0" step="0.01" oninput="calcTotals()" style="width:90px;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px" aria-label="Input Input"></td>
-    <td id="rt" style="text-align:right;padding:6px;font-size:13px">$0.00</td>
-    <td><button onclick="this.closest('tr').remove();calcTotals()" style="background:#fee2e2;color:#dc2626;border:none;border-radius:4px;padding:4px 8px;cursor:pointer">?</button></td>`;
-  tb.appendChild(tr);calcTotals();
-}
-function calcTotals(){
-  let sub=0;
-  document.querySelectorAll('#lineItems tr').forEach(tr=>{
-    const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;
-    const qty=parseFloat(inputs[1].value)||0,rate=parseFloat(inputs[2].value)||0;
-    const tot=qty*rate;
-    const td=tr.cells[3];if(td)td.textContent='$'+tot.toFixed(2);sub+=tot;
-  });
-  const discPct=(parseFloat(document.getElementById('discount')?.value)||0)/100;
-  const taxPct=(parseFloat(document.getElementById('taxRate')?.value)||0)/100;
-  const discAmt=sub*discPct;const taxAmt=(sub-discAmt)*taxPct;const total=sub-discAmt+taxAmt;
-  const el=id=>document.getElementById(id);
-  if(el('subtotal'))el('subtotal').textContent='$'+sub.toFixed(2);
-  if(el('discountAmt'))el('discountAmt').textContent='-$'+discAmt.toFixed(2);
-  if(el('taxAmt'))el('taxAmt').textContent='$'+taxAmt.toFixed(2);
-  if(el('totalAmt'))el('totalAmt').textContent='$'+total.toFixed(2);
-  
-}
-function copyText(){
-  navigator.clipboard.writeText(document.getElementById('preview-txt')?.textContent||document.getElementById('preview')?.innerText||'').then(()=>{
-    const btn=document.getElementById('copyBtn');
-    if(btn){const orig=btn.textContent;btn.textContent='? Copied!';btn.style.background='#059669';
-    setTimeout(()=>{btn.textContent=orig;btn.style.background='';},2000);}
-  });
-}
-document.addEventListener('DOMContentLoaded',function(){addRow();addRow();calcTotals();});
-window.addEventListener('scroll',function(){var b=document.getElementById('btt');if(b)b.classList.toggle('show',window.scrollY>300);});
-document.querySelectorAll('.faq-item h3').forEach(function(q){q.addEventListener('click',function(){this.parentElement.classList.toggle('open');});});
+    <section class="workspace">
+      <div class="panel editor">
+        <div class="panel-head">
+          <div><h2>Receipt details</h2><p>Required fields are marked. No account is needed.</p></div>
+        </div>
 
+        <div class="field-grid">
+          <div class="field"><label for="receiptTitle">Document title</label><select id="receiptTitle"><option>Receipt</option><option>Payment Receipt</option><option>Business Receipt</option><option>Deposit Receipt</option></select></div>
+          <div class="field"><label for="currency">Currency</label><select id="currency"><option value="USD">USD - US Dollar</option><option value="CAD">CAD - Canadian Dollar</option><option value="GBP">GBP - Pound Sterling</option><option value="EUR">EUR - Euro</option><option value="AUD">AUD - Australian Dollar</option><option value="SGD">SGD - Singapore Dollar</option><option value="INR">INR - Indian Rupee</option></select></div>
+          <div class="field"><label for="receiptNumber">Receipt number *</label><input id="receiptNumber" value="RCPT-2026-001" autocomplete="off"></div>
+          <div class="field"><label for="receiptDate">Payment date *</label><input id="receiptDate" type="date"></div>
+          <div class="field full"><label for="businessName">Business or seller name *</label><input id="businessName" placeholder="Northstar Design LLC" autocomplete="organization"></div>
+          <div class="field"><label for="businessDetails">Seller address or contact</label><textarea id="businessDetails" placeholder="123 Market Street&#10;hello@example.com"></textarea></div>
+          <div class="field"><label for="taxId">Seller tax ID or registration number</label><input id="taxId" placeholder="Optional - only when appropriate"></div>
+          <div class="field full"><label for="customerName">Received from *</label><input id="customerName" placeholder="Customer or company name" autocomplete="off"></div>
+          <div class="field full"><label for="customerDetails">Customer address or contact</label><textarea id="customerDetails" placeholder="Optional billing or contact details"></textarea></div>
+        </div>
 
-function generateInvoice(){generateDoc();}
-function generateQuote(){generateDoc();}
-function generateDoc(){
-  const from_=document.getElementById('from')?.value||'Your Business';
-  const to_=document.getElementById('to')?.value||'Client';
-  const num_=document.getElementById('invNum')?.value||document.getElementById('qNum')?.value||'001';
-  const date_=document.getElementById('invDate')?.value||document.getElementById('qDate')?.value||new Date().toISOString().split('T')[0];
-  const due_=document.getElementById('dueDate')?.value||'';
-  const notes=document.getElementById('notes')?.value||'';
-  const taxRate=parseFloat(document.getElementById('taxRate')?.value)||0;
-  const extra=(()=>{
-    const ids=['channel','clientAcct','company','servicePeriod','engType','project','period','histPeriod','propertyType','leaseType','eventType','mediaType','agencyName'];
-    const vals=ids.map(i=>document.getElementById(i)?.value||'').filter(Boolean);
-    return vals.join('  ');
-  })();
-  let sub=0,linesHTML='',linesTxt='';
-  document.querySelectorAll('#lineItems tr').forEach(tr=>{
-    const inputs=tr.querySelectorAll('input');if(inputs.length<3)return;
-    const d=inputs[0].value||'Service';
-    const q=parseFloat(inputs[1].value)||0;
-    const r=parseFloat(inputs[2].value)||0;
-    const tot=q*r;sub+=tot;
-    linesHTML+=`<tr style="border-bottom:1px solid #f1f5f9"><td style="padding:10px 14px">${d}</td><td style="padding:10px 14px;text-align:right">${q}</td><td style="padding:10px 14px;text-align:right">$${r.toFixed(2)}</td><td style="padding:10px 14px;text-align:right;font-weight:600">$${tot.toFixed(2)}</td></tr>`;
-    linesTxt+=`  ${d}  x${q}  $${r.toFixed(2)}  $${tot.toFixed(2)}
-`;
-  });
-  const discPct=(parseFloat(document.getElementById('discount')?.value)||0)/100;
-  const discAmt=sub*discPct;
-  const taxAmt=(sub-discAmt)*(taxRate/100);
-  const total=sub-discAmt+taxAmt;
-  document.getElementById('preview').innerHTML=generateInvoiceHTML(from_,to_,num_,date_,due_,linesHTML,sub,discAmt,taxAmt,total,notes,taxRate,extra);
-  document.getElementById('preview-txt').textContent=linesTxt;
-  document.getElementById('output').style.display='block';
-  document.getElementById('output').scrollIntoView({behavior:'smooth'});
-}
-</script>
+        <h3 class="section-title">Items or services</h3>
+        <div id="lineItems" class="items-editor"></div>
+        <button class="add-button" type="button" id="addLine">+ Add line item</button>
+
+        <h3 class="section-title">Payment and totals</h3>
+        <div class="field-grid">
+          <div class="field"><label for="discount">Discount (%)</label><input id="discount" type="number" min="0" max="100" step="0.01" value="0"></div>
+          <div class="field"><label for="taxRate">Tax rate (%)</label><input id="taxRate" type="number" min="0" max="100" step="0.01" value="0"><small>Use only the rate applicable to this transaction.</small></div>
+          <div class="field"><label for="paymentStatus">Payment status</label><select id="paymentStatus"><option value="paid">Paid in full</option><option value="partial">Partial payment</option><option value="deposit">Deposit received</option></select></div>
+          <div class="field"><label for="amountReceived">Amount received *</label><input id="amountReceived" type="number" min="0" step="0.01" placeholder="Calculated total for paid in full"></div>
+          <div class="field"><label for="paymentMethod">Payment method</label><select id="paymentMethod"><option>Card</option><option>Bank transfer</option><option>Cash</option><option>Check</option><option>Digital wallet</option><option>Other</option></select></div>
+          <div class="field"><label for="paymentReference">Payment reference</label><input id="paymentReference" placeholder="Transaction ID, check number or last 4 digits"></div>
+          <div class="field full"><label for="notes">Notes</label><textarea id="notes" placeholder="Service period, return policy, project reference or another useful record note"></textarea></div>
+        </div>
+
+        <div class="summary-strip" aria-live="polite">
+          <div><span>Subtotal</span><strong id="formSubtotal">$0.00</strong></div>
+          <div><span>Discount</span><strong id="formDiscount">$0.00</strong></div>
+          <div><span>Tax</span><strong id="formTax">$0.00</strong></div>
+          <div><span>Total</span><strong id="formTotal">$0.00</strong></div>
+        </div>
+        <div id="formError" class="error" role="alert"></div>
+        <div class="actions">
+          <button class="button primary" type="button" id="generateReceipt">Generate receipt</button>
+          <button class="button" type="button" id="resetReceipt">Reset</button>
+        </div>
+      </div>
+
+      <div class="panel preview-panel">
+        <div class="preview-toolbar">
+          <strong>Receipt preview</strong>
+          <div class="preview-actions">
+            <button type="button" id="copyReceipt" disabled>Copy text</button>
+            <button type="button" id="printReceipt" disabled>Print / PDF</button>
+          </div>
+        </div>
+        <div class="receipt-wrap">
+          <div id="receiptEmpty" class="receipt receipt-empty"><div><strong>Your receipt will appear here</strong>Complete the required fields and generate the document.</div></div>
+          <article id="receiptDocument" class="receipt receipt-document" aria-label="Generated business receipt">
+            <div class="receipt-head">
+              <div><div id="outTitle" class="receipt-label">Receipt</div><small>Payment record</small></div>
+              <div class="receipt-meta"><strong id="outNumber"></strong><span id="outDate"></span></div>
+            </div>
+            <div class="party-grid">
+              <div class="party"><span>Received by</span><strong id="outBusiness"></strong><p id="outBusinessDetails"></p><p id="outTaxId"></p></div>
+              <div class="party"><span>Received from</span><strong id="outCustomer"></strong><p id="outCustomerDetails"></p></div>
+            </div>
+            <table class="receipt-items">
+              <thead><tr><th>Description</th><th>Qty</th><th>Unit price</th><th>Amount</th></tr></thead>
+              <tbody id="outItems"></tbody>
+            </table>
+            <div class="receipt-totals">
+              <div class="total-line"><span>Subtotal</span><strong id="outSubtotal"></strong></div>
+              <div class="total-line" id="outDiscountLine"><span>Discount</span><strong id="outDiscount"></strong></div>
+              <div class="total-line" id="outTaxLine"><span>Tax</span><strong id="outTax"></strong></div>
+              <div class="total-line final"><span>Total</span><strong id="outTotal"></strong></div>
+            </div>
+            <div class="payment-box">
+              <div><span>Payment status</span><strong id="outStatus"></strong></div>
+              <div><span>Amount received</span><strong id="outReceived"></strong></div>
+              <div><span>Payment method</span><strong id="outMethod"></strong></div>
+              <div><span>Reference</span><strong id="outReference"></strong></div>
+              <div id="outBalanceWrap"><span>Remaining balance</span><strong id="outBalance"></strong></div>
+            </div>
+            <div id="outNotes" class="receipt-notes"></div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="content-band">
+    <div class="content-inner">
+      <div>
+        <p class="eyebrow">Record the payment, not a promise</p>
+        <h2>What this business receipt documents</h2>
+        <p>A receipt records money that was received. It is different from an invoice, which normally asks a customer to pay. Use a unique receipt number and keep the corresponding invoice, contract, bank entry or payment processor record when those documents provide additional evidence.</p>
+        <h3>Use the status field carefully</h3>
+        <p>Select <strong>Paid in full</strong> only when the amount received equals the receipt total. Use <strong>Partial payment</strong> or <strong>Deposit received</strong> when money remains due. The generated receipt shows the remaining balance without changing the terms of the original invoice or agreement.</p>
+        <h3>Tax and legal boundary</h3>
+        <p>This generator does not determine whether a transaction is taxable, deductible, refundable or compliant with a local receipt rule. Add a tax ID or registration number only when it is appropriate for the seller and jurisdiction. For donations, rent, payroll or regulated sales, use the specific documentation required for that transaction.</p>
+      </div>
+      <aside class="evidence-card">
+        <h2>Evidence to retain</h2>
+        <ol>
+          <li>The generated receipt with a unique number.</li>
+          <li>Proof of payment, such as a bank or processor record.</li>
+          <li>The related invoice, order, contract or service description.</li>
+          <li>Notes explaining the business purpose when relevant.</li>
+        </ol>
+        <p>The IRS lists receipts, invoices, paid bills and payment records as supporting business documents. It also notes that multiple documents may be needed to substantiate all parts of a purchase or expense.</p>
+        <a href="https://www.irs.gov/businesses/small-businesses-self-employed/what-kind-of-records-should-i-keep" target="_blank" rel="noopener">Read the IRS recordkeeping guidance</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="faq-section">
+    <div class="faq-panel">
+      <h2>Business receipt questions</h2>
+      <details><summary>What should a business receipt include?</summary><p>A useful receipt normally identifies the seller and customer, transaction date, receipt number, items or services, amounts, taxes, payment method and payment reference. Local invoicing and tax rules may require additional information.</p></details>
+      <details><summary>Is a receipt the same as an invoice?</summary><p>No. An invoice generally requests payment, while a receipt records that money was received. Keep both when they document different stages of a transaction.</p></details>
+      <details><summary>Can I save the receipt as a PDF?</summary><p>Yes. Generate the receipt, choose Print / PDF, and select your browser's PDF destination.</p></details>
+      <details><summary>Does the tool store transaction data?</summary><p>No transaction fields are sent to BillingFixPro by the receipt generator. The document is assembled in the browser. Analytics records button events without the names, descriptions or payment reference entered.</p></details>
+      <details><summary>Does this receipt prove a tax deduction?</summary><p>Not by itself. A receipt can be a supporting record, but tax treatment depends on the transaction, applicable law and the rest of the records supporting the income or expense.</p></details>
+    </div>
+  </section>
+
+  <section class="related-section">
+    <div class="related-panel">
+      <h2>Related payment workflows</h2>
+      <div class="related-grid">
+        <a href="/tools/invoice-generator.html"><strong>Invoice Generator</strong><span>Request payment before issuing a receipt.</span></a>
+        <a href="/tools/payment-receipt.html"><strong>Payment Receipt</strong><span>Document a straightforward payment.</span></a>
+        <a href="/tools/cash-receipt.html"><strong>Cash Receipt</strong><span>Record cash collected and the payer.</span></a>
+        <a href="/tools/refund-receipt.html"><strong>Refund Receipt</strong><span>Document money returned to a customer.</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">Billing<span>Fix</span>Pro</div>
+      <nav class="footer-links" aria-label="Footer"><a href="/about.html">About</a><a href="/editorial-policy.html">Editorial Policy</a><a href="/privacy.html">Privacy</a><a href="mailto:contact@BillingFixPro.com">Contact</a></nav>
+      <div class="footer-copy">&copy; 2026 BillingFixPro. Planning tools for clearer billing records.</div>
+    </div>
+  </footer>
+
+  <script>
+    const currencyMap={USD:'$',CAD:'C$',GBP:'\u00a3',EUR:'\u20ac',AUD:'A$',SGD:'S$',INR:'\u20b9'};
+    const state={generated:false,items:[],subtotal:0,discount:0,tax:0,total:0,received:0,balance:0};
+
+    function byId(id){return document.getElementById(id);}
+    function value(id){return byId(id).value.trim();}
+    function numberValue(id){return Math.max(0,Number.parseFloat(byId(id).value)||0);}
+    function escapeHtml(text){return String(text).replace(/[&<>"']/g,function(char){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[char];});}
+    function symbol(){return currencyMap[byId('currency').value]||'$';}
+    function money(amount){return symbol()+Number(amount||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+    function event(name,params){if(typeof gtag==='function')gtag('event',name,params||{});}
+
+    function addLine(description,qty,rate,track){
+      const row=document.createElement('div');
+      row.className='line-row';
+      row.innerHTML='<div class="field description"><label>Description *</label><input class="item-description" placeholder="Product or service"></div><div class="field"><label>Qty</label><input class="item-qty" type="number" min="0" step="0.01" value="1"></div><div class="field"><label>Unit price</label><input class="item-rate" type="number" min="0" step="0.01" value="0"></div><div><label style="font-size:11px;font-weight:750;color:#34475d">Amount</label><div class="line-amount">'+money(0)+'</div></div><button class="icon-button" type="button" aria-label="Remove line item">&times;</button>';
+      row.querySelector('.item-description').value=description||'';
+      row.querySelector('.item-qty').value=qty==null?1:qty;
+      row.querySelector('.item-rate').value=rate==null?0:rate;
+      row.querySelectorAll('input').forEach(function(input){input.addEventListener('input',calculate);});
+      row.querySelector('.icon-button').addEventListener('click',function(){row.remove();if(!byId('lineItems').children.length)addLine('',1,0,false);calculate();});
+      byId('lineItems').appendChild(row);
+      calculate();
+      if(track!==false)event('receipt_line_added',{tool:'business_receipt'});
+    }
+
+    function collectItems(){
+      return Array.from(document.querySelectorAll('.line-row')).map(function(row){
+        return {description:row.querySelector('.item-description').value.trim(),qty:Math.max(0,Number.parseFloat(row.querySelector('.item-qty').value)||0),rate:Math.max(0,Number.parseFloat(row.querySelector('.item-rate').value)||0)};
+      }).map(function(item){item.amount=item.qty*item.rate;return item;});
+    }
+
+    function calculate(){
+      state.items=collectItems();
+      state.subtotal=state.items.reduce(function(sum,item){return sum+item.amount;},0);
+      state.discount=state.subtotal*Math.min(100,numberValue('discount'))/100;
+      state.tax=(state.subtotal-state.discount)*Math.min(100,numberValue('taxRate'))/100;
+      state.total=state.subtotal-state.discount+state.tax;
+      const receivedRaw=byId('amountReceived').value;
+      state.received=receivedRaw===''&&byId('paymentStatus').value==='paid'?state.total:numberValue('amountReceived');
+      state.balance=Math.max(0,state.total-state.received);
+      document.querySelectorAll('.line-row').forEach(function(row,index){row.querySelector('.line-amount').textContent=money(state.items[index].amount);});
+      byId('formSubtotal').textContent=money(state.subtotal);
+      byId('formDiscount').textContent='-'+money(state.discount);
+      byId('formTax').textContent=money(state.tax);
+      byId('formTotal').textContent=money(state.total);
+    }
+
+    function validate(){
+      calculate();
+      const problems=[];
+      if(!value('businessName'))problems.push('Enter the business or seller name.');
+      if(!value('customerName'))problems.push('Enter who the payment was received from.');
+      if(!value('receiptNumber'))problems.push('Enter a receipt number.');
+      if(!value('receiptDate'))problems.push('Choose the payment date.');
+      if(!state.items.some(function(item){return item.description&&item.amount>0;}))problems.push('Add at least one described item with an amount greater than zero.');
+      if(state.total<=0)problems.push('The receipt total must be greater than zero.');
+      if(state.received<=0)problems.push('Enter an amount received greater than zero.');
+      if(state.received-state.total>0.01)problems.push('Amount received cannot exceed the receipt total in this tool.');
+      if(byId('paymentStatus').value==='paid'&&Math.abs(state.received-state.total)>0.01)problems.push('Paid in full requires the amount received to equal the total.');
+      const error=byId('formError');
+      error.textContent=problems[0]||'';
+      error.classList.toggle('show',problems.length>0);
+      if(problems.length)event('receipt_validation_error',{tool:'business_receipt',error_type:problems[0].slice(0,60)});
+      return problems.length===0;
+    }
+
+    function renderReceipt(){
+      if(!validate())return;
+      const activeItems=state.items.filter(function(item){return item.description&&item.amount>0;});
+      const statusLabels={paid:'Paid in full',partial:'Partial payment',deposit:'Deposit received'};
+      byId('outTitle').textContent=value('receiptTitle');
+      byId('outNumber').textContent=value('receiptNumber');
+      byId('outDate').textContent='Payment date: '+value('receiptDate');
+      byId('outBusiness').textContent=value('businessName');
+      byId('outBusinessDetails').textContent=value('businessDetails');
+      byId('outTaxId').textContent=value('taxId')?'Tax / registration ID: '+value('taxId'):'';
+      byId('outCustomer').textContent=value('customerName');
+      byId('outCustomerDetails').textContent=value('customerDetails');
+      byId('outItems').innerHTML=activeItems.map(function(item){return '<tr><td>'+escapeHtml(item.description)+'</td><td>'+item.qty.toLocaleString('en-US')+'</td><td>'+money(item.rate)+'</td><td><strong>'+money(item.amount)+'</strong></td></tr>';}).join('');
+      byId('outSubtotal').textContent=money(state.subtotal);
+      byId('outDiscount').textContent='-'+money(state.discount);
+      byId('outTax').textContent=money(state.tax);
+      byId('outTotal').textContent=money(state.total);
+      byId('outDiscountLine').style.display=state.discount>0?'flex':'none';
+      byId('outTaxLine').style.display=state.tax>0?'flex':'none';
+      byId('outStatus').textContent=statusLabels[byId('paymentStatus').value];
+      byId('outReceived').textContent=money(state.received);
+      byId('outMethod').textContent=value('paymentMethod');
+      byId('outReference').textContent=value('paymentReference')||'Not recorded';
+      byId('outBalance').textContent=money(state.balance);
+      byId('outBalanceWrap').style.display=state.balance>0?'block':'none';
+      byId('outNotes').textContent=value('notes')?'Notes: '+value('notes'):'';
+      byId('receiptEmpty').style.display='none';
+      byId('receiptDocument').classList.add('show');
+      byId('copyReceipt').disabled=false;
+      byId('printReceipt').disabled=false;
+      state.generated=true;
+      event('receipt_generated',{tool:'business_receipt',currency:byId('currency').value,payment_status:byId('paymentStatus').value,item_count:activeItems.length,total_value:Number(state.total.toFixed(2))});
+      if(window.innerWidth<921)byId('receiptDocument').scrollIntoView({behavior:'smooth',block:'start'});
+    }
+
+    function receiptText(){
+      const lines=state.items.filter(function(item){return item.description&&item.amount>0;}).map(function(item){return item.description+' | '+item.qty+' x '+money(item.rate)+' | '+money(item.amount);});
+      return [value('receiptTitle').toUpperCase(),value('receiptNumber'),'Payment date: '+value('receiptDate'),'Received by: '+value('businessName'),value('businessDetails'),value('taxId')?'Tax / registration ID: '+value('taxId'):'','Received from: '+value('customerName'),value('customerDetails'),'','ITEMS'].concat(lines).concat(['','Subtotal: '+money(state.subtotal),'Discount: -'+money(state.discount),'Tax: '+money(state.tax),'Total: '+money(state.total),'Amount received: '+money(state.received),'Remaining balance: '+money(state.balance),'Payment method: '+value('paymentMethod'),'Reference: '+(value('paymentReference')||'Not recorded'),value('notes')?'Notes: '+value('notes'):'']).filter(Boolean).join('\n');
+    }
+
+    async function copyReceipt(){
+      if(!state.generated)return;
+      try{await navigator.clipboard.writeText(receiptText());byId('copyReceipt').textContent='Copied';setTimeout(function(){byId('copyReceipt').textContent='Copy text';},1600);event('receipt_text_copied',{tool:'business_receipt'});}catch(error){byId('formError').textContent='Copy was blocked by the browser. Select the receipt text manually.';byId('formError').classList.add('show');}
+    }
+
+    function resetReceipt(){
+      document.querySelectorAll('input,textarea').forEach(function(control){if(control.type!=='date')control.value='';});
+      byId('receiptTitle').value='Receipt';byId('currency').value='USD';byId('receiptNumber').value='RCPT-2026-001';byId('receiptDate').value=new Date().toISOString().slice(0,10);byId('discount').value='0';byId('taxRate').value='0';byId('paymentStatus').value='paid';byId('paymentMethod').value='Card';
+      byId('lineItems').innerHTML='';addLine('Professional services',1,250,false);addLine('',1,0,false);
+      byId('receiptDocument').classList.remove('show');byId('receiptEmpty').style.display='grid';byId('copyReceipt').disabled=true;byId('printReceipt').disabled=true;byId('formError').classList.remove('show');state.generated=false;calculate();event('receipt_reset',{tool:'business_receipt'});
+    }
+
+    document.addEventListener('DOMContentLoaded',function(){
+      byId('receiptDate').value=new Date().toISOString().slice(0,10);
+      addLine('Professional services',1,250,false);addLine('',1,0,false);
+      ['discount','taxRate','amountReceived'].forEach(function(id){byId(id).addEventListener('input',calculate);});
+      ['currency','paymentStatus'].forEach(function(id){byId(id).addEventListener('change',calculate);});
+      byId('addLine').addEventListener('click',function(){addLine('',1,0,true);});
+      byId('generateReceipt').addEventListener('click',renderReceipt);
+      byId('copyReceipt').addEventListener('click',copyReceipt);
+      byId('printReceipt').addEventListener('click',function(){if(state.generated){event('receipt_print_started',{tool:'business_receipt'});window.print();}});
+      byId('resetReceipt').addEventListener('click',resetReceipt);
+      calculate();
+    });
+  </script>
 </body>
 </html>
