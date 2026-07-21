@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="robots" content="noindex, follow">
+  <meta name="robots" content="index, follow">
 <!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-TPVMTCEC3E">
 </script>
 <script>
@@ -49,9 +49,39 @@ function generateInvoiceHTML(from_,to_,num_,date_,due_,linesHTML,sub,discAmt,tax
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<title>Payment History Template - Free Online Tool | BillingFixPro</title>
-<meta name="description" content="Free Payment History Template tool. Create professional payment history template documents online in seconds. No signup required. | BillingFixPro">
+<title>Payment History Template: Track Paid & Pending Records</title>
+<meta name="description" content="Create a printable payment history with dates, references, methods, amounts and statuses. Use the free template online, then copy or save it as PDF.">
 <link rel="canonical" href="https://billingfixpro.com/tools/payment-history.html">
+<meta property="og:title" content="Payment History Template: Track Paid & Pending Records">
+<meta property="og:description" content="Build a clear payment history online and export a client-ready record without signing up.">
+<meta property="og:url" content="https://billingfixpro.com/tools/payment-history.html">
+<meta property="og:type" content="website">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Payment History Template",
+      "url": "https://billingfixpro.com/tools/payment-history.html",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript",
+      "description": "A browser-based template for recording payment dates, references, methods, amounts and statuses.",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "What should a payment history include?", "acceptedAnswer": {"@type": "Answer", "text": "Include the payment date, description, reference number, payment method, amount and current status for every record."}},
+        {"@type": "Question", "name": "What is the difference between paid and pending totals?", "acceptedAnswer": {"@type": "Answer", "text": "Paid totals include completed payments. Pending totals include records marked Pending or Partial so they remain visible for follow-up."}},
+        {"@type": "Question", "name": "Can I save the payment history as a PDF?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Generate the payment history, choose Print / Save PDF, and select your browser's PDF destination."}},
+        {"@type": "Question", "name": "Does BillingFixPro store the payment information?", "acceptedAnswer": {"@type": "Answer", "text": "No. The document is assembled in the browser and the form data is not sent to BillingFixPro."}}
+      ]
+    }
+  ]
+}
+</script>
 <style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--primary:#0891b2;--primary-dark:#0e7490;--primary-light:#ecfeff;--primary-dim:rgba(8,145,178,.08);--bg:#f8fafc;--bg2:#fff;--text:#1e293b;--text2:#475569;--text3:#94a3b8;--border:#e2e8f0;--radius:12px;--radius-sm:8px;--shadow:0 1px 3px rgba(0,0,0,.08),0 1px 6px rgba(0,0,0,.04)}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
@@ -88,8 +118,9 @@ main{max-width:860px;margin:0 auto;padding:24px 20px 60px;width:100%;flex:1}
 .field textarea{resize:vertical;min-height:80px}
 .btn-primary{margin-top:20px;padding:12px 28px;background:var(--primary);color:#fff;border:none;border-radius:var(--radius-sm);font-size:15px;font-weight:700;cursor:pointer;transition:background .15s;font-family:inherit}
 .btn-primary:hover{background:var(--primary-dark)}
-.preview-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px}
+.preview-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px;overflow:hidden}
 .preview-card h2{font-size:1rem;font-weight:700;margin-bottom:16px;color:var(--text)}
+#preview{max-width:100%;overflow-x:auto}
 .download-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
 .btn-dl{padding:10px 22px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s;border:none}
 .btn-dl-pdf{background:#dc2626;color:#fff}
@@ -99,6 +130,14 @@ main{max-width:860px;margin:0 auto;padding:24px 20px 60px;width:100%;flex:1}
 .seo-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px}
 .seo-section h2{font-size:1rem;font-weight:700;margin-bottom:12px}
 .seo-section p{font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:8px}
+.seo-section ul,.seo-section ol{margin:10px 0 0 20px;color:var(--text2);font-size:14px;line-height:1.8}
+.quality-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:24px}
+.quality-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+.quality-card h2{font-size:1rem;margin-bottom:10px}.quality-card p,.quality-card li{font-size:14px;color:var(--text2);line-height:1.7}.quality-card ol,.quality-card ul{margin-left:20px}
+.helper-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px}
+.btn-secondary{padding:10px 16px;background:#fff;color:var(--primary);border:1.5px solid var(--primary);border-radius:var(--radius-sm);font-size:14px;font-weight:700;cursor:pointer;font-family:inherit}
+.btn-secondary:hover{background:var(--primary-light)}
+.privacy-note{font-size:12px;color:var(--text3)}
 .related-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px}
 .related-section h2{font-size:1rem;font-weight:700;margin-bottom:16px}
 .related-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
@@ -114,7 +153,7 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 .footer-links a{color:#94a3b8;font-size:13px;transition:color .15s}
 .footer-links a:hover{color:#fff}
 .footer-copy{font-size:13px;width:100%}
-@media(max-width:640px){.form-grid{grid-template-columns:1fr}.related-grid{grid-template-columns:1fr}.tool-hero h1{font-size:1.5rem}}
+@media(max-width:640px){.header-inner{padding:0 12px;gap:10px}.site-nav{gap:2px}.site-nav .nav-link{font-size:13px;padding:6px 8px}.site-nav .nav-link-outline{padding:6px 10px}.form-grid,.quality-grid{grid-template-columns:1fr}.related-grid{grid-template-columns:1fr}.tool-hero h1{font-size:1.5rem}.form-card,.preview-card,.seo-section,.faq-section,.related-section{padding:22px}}
 .faq-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:24px}.faq-section h2{font-size:1.1rem;font-weight:700;margin-bottom:20px}.faq-item{border-bottom:1px solid var(--border);padding:16px 0}.faq-item:last-child{border-bottom:none;padding-bottom:0}.faq-item h3{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px}.faq-item p{font-size:14px;color:var(--text2);line-height:1.7}
 @media print{header,footer,.ad-slot,.ad-top,.ad-middle,.ad-bottom,.form-card,.tool-hero,.breadcrumb,.seo-section,.faq-section,.related-section,.affiliate-section,.download-row,#btt{display:none!important}body{background:#fff!important}main{padding:0!important}#output{display:block!important;box-shadow:none!important;border:none!important;padding:0!important}}</style>
 </head>
@@ -129,22 +168,22 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
   </div>
 </header>
 <div class="ad-slot ad-top"><div class="adsense-placeholder" data-pub="ca-pub-1638874323475457"></div></div>
-<div class="breadcrumb"><a href="/">Home</a><span>?</span><a href="/">Tools</a><span>?</span>Payment History Template</div>
+<div class="breadcrumb"><a href="/">Home</a><span>&rsaquo;</span><a href="/">Tools</a><span>&rsaquo;</span>Payment History Template</div>
 <main>
   <div class="tool-hero">
     <h1>Payment History Template</h1>
-    <p>Free online payment history generator &mdash; track payments by date, method, reference number and status. No signup required.</p>
+    <p>Create a clean record of paid, pending, partial, overdue and refunded transactions. Add references and payment methods, review the totals, then copy or save the finished history as a PDF.</p>
   </div>
   
 <div class="form-card">
   <h2>Account Information</h2>
   <div class="form-grid">
-    <div class="field"><label>Account Holder Name</label><input id="from" type="text" placeholder="John Smith / Acme Corp"></div>
-    <div class="field"><label>Prepared By (Creditor / Business)</label><input id="to" type="text" placeholder="Your Business Name"></div>
-    <div class="field"><label>Account #</label><input id="invNum" type="text" placeholder="ACCT-001" value="ACCT-001"></div>
-    <div class="field"><label>Statement Date</label><input id="invDate" type="date"></div>
-    <div class="field"><label>Period Start</label><input id="periodStart" type="date"></div>
-    <div class="field"><label>Period End</label><input id="periodEnd" type="date"></div>
+    <div class="field"><label for="from">Account Holder Name</label><input id="from" type="text" placeholder="John Smith / Acme Corp" autocomplete="name"></div>
+    <div class="field"><label for="to">Prepared By (Creditor / Business)</label><input id="to" type="text" placeholder="Your Business Name" autocomplete="organization"></div>
+    <div class="field"><label for="invNum">Account #</label><input id="invNum" type="text" placeholder="ACCT-001" value="ACCT-001"></div>
+    <div class="field"><label for="invDate">Statement Date</label><input id="invDate" type="date"></div>
+    <div class="field"><label for="periodStart">Period Start</label><input id="periodStart" type="date"></div>
+    <div class="field"><label for="periodEnd">Period End</label><input id="periodEnd" type="date"></div>
   </div>
 </div>
 <div class="form-card">
@@ -163,17 +202,21 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
     </tr></thead>
     <tbody id="lineItems"></tbody>
   </table>
-  <button onclick="addRow()" style="margin-top:12px;padding:8px 16px;background:var(--primary-light);color:var(--primary);border:1.5px solid var(--primary);border-radius:var(--radius-sm);font-size:13px;font-weight:600;cursor:pointer">+ Add Payment</button>
+  <button type="button" onclick="addRow()" style="margin-top:12px;padding:8px 16px;background:var(--primary-light);color:var(--primary);border:1.5px solid var(--primary);border-radius:var(--radius-sm);font-size:13px;font-weight:600;cursor:pointer">+ Add Payment</button>
   <div style="margin-top:20px;text-align:right;font-size:14px;line-height:2">
     <div>Total Paid: <strong id="totalPaid" style="color:#059669">$0.00</strong></div>
     <div>Total Pending: <strong id="totalPending" style="color:#d97706">$0.00</strong></div>
     <div style="font-size:16px;font-weight:800;color:var(--primary)">Grand Total: <strong id="totalAmt">$0.00</strong></div>
   </div>
-  <div class="field full" style="margin-top:16px"><label>Notes / Payment Terms</label><textarea id="notes" placeholder="All payments processed via ACH. Contact billing@example.com for disputes."></textarea></div>
-  <button class="btn-primary" onclick="generateDoc()" style="margin-top:24px">Generate Payment History</button>
+  <div class="field full" style="margin-top:16px"><label for="notes">Notes / Payment Terms</label><textarea id="notes" placeholder="All payments processed via ACH. Contact billing@example.com for questions."></textarea></div>
+  <div class="helper-actions">
+    <button type="button" class="btn-primary" onclick="generateDoc()" style="margin-top:0">Generate Payment History</button>
+    <button type="button" class="btn-secondary" onclick="loadExample()">Load Example</button>
+    <span class="privacy-note">Entries stay in this browser and are not saved by BillingFixPro.</span>
+  </div>
 </div>
 <div id="output" class="preview-card" style="display:none">
-  <h2>Invoice Preview</h2>
+  <h2>Payment History Preview</h2>
   <div id="preview"></div><pre id="preview-txt" style="display:none"></pre>
   <div class="download-row">
     <button id="copyBtn" class="btn-dl btn-dl-doc" onclick="copyText()">Copy Text</button>
@@ -181,35 +224,47 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
   </div>
 </div>
   <div class="ad-slot ad-middle"><div class="adsense-placeholder" data-pub="ca-pub-1638874323475457"></div></div>
+  <div class="quality-grid">
+    <section class="quality-card">
+      <h2>How to create a payment history</h2>
+      <ol>
+        <li>Identify the account holder and statement period.</li>
+        <li>Add one row for each transaction, including its reference and method.</li>
+        <li>Choose the current status instead of deleting unresolved records.</li>
+        <li>Check paid and pending totals before generating the document.</li>
+      </ol>
+    </section>
+    <section class="quality-card">
+      <h2>How statuses affect totals</h2>
+      <ul>
+        <li><strong>Paid:</strong> included in Total Paid.</li>
+        <li><strong>Pending or Partial:</strong> included in Total Pending.</li>
+        <li><strong>Overdue or Refunded:</strong> retained in the history but excluded from the two summary totals.</li>
+      </ul>
+    </section>
+  </div>
   <div class="seo-section">
-<h2>About Payment History Template</h2>
-<p>BillingFixPro's Payment History Template is a free, professional-grade online tool designed to streamline your billing and financial document workflow. Whether you are a freelancer, small business owner, or financial professional, this tool provides everything you need to produce accurate, polished documents quickly and easily &mdash; no account required, no software to install, and completely free to use.</p>
-<p>Our Payment History Template is designed for real-world business needs. The interface is clean and intuitive, allowing you to complete your task efficiently without navigating complex menus or reading lengthy instructions. Enter your information, and the tool takes care of formatting, calculations, and layout &mdash; delivering a professional result ready for immediate use.</p>
-<p>Quality billing documentation is essential for every business. It creates clear financial records, communicates professionalism to clients and partners, and provides the paper trail required for accounting, tax filing, and audits. Our Payment History Template ensures your financial documents meet professional standards every time, regardless of your design or technical background.</p>
-<p>Consistency in documentation saves time and reduces errors. Rather than recreating documents from scratch each time, BillingFixPro gives you a reliable, standardised tool that produces consistent output across every use. This makes it easier to maintain organised records, respond quickly to client requests, and keep your billing process running smoothly even during busy periods.</p>
-<p>The Payment History Template is part of BillingFixPro's extensive library of free billing and financial tools, covering the complete document lifecycle &mdash; from initial quotes and purchase orders through invoices, receipts, payment agreements, and follow-up notices. Each tool is designed to integrate seamlessly into a professional billing workflow, giving you everything you need in one place.</p>
-<p>We are committed to providing small businesses, freelancers, and independent professionals with the same quality of tools that larger companies access through expensive software &mdash; at zero cost. BillingFixPro believes professional billing tools should be accessible to everyone. Use this tool as often as you need, on any device, any time &mdash; always free.</p>  </div>
+    <h2>When to use this payment history template</h2>
+    <p>Use the template when a customer, vendor or internal finance team needs a transaction-level record rather than a single receipt. It is useful for account reconciliation, payment follow-up, client statements and documenting how an outstanding balance changed over time.</p>
+    <p>This is a record-building tool, not an accounting ledger. Compare the finished history with bank or payment-processor records before relying on it for bookkeeping, tax reporting or a dispute. Keep supporting receipts and invoices with the exported document.</p>
+  </div>
   <div class="faq-section">
   <h2>Frequently Asked Questions</h2>
   <div class="faq-item">
-    <h3>Q: Is the Payment History Template free to use?</h3>
-    <p>A: Yes, BillingFixPro's Payment History Template is completely free. No account, no subscription, and no fees &mdash; access the full functionality with unlimited usage at no cost.</p>
+    <h3>What should a payment history include?</h3>
+    <p>Include the payment date, description, reference number, payment method, amount and current status for every record. Add the account and statement period so the exported history can be identified later.</p>
   </div>
   <div class="faq-item">
-    <h3>Q: Do I need to install any software?</h3>
-    <p>A: No software installation is required. The Payment History Template works entirely in your web browser on any device &mdash; desktop, laptop, tablet, or smartphone. Simply visit the page and start using it immediately.</p>
+    <h3>What is the difference between paid and pending totals?</h3>
+    <p>Paid totals include completed payments. Pending totals include records marked Pending or Partial so they remain visible for follow-up. Overdue and refunded entries remain listed but are not added to either summary.</p>
   </div>
   <div class="faq-item">
-    <h3>Q: Can I save or download my output?</h3>
-    <p>A: Yes. You can download your generated document as a PDF, print it directly from your browser, or copy the content for use in other applications. All output options are free and immediately available.</p>
+    <h3>Can I save the payment history as a PDF?</h3>
+    <p>Yes. Generate the payment history, choose Print / Save PDF, and select your browser's PDF destination. You can also copy a plain-text version for a spreadsheet, email or case note.</p>
   </div>
   <div class="faq-item">
-    <h3>Q: Is my data secure when using this tool?</h3>
-    <p>A: All data you enter is processed locally in your browser and is never transmitted to or stored on BillingFixPro's servers. Your business and financial information stays completely private and secure.</p>
-  </div>
-  <div class="faq-item">
-    <h3>Q: Can I use this tool for multiple clients or projects?</h3>
-    <p>A: Yes, use the Payment History Template as many times as needed, for as many clients or projects as you have. There are no usage limits, and each session starts fresh with no data carried over from previous uses.</p>
+    <h3>Does BillingFixPro store the payment information?</h3>
+    <p>No. The document is assembled in the browser and the form data is not sent to BillingFixPro. Closing or refreshing the page clears the working session.</p>
   </div>
 </div>
   <div class="related-section">
@@ -293,6 +348,16 @@ const METHODS=['Bank Transfer','Credit Card','Cash','Check','ACH','PayPal','Wire
 const STATUSES=['Paid','Pending','Overdue','Refunded','Partial'];
 const STATUS_COLORS={'Paid':'#059669','Pending':'#d97706','Overdue':'#dc2626','Refunded':'#7c3aed','Partial':'#0891b2'};
 
+function esc(value){
+  return String(value == null ? '' : value).replace(/[&<>'"]/g,function(char){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char];
+  });
+}
+
+function track(action){
+  if(typeof gtag==='function')gtag('event',action,{tool_name:'payment_history'});
+}
+
 function addRow(){
   const tb=document.getElementById('lineItems');
   if(!tb)return;
@@ -300,13 +365,13 @@ function addRow(){
   const today=new Date().toISOString().split('T')[0];
   const mOpts=METHODS.map(m=>'<option>'+m+'</option>').join('');
   const sOpts=STATUSES.map(s=>'<option>'+s+'</option>').join('');
-  tr.innerHTML='<td style="padding:6px"><input type="date" value="'+today+'" oninput="calcTotals()" style="padding:5px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px;width:130px"></td>'
-    +'<td style="padding:6px"><input type="text" placeholder="Monthly subscription" style="width:100%;padding:5px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px"></td>'
-    +'<td style="padding:6px"><input type="text" placeholder="REF-001" style="width:90px;padding:5px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px"></td>'
-    +'<td style="padding:6px"><select oninput="calcTotals()" style="padding:5px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px">'+mOpts+'</select></td>'
-    +'<td style="padding:6px"><input type="number" value="0" min="0" step="0.01" oninput="calcTotals()" style="width:90px;padding:5px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px;text-align:right"></td>'
-    +'<td style="padding:6px;text-align:center"><select oninput="calcTotals()" style="padding:5px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px">'+sOpts+'</select></td>'
-    +'<td style="padding:6px"><button onclick="this.closest(\'tr\').remove();calcTotals()" style="background:#fee2e2;color:#dc2626;border:none;border-radius:4px;padding:4px 8px;cursor:pointer">&#10005;</button></td>';
+  tr.innerHTML='<td style="padding:6px"><input aria-label="Payment date" type="date" value="'+today+'" oninput="calcTotals()" style="padding:5px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px;width:130px"></td>'
+    +'<td style="padding:6px"><input aria-label="Payment description" type="text" placeholder="Monthly subscription" style="width:100%;padding:5px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px"></td>'
+    +'<td style="padding:6px"><input aria-label="Payment reference" type="text" placeholder="REF-001" style="width:90px;padding:5px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px"></td>'
+    +'<td style="padding:6px"><select aria-label="Payment method" oninput="calcTotals()" style="padding:5px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px">'+mOpts+'</select></td>'
+    +'<td style="padding:6px"><input aria-label="Payment amount" type="number" value="0" min="0" step="0.01" oninput="calcTotals()" style="width:90px;padding:5px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px;text-align:right"></td>'
+    +'<td style="padding:6px;text-align:center"><select aria-label="Payment status" oninput="calcTotals()" style="padding:5px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px">'+sOpts+'</select></td>'
+    +'<td style="padding:6px"><button type="button" aria-label="Remove payment" onclick="this.closest(\'tr\').remove();calcTotals()" style="background:#fee2e2;color:#dc2626;border:none;border-radius:4px;padding:4px 8px;cursor:pointer">&#10005;</button></td>';
   tb.appendChild(tr);
   calcTotals();
 }
@@ -350,7 +415,36 @@ function copyText(){
     var btn=document.getElementById('copyBtn');
     if(btn){var orig=btn.textContent;btn.textContent='Copied!';btn.style.background='#059669';
     setTimeout(function(){btn.textContent=orig;btn.style.background='';},2000);}
+    track('payment_history_copy');
   });
+}
+
+function loadExample(){
+  var today=new Date();
+  var start=new Date(today.getFullYear(),today.getMonth()-2,1);
+  var localDate=function(date){
+    return date.getFullYear()+'-'+String(date.getMonth()+1).padStart(2,'0')+'-'+String(date.getDate()).padStart(2,'0');
+  };
+  document.getElementById('from').value='Northwind Studio';
+  document.getElementById('to').value='Acme Services';
+  document.getElementById('invNum').value='ACCT-1042';
+  document.getElementById('invDate').value=localDate(today);
+  document.getElementById('periodStart').value=localDate(start);
+  document.getElementById('periodEnd').value=localDate(today);
+  document.getElementById('notes').value='Example only. Verify each entry against the original receipt or processor record.';
+  var rows=document.querySelectorAll('#lineItems tr');
+  var samples=[
+    ['Monthly service - May','ACH-2405',850,'ACH','Paid'],
+    ['Monthly service - June','ACH-2406',850,'Bank Transfer','Paid'],
+    ['Additional support','INV-1078',225,'Credit Card','Pending']
+  ];
+  rows.forEach(function(row,index){
+    var inputs=row.querySelectorAll('input');var selects=row.querySelectorAll('select');var sample=samples[index];
+    if(!sample)return;
+    inputs[1].value=sample[0];inputs[2].value=sample[1];row.querySelector('input[type=number]').value=sample[2];
+    selects[0].value=sample[3];selects[1].value=sample[4];
+  });
+  calcTotals();track('payment_history_example_load');
 }
 
 document.addEventListener('DOMContentLoaded',function(){
@@ -377,13 +471,13 @@ function generateDoc(){
     var allInputs=tr.querySelectorAll('input');
     var selects=tr.querySelectorAll('select');
     if(allInputs.length<3)return;
-    var date=allInputs[0]?allInputs[0].value||stmtDate:stmtDate;
-    var desc=allInputs[1]?allInputs[1].value||'Payment':'Payment';
-    var ref=allInputs[2]?allInputs[2].value||'-':'-';
+    var date=esc(allInputs[0]?allInputs[0].value||stmtDate:stmtDate);
+    var desc=esc(allInputs[1]?allInputs[1].value||'Payment':'Payment');
+    var ref=esc(allInputs[2]?allInputs[2].value||'-':'-');
     var amtInput=tr.querySelector('input[type=number]');
     var amt=amtInput?parseFloat(amtInput.value)||0:0;
-    var method=selects[0]?selects[0].value||'Bank Transfer':'Bank Transfer';
-    var status=selects[1]?selects[1].value||'Paid':'Paid';
+    var method=esc(selects[0]?selects[0].value||'Bank Transfer':'Bank Transfer');
+    var status=esc(selects[1]?selects[1].value||'Paid':'Paid');
     var color=STATUS_COLORS[status]||'#475569';
     var bg=i%2===0?'#fff':'#f8fafc';
     if(status==='Paid')totalPaid+=amt;
@@ -405,12 +499,12 @@ function generateDoc(){
   var html='<div style="font-family:Helvetica Neue,Arial,sans-serif;max-width:720px;padding:40px;background:#fff;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,0.08)">'
     +'<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;padding-bottom:20px;border-bottom:3px solid #0891b2">'
     +'<div><div style="font-size:22px;font-weight:800;color:#0891b2">Payment History</div>'
-    +'<div style="font-size:13px;color:#64748b;margin-top:4px">Account #'+acct+'</div>'
-    +'<div style="font-size:13px;color:#64748b">Statement Date: '+stmtDate+'</div>'
-    +'<div style="font-size:13px;color:#64748b">Period: '+periodStr+'</div></div>'
+    +'<div style="font-size:13px;color:#64748b;margin-top:4px">Account #'+esc(acct)+'</div>'
+    +'<div style="font-size:13px;color:#64748b">Statement Date: '+esc(stmtDate)+'</div>'
+    +'<div style="font-size:13px;color:#64748b">Period: '+esc(periodStr)+'</div></div>'
     +'<div style="text-align:right;font-size:13px;color:#475569">'
-    +'<div style="font-weight:700;color:#0f172a;margin-bottom:2px">Prepared By</div><div>'+preparedBy+'</div>'
-    +'<div style="margin-top:8px;font-weight:700;color:#0f172a">Account Holder</div><div>'+holder+'</div></div></div>'
+    +'<div style="font-weight:700;color:#0f172a;margin-bottom:2px">Prepared By</div><div>'+esc(preparedBy)+'</div>'
+    +'<div style="margin-top:8px;font-weight:700;color:#0f172a">Account Holder</div><div>'+esc(holder)+'</div></div></div>'
     +'<table style="width:100%;border-collapse:collapse;margin-bottom:24px;font-size:13px">'
     +'<thead><tr style="background:#0891b2">'
     +'<th style="color:#fff;padding:10px 12px;text-align:left;border-radius:6px 0 0 0">Date</th>'
@@ -426,13 +520,14 @@ function generateDoc(){
     +'<div style="display:flex;justify-content:space-between;padding:6px 0;color:#475569"><span>Total Pending</span><strong style="color:#d97706">$'+totalPending.toFixed(2)+'</strong></div>'
     +'<div style="display:flex;justify-content:space-between;padding:10px 0;margin-top:6px;border-top:2px solid #0891b2;font-size:15px;font-weight:800;color:#0891b2"><span>Grand Total</span><span>$'+grandTotal.toFixed(2)+'</span></div>'
     +'</div></div>'
-    +(notes?'<div style="padding:14px 18px;background:#f0f9ff;border-left:3px solid #0891b2;border-radius:0 8px 8px 0;font-size:12px;color:#475569"><strong>Remarks:</strong> '+notes+'</div>':'')
+    +(notes?'<div style="padding:14px 18px;background:#f0f9ff;border-left:3px solid #0891b2;border-radius:0 8px 8px 0;font-size:12px;color:#475569"><strong>Remarks:</strong> '+esc(notes)+'</div>':'')
     +'</div>';
 
   document.getElementById('preview').innerHTML=html;
   document.getElementById('preview-txt').textContent='PAYMENT HISTORY\nAccount: '+acct+'  Holder: '+holder+'\nPeriod: '+periodStr+'\n'+rowsTxt+'\nTotal Paid: $'+totalPaid.toFixed(2)+'  Pending: $'+totalPending.toFixed(2)+'  Grand Total: $'+grandTotal.toFixed(2);
   document.getElementById('output').style.display='block';
   document.getElementById('output').scrollIntoView({behavior:'smooth'});
+  track('payment_history_generate');
 }
 </script>
 </body>
