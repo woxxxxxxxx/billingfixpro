@@ -8,6 +8,14 @@
   <title>Business Receipt Generator: Create, Print or Save PDF</title>
   <meta name="description" content="Create an itemized business receipt with seller, customer, payment, tax and reference details. Print, save as PDF or copy the receipt text in your browser.">
   <link rel="canonical" href="https://billingfixpro.com/tools/business-receipt.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Business Receipt Generator">
+  <meta property="og:description" content="Create an itemized receipt with seller, customer, tax and payment details, then print or save it as a PDF.">
+  <meta property="og:url" content="https://billingfixpro.com/tools/business-receipt.html">
+  <meta property="og:image" content="https://billingfixpro.com/logo.svg">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Business Receipt Generator">
+  <meta name="twitter:description" content="Create, print or save an itemized business receipt in your browser.">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TPVMTCEC3E"></script>
   <script>
@@ -345,7 +353,7 @@
     function addLine(description,qty,rate,track){
       const row=document.createElement('div');
       row.className='line-row';
-      row.innerHTML='<div class="field description"><label>Description *</label><input class="item-description" placeholder="Product or service"></div><div class="field"><label>Qty</label><input class="item-qty" type="number" min="0" step="0.01" value="1"></div><div class="field"><label>Unit price</label><input class="item-rate" type="number" min="0" step="0.01" value="0"></div><div><label style="font-size:11px;font-weight:750;color:#34475d">Amount</label><div class="line-amount">'+money(0)+'</div></div><button class="icon-button" type="button" aria-label="Remove line item">&times;</button>';
+  row.innerHTML='<div class="field description"><label>Description *</label><input class="item-description" aria-label="Line item description" placeholder="Product or service"></div><div class="field"><label>Qty</label><input class="item-qty" aria-label="Line item quantity" type="number" min="0" step="0.01" value="1"></div><div class="field"><label>Unit price</label><input class="item-rate" aria-label="Line item unit price" type="number" min="0" step="0.01" value="0"></div><div><label style="font-size:11px;font-weight:750;color:#34475d">Amount</label><div class="line-amount">'+money(0)+'</div></div><button class="icon-button" type="button" aria-label="Remove line item">&times;</button>';
       row.querySelector('.item-description').value=description||'';
       row.querySelector('.item-qty').value=qty==null?1:qty;
       row.querySelector('.item-rate').value=rate==null?0:rate;

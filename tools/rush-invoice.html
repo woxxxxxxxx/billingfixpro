@@ -52,6 +52,14 @@ function generateInvoiceHTML(from_,to_,num_,date_,due_,linesHTML,sub,discAmt,tax
 <title>Rush Invoice Template & Rush Fee Calculator | BillingFixPro</title>
 <meta name="description" content="Calculate a 25%, 50%, or 100% rush fee, add it to an itemized invoice, and print or save the finished rush invoice as a PDF. No signup required.">
 <link rel="canonical" href="https://billingfixpro.com/tools/rush-invoice.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rush Invoice Template & Rush Fee Calculator">
+<meta property="og:description" content="Calculate a rush fee, add it to an itemized invoice, and print or save the finished document as a PDF.">
+<meta property="og:url" content="https://billingfixpro.com/tools/rush-invoice.html">
+<meta property="og:image" content="https://billingfixpro.com/logo.svg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Rush Invoice Template & Rush Fee Calculator">
+<meta name="twitter:description" content="Build an itemized rush invoice with a clear expedited-service fee.">
 <style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--primary:#0891b2;--primary-dark:#0e7490;--primary-light:#ecfeff;--primary-dim:rgba(8,145,178,.08);--bg:#f8fafc;--bg2:#fff;--text:#1e293b;--text2:#475569;--text3:#94a3b8;--border:#e2e8f0;--radius:12px;--radius-sm:8px;--shadow:0 1px 3px rgba(0,0,0,.08),0 1px 6px rgba(0,0,0,.04)}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
@@ -139,13 +147,13 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 <div class="form-card">
   <h2>Invoice Details</h2>
   <div class="form-grid">
-    <div class="field"><label>From (Your Business)</label><input id="from" type="text" placeholder="Your Name / Business"></div>
-    <div class="field"><label>Bill To (Client)</label><input id="to" type="text" placeholder="Client Name / Company"></div>
-    <div class="field"><label>Invoice #</label><input id="invNum" type="text" placeholder="INV-001" value="INV-001"></div>
-    <div class="field"><label>Invoice Date</label><input id="invDate" type="date"></div>
-    <div class="field"><label>Due Date</label><input id="dueDate" type="date"></div>
-    <div class="field"><label>Tax Rate (%)</label><input id="taxRate" type="number" value="0" step="0.1" oninput="calcTotals()"></div>
-    <div class="field"><label>Discount (%)</label><input id="discount" type="number" value="0" step="0.1" oninput="calcTotals()"></div>
+<div class="field"><label for="from">From (Your Business)</label><input id="from" type="text" placeholder="Your Name / Business"></div>
+<div class="field"><label for="to">Bill To (Client)</label><input id="to" type="text" placeholder="Client Name / Company"></div>
+<div class="field"><label for="invNum">Invoice #</label><input id="invNum" type="text" placeholder="INV-001" value="INV-001"></div>
+<div class="field"><label for="invDate">Invoice Date</label><input id="invDate" type="date"></div>
+<div class="field"><label for="dueDate">Due Date</label><input id="dueDate" type="date"></div>
+<div class="field"><label for="taxRate">Tax Rate (%)</label><input id="taxRate" type="number" value="0" step="0.1" oninput="calcTotals()"></div>
+<div class="field"><label for="discount">Discount (%)</label><input id="discount" type="number" value="0" step="0.1" oninput="calcTotals()"></div>
   </div>
 </div>
 <div class="form-card">
@@ -161,8 +169,8 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
     <div>Tax: <strong id="taxAmt">$0.00</strong></div>
     <div style="font-size:16px;font-weight:800;color:var(--primary)">Total Due: <strong id="totalAmt">$0.00</strong></div>
   </div>
-  <div class="field full" style="margin-top:16px"><label>Notes / Payment Terms</label><textarea id="notes" placeholder="Payment due within 30 days. Thank you for your business."></textarea></div>
-  <div class="field"><label>Standard Project Rate ($)</label><input id="stdRate" type="number" value="0" min="0" step="10" oninput="calcRush()"></div><div class="field"><label>Rush Fee (%)</label><select id="rushPct" oninput="calcRush()"><option value="25">25% Rush Fee</option><option value="50">50% Rush Fee</option><option value="100">100% (Double Time)</option></select></div><div class="field"><label>Calculated Rush Fee</label><div id="rushFeeDisplay" style="padding:10px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);font-weight:700">$0.00</div></div><div class="field"><label>Rush Delivery By</label><input id="rushDue" type="datetime-local"></div>
+<div class="field full" style="margin-top:16px"><label for="notes">Notes / Payment Terms</label><textarea id="notes" placeholder="Payment due within 30 days. Thank you for your business."></textarea></div>
+<div class="field"><label for="stdRate">Standard Project Rate ($)</label><input id="stdRate" type="number" value="0" min="0" step="10" oninput="calcRush()"></div><div class="field"><label for="rushPct">Rush Fee (%)</label><select id="rushPct" oninput="calcRush()"><option value="25">25% Rush Fee</option><option value="50">50% Rush Fee</option><option value="100">100% (Double Time)</option></select></div><div class="field"><label>Calculated Rush Fee</label><div id="rushFeeDisplay" style="padding:10px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);font-weight:700">$0.00</div></div><div class="field"><label for="rushDue">Rush Delivery By</label><input id="rushDue" type="datetime-local"></div>
   <button type="button" onclick="applyRushFee()" style="margin:0 0 14px;padding:9px 16px;background:var(--primary-light);color:var(--primary);border:1.5px solid var(--primary);border-radius:var(--radius-sm);font-weight:700;cursor:pointer">Add Rush Fee as Line Item</button>
   <button class="btn-primary" onclick="generateInvoice()">Generate Invoice</button>
 </div>
@@ -313,9 +321,9 @@ footer{background:var(--text);color:#94a3b8;padding:28px 20px}
 function addRow(description='',qty=1,rate=0){
   const tb=document.getElementById('lineItems');
   const tr=document.createElement('tr');
-  tr.innerHTML=`<td><input type="text" placeholder="Item description" value="${description}" style="width:100%;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px"></td>
-    <td><input type="number" value="${qty}" min="0" oninput="calcTotals()" style="width:60px;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px"></td>
-    <td><input type="number" value="${rate}" min="0" step="0.01" oninput="calcTotals()" style="width:90px;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px"></td>
+  tr.innerHTML=`<td><input type="text" aria-label="Line item description" placeholder="Item description" value="${description}" style="width:100%;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px"></td>
+<td><input type="number" aria-label="Line item quantity" value="${qty}" min="0" oninput="calcTotals()" style="width:60px;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px"></td>
+<td><input type="number" aria-label="Line item unit price" value="${rate}" min="0" step="0.01" oninput="calcTotals()" style="width:90px;padding:6px;border:1px solid #e2e8f0;border-radius:6px;font-size:13px"></td>
     <td id="rt" style="text-align:right;padding:6px;font-size:13px">$0.00</td>
     <td><button onclick="this.closest('tr').remove();calcTotals()" style="background:#fee2e2;color:#dc2626;border:none;border-radius:4px;padding:4px 8px;cursor:pointer">?</button></td>`;
   tb.appendChild(tr);calcTotals();return tr;
